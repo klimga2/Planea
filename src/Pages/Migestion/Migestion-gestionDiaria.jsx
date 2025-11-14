@@ -43,8 +43,14 @@ const MigestiongestionDiaria = () => {
 			</section>
 
 			<main className='mg-list'>
-				{items.map((it) => (
-					<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => it.key === 'movimientos' ? Nav('/Migestion-gestionDiariaMovimientos') : Nav('/')}>
+				{items.map((it) => {
+					const getRoute = () => {
+						if (it.key === 'movimientos') return '/Migestion-gestionDiariaMovimientos';
+						if (it.key === 'presupuesto') return '/Migestion-presupuesto';
+						return '/';
+					};
+					return (
+					<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav(getRoute())}>
 						<div className='mg-card-left'>
 							<div className='mg-icon' aria-hidden>
 								{/* simple icon circle with initials */}
@@ -60,7 +66,8 @@ const MigestiongestionDiaria = () => {
 						</div>
 						<div className='mg-card-right'>›</div>
 					</article>
-				))}
+					);
+				})}
 			</main>
 
 			<button className='mg-fab' aria-label='Chat'>

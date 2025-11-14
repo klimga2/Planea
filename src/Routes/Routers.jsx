@@ -5,6 +5,7 @@ import GastosMes from "../Pages/Dashboard/Distribución gastos x mes";
 import GastosSemana from "../Pages/Dashboard/Distribución gastos x semana";
 import MigestiongestionDiaria from "../Pages/Migestion/Migestion-gestionDiaria";
 import MigestionMovimientos from "../Pages/Migestion/Migestion-gestionDiariaMovimient";
+import MigestionPresupuesto from "../Pages/Migestion/Migestion-presupuesto";
 const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ const AppRouter = () => {
         <Route path="/Presupuesto" element={<Presupuesto />} />
         <Route path="/Migestion-gestionDiaria" element={<MigestiongestionDiaria />} />
         <Route path="/Migestion-gestionDiariaMovimientos" element={<MigestionMovimientos />} />
+        <Route path="/Migestion-presupuesto" element={<MigestionPresupuesto />} />
 
       </Routes>
     </BrowserRouter>
