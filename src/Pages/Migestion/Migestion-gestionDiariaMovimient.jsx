@@ -389,7 +389,7 @@ const MigestionMovimientos = () => {
 		<div className='mov-page'>
 			{/* Header */}
 			<header className='mov-header'>
-				<button className='mov-back' onClick={() => Nav('/')} aria-label='Atrás'>
+				<button className='mov-back' onClick={() => Nav('/Migestion-gestionDiaria')} aria-label='Atrás'>
 					◀
 				</button>
 				<h1 className='mov-title'>Movimientos</h1>

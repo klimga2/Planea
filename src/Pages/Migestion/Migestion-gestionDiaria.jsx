@@ -44,7 +44,7 @@ const MigestiongestionDiaria = () => {
 
 			<main className='mg-list'>
 				{items.map((it) => (
-					<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav('/')}>
+					<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => it.key === 'movimientos' ? Nav('/Migestion-gestionDiariaMovimientos') : Nav('/')}>
 						<div className='mg-card-left'>
 							<div className='mg-icon' aria-hidden>
 								{/* simple icon circle with initials */}
