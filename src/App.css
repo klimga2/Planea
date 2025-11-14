@@ -293,3 +293,155 @@
 .mov-month-info {
   cursor: pointer;
 }
+
+/* Transaction detail & edit modal styles (bottom sheet) */
+.td-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(2, 6, 23, 0.28);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 70;
+}
+
+.td-sheet,
+.edit-sheet {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  padding: 12px 16px 20px;
+  box-shadow: 0 -8px 30px rgba(2, 6, 23, 0.2);
+}
+
+.td-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.td-back,
+.td-edit {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+}
+
+.td-body {
+  padding: 12px 0;
+}
+
+.td-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.td-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #e8f4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.td-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.td-amount {
+  font-size: 20px;
+  margin: 0;
+}
+
+.td-amount.expense {
+  color: #ef476f;
+}
+
+.td-amount.income {
+  color: #16a34a;
+}
+
+.td-meta-cards {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.meta-card {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 10px;
+  flex: 1;
+  text-align: left;
+}
+
+.meta-value {
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.td-close {
+  margin-top: 18px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 22px;
+  background: #2da7f2;
+  color: #fff;
+  border: none;
+}
+
+/* Edit modal specifics */
+.edit-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-amount {
+  font-size: 22px;
+  color: #0f1720;
+}
+
+.edit-types {
+  display: flex;
+  gap: 8px;
+}
+
+.type-btn {
+  padding: 8px 12px;
+  border-radius: 18px;
+  border: 1px solid #d1d5db;
+  background: transparent;
+}
+
+.type-btn.active {
+  background: #2da7f2;
+  color: white;
+  border-color: transparent;
+}
+
+.edit-body input,
+.edit-body select {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #e6e9ef;
+}
+
+.td-save {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 22px;
+  background: #2da7f2;
+  color: #fff;
+  border: none;
+}
