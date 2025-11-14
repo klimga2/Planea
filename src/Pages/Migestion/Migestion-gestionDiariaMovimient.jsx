@@ -1,6 +1,101 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Pequeño componente de calendario modal
+const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
+	if (!visible) return null;
+
+	const months = [
+		'Enero',
+		'Febrero',
+		'Marzo',
+		'Abril',
+		'Mayo',
+		'Junio',
+		'Julio',
+		'Agosto',
+		'Septiembre',
+		'Octubre',
+		'Noviembre',
+		'Diciembre',
+	];
+
+	const pad = (n) => (n < 10 ? `0${n}` : `${n}`);
+
+	const buildGrid = (y, m) => {
+		const firstDay = new Date(y, m, 1);
+		const firstWeekday = firstDay.getDay(); // 0=Sun
+		// We'll display weeks starting Monday per image; shift so Monday=0
+		const shift = (firstWeekday + 6) % 7;
+		const daysInMonth = new Date(y, m + 1, 0).getDate();
+		const daysInPrev = new Date(y, m, 0).getDate();
+
+		const totalCells = 42; // 6 weeks
+		const cells = [];
+		for (let i = 0; i < totalCells; i++) {
+			const dayIndex = i - shift + 1;
+			let dateObj, inCurrentMonth;
+			if (dayIndex <= 0) {
+				dateObj = new Date(y, m - 1, daysInPrev + dayIndex);
+				inCurrentMonth = false;
+			} else if (dayIndex > daysInMonth) {
+				dateObj = new Date(y, m + 1, dayIndex - daysInMonth);
+				inCurrentMonth = false;
+			} else {
+				dateObj = new Date(y, m, dayIndex);
+				inCurrentMonth = true;
+			}
+			cells.push({ date: dateObj, inCurrentMonth });
+		}
+		return cells;
+	};
+
+	const cells = buildGrid(year, month);
+
+	return (
+		<div className='cal-overlay' onClick={onClose}>
+			<div className='cal-container' onClick={(e) => e.stopPropagation()}>
+				<h3 className='cal-month-title'>{months[month]}</h3>
+				<div className='cal-box'>
+					<div className='cal-weekdays'>
+						<div>Mo</div>
+						<div>Tu</div>
+						<div>We</div>
+						<div>Th</div>
+						<div>Fri</div>
+						<div>Sa</div>
+						<div>Su</div>
+					</div>
+					<div className='cal-grid'>
+						{cells.map((cell, idx) => {
+							const d = cell.date.getDate();
+							const isToday = (() => {
+								const t = new Date();
+								return (
+									t.getFullYear() === cell.date.getFullYear() &&
+									t.getMonth() === cell.date.getMonth() &&
+									t.getDate() === cell.date.getDate()
+								);
+							})();
+
+							return (
+								<button
+									key={idx}
+									className={`cal-cell ${cell.inCurrentMonth ? '' : 'muted'} ${isToday ? 'today' : ''}`}
+									onClick={() => onSelect(cell.date)}
+								>
+									<span className='cal-day'>{d}</span>
+								</button>
+							);
+						})}
+					</div>
+				</div>
+				<div className='cal-drag' />
+			</div>
+		</div>
+	);
+};
+
 const MigestionMovimientos = () => {
 	const Nav = useNavigate();
 	const [searchTerm, setSearchTerm] = useState('');
@@ -89,6 +184,50 @@ const MigestionMovimientos = () => {
 		setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
 	};
 
+	// Calendar modal state
+	const [showCalendar, setShowCalendar] = useState(false);
+	const [selectedDate, setSelectedDate] = useState(null);
+
+	const handleOpenCalendar = () => setShowCalendar(true);
+	const handleCloseCalendar = () => setShowCalendar(false);
+
+	const handleSelectDate = (date) => {
+		setSelectedDate(date);
+		// optionally close modal
+		handleCloseCalendar();
+		// set currentMonth to selected month for coherence
+		setCurrentMonth(date.getMonth());
+	};
+
+	const filterTransactionsByDate = (transactionsList, date) => {
+		if (!date) return transactionsList;
+		const d = date.getDate();
+		const monthsLower = [
+			'enero',
+			'febrero',
+			'marzo',
+			'abril',
+			'mayo',
+			'junio',
+			'julio',
+			'agosto',
+			'septiembre',
+			'octubre',
+			'noviembre',
+			'diciembre',
+		];
+		const mName = monthsLower[date.getMonth()];
+		return transactionsList
+			.map((day) => {
+				const dayLower = day.date.toLowerCase();
+				if (dayLower.includes(`${d}`) && dayLower.includes(mName)) return day;
+				return null;
+			})
+			.filter(Boolean);
+	};
+
+	const visibleTransactions = filterTransactionsByDate(transactions, selectedDate);
+
 	return (
 		<div className='mov-page'>
 			{/* Header */}
@@ -137,7 +276,7 @@ const MigestionMovimientos = () => {
 				<button className='mov-month-nav' onClick={handlePrevMonth}>
 					◀
 				</button>
-				<div className='mov-month-info'>
+				<div className='mov-month-info' onClick={handleOpenCalendar} role='button' tabIndex={0}>
 					<h2 className='mov-month-name'>{months[currentMonth]}</h2>
 					<p className='mov-transaction-count'>{monthlyData.transactionCount} transacciones</p>
 				</div>
@@ -145,6 +284,15 @@ const MigestionMovimientos = () => {
 					▶
 				</button>
 			</div>
+
+			{/* Calendar modal */}
+			<CalendarModal
+				year={new Date().getFullYear()}
+				month={currentMonth}
+				visible={showCalendar}
+				onClose={handleCloseCalendar}
+				onSelect={handleSelectDate}
+			/>
 
 			{/* Summary Cards */}
 			<div className='mov-summary'>
@@ -216,4 +364,3 @@ const MigestionMovimientos = () => {
 };
 
 export default MigestionMovimientos;
-
