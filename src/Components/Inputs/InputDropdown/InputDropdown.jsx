@@ -1,3 +1,4 @@
+import "./InputDropdownCss.css";
 export default function InputDropdown({
   TextTitulo,
   options,
@@ -5,9 +6,9 @@ export default function InputDropdown({
   onChange,
 }) {
   return (
-    <div>
+    <div className="input-dropdown-container">
       <label>{TextTitulo}</label>
-      <select value={value} onChange={(e) => onChange(e.target.value)}>
+      <select value={value} onChange={(e) => onChange(e.target.value)} required>
         <option value="">Seleccione...</option>
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
@@ -27,7 +28,7 @@ export default function InputDropdown({
   ];
 
  y ponerlo de esta froma en la pagina:
-
+  const [selectedType, setSelectedType] = useState("");
   <InputDropdown
         TextTitulo="Tipo de Meta"
         options={options}
