@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Dashboard = () => {
   const Nav = useNavigate();
@@ -11,6 +12,7 @@ const Dashboard = () => {
   const Racha = () => {
     Nav("/Racha");
   };
+
   return (
     <div className="">
       <h1>Dashboard - Inicio</h1>
