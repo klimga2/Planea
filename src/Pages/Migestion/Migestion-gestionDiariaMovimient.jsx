@@ -1,6 +1,21 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MigestionNavbar from '../../Components/MigestionNavbar';
+import BottomNav from '../../Components/BottomNav';
+import {
+	MdHome,
+	MdDirectionsCar,
+	MdSwapHoriz,
+	MdBusinessCenter,
+	MdTrendingUp,
+	MdShowChart,
+	MdTrendingDown,
+	MdClose,
+	MdKeyboardArrowDown,
+	MdAttachMoney,
+	MdBarChart,
+	MdBook,
+	MdStarRate,
+} from 'react-icons/md';
 
 // Pequeño componente de calendario modal
 const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
@@ -130,7 +145,7 @@ const TransactionEditModal = ({ tx, onClose, onSave }) => {
 			<div className='edit-sheet' onClick={(e) => e.stopPropagation()}>
 				<div className='td-header'>
 					<button className='td-back' onClick={onClose}>
-						◀
+						<MdClose size={24} />
 					</button>
 					<h4>Editar transacción</h4>
 				</div>
@@ -203,6 +218,13 @@ const MigestionMovimientos = () => {
 		transactionCount: 8,
 	};
 
+	const iconMap = {
+		1: MdHome,
+		2: MdDirectionsCar,
+		3: MdSwapHoriz,
+		4: MdBusinessCenter,
+	};
+
 	// Use dateISO per item to enable reliable filtering / moving between days
 	const initialTransactions = [
 		{
@@ -210,7 +232,6 @@ const MigestionMovimientos = () => {
 			items: [
 				{
 					id: 1,
-					icon: '🏠',
 					title: 'Pago recibo de luz',
 					category: 'Hogar',
 					bank: 'Ñu',
@@ -220,7 +241,6 @@ const MigestionMovimientos = () => {
 				},
 				{
 					id: 2,
-					icon: '🚗',
 					title: 'Uber',
 					category: 'Transporte',
 					bank: 'Neqüi',
@@ -230,7 +250,6 @@ const MigestionMovimientos = () => {
 				},
 				{
 					id: 3,
-					icon: '💱',
 					title: 'Transferencia',
 					category: 'Salud',
 					bank: 'BBVA',
@@ -245,7 +264,6 @@ const MigestionMovimientos = () => {
 			items: [
 				{
 					id: 4,
-					icon: '💼',
 					title: 'Sueldo',
 					category: 'Trabajo',
 					bank: 'BBVA',
@@ -388,8 +406,25 @@ const MigestionMovimientos = () => {
 
 	return (
 		<div className='mov-page'>
-			{/* Header */}
-			<MigestionNavbar title='Movimientos' onBack={() => Nav('/Migestion-gestionDiaria')} />
+			{/* Header - REEMPLAZADO */}
+			<div
+				style={{
+					padding: '15px 20px',
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					borderBottom: '1px solid #eee',
+				}}
+			>
+				<button
+					onClick={() => Nav('/Migestion-gestionDiaria')}
+					style={{ border: 'none', background: 'none', fontSize: '1.2em', cursor: 'pointer' }}
+				>
+					←
+				</button>
+				<h2 style={{ margin: 0, fontSize: '1.2em' }}>Movimientos</h2>
+				<div style={{ width: '24px' }}></div> {/* Spacer */}
+			</div>
 
 			{/* Search Bar */}
 			<div className='mov-search-container'>
@@ -451,7 +486,9 @@ const MigestionMovimientos = () => {
 			<div className='mov-summary'>
 				<div className='mov-balance-card'>
 					<div className='mov-balance-header'>
-						<span className='mov-balance-icon'>📈</span>
+						<span className='mov-balance-icon'>
+							<MdTrendingUp size={20} />
+						</span>
 						<span className='mov-balance-label'>Balance</span>
 					</div>
 					<p className='mov-balance-amount'>{monthlyData.balance}</p>
@@ -460,14 +497,18 @@ const MigestionMovimientos = () => {
 				<div className='mov-income-expense'>
 					<div className='mov-income-card'>
 						<div className='mov-income-header'>
-							<span className='mov-income-icon'>📊</span>
+							<span className='mov-income-icon'>
+								<MdShowChart size={20} />
+							</span>
 							<span>Ingreso mensual</span>
 						</div>
 						<p className='mov-income-amount'>{monthlyData.income}</p>
 					</div>
 					<div className='mov-expense-card'>
 						<div className='mov-expense-header'>
-							<span className='mov-expense-icon'>📉</span>
+							<span className='mov-expense-icon'>
+								<MdTrendingDown size={20} />
+							</span>
 							<span>Gasto mensual</span>
 						</div>
 						<p className='mov-expense-amount'>{monthlyData.expense}</p>
@@ -483,7 +524,7 @@ const MigestionMovimientos = () => {
 						{day.items.map((tx) => (
 							<div key={tx.id} className='mov-transaction-item' onClick={() => openDetail(tx, day.date)}>
 								<div className='mov-tx-icon-container'>
-									<div className='mov-tx-icon'>{tx.icon}</div>
+									<div className='mov-tx-icon'>{iconMap[tx.id] && iconMap[tx.id]({ size: 28 })}</div>
 								</div>
 								<div className='mov-tx-content'>
 									<h4 className='mov-tx-title'>{tx.title}</h4>
@@ -505,7 +546,7 @@ const MigestionMovimientos = () => {
 					<div className='td-sheet' onClick={(e) => e.stopPropagation()}>
 						<div className='td-header'>
 							<button className='td-back' onClick={closeDetail}>
-								◀
+								<MdClose size={24} />
 							</button>
 							<h4>Detalle de transacción</h4>
 							<button className='td-edit' onClick={() => openEdit(activeTx)}>
@@ -514,7 +555,7 @@ const MigestionMovimientos = () => {
 						</div>
 						<div className='td-body'>
 							<div className='td-top'>
-								<div className='td-icon'>{activeTx.icon}</div>
+								<div className='td-icon'>{iconMap[activeTx.id] && iconMap[activeTx.id]({ size: 48 })}</div>
 								<div>
 									<h3 className='td-title'>{activeTx.title}</h3>
 									<p className={`td-amount ${activeTx.isExpense ? 'expense' : 'income'}`}>{formatAmount(activeTx)}</p>
@@ -551,12 +592,8 @@ const MigestionMovimientos = () => {
 			</button>
 
 			{/* Bottom Navigation */}
-			<nav className='mov-bottom-nav' aria-label='Navegación principal'>
-				<button className='nav-item'>★</button>
-				<button className='nav-item'>📊</button>
-				<button className='nav-item nav-home'>🏠</button>
-				<button className='nav-item'>$</button>
-				<button className='nav-item'>📖</button>
+			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
+				<BottomNav />
 			</nav>
 		</div>
 	);

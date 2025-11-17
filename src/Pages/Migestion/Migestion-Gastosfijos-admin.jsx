@@ -1,18 +1,37 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import MigestionNavbar from '../../Components/MigestionNavbar';
+import BottomNav from '../../Components/BottomNav';
+import {
+	MdLocalMovies,
+	MdHome,
+	MdWaterDrop,
+	MdLocalGasStation,
+	MdSportsMartialArts,
+	MdEdit,
+	MdClose,
+} from 'react-icons/md';
 
 const MigestionGastosFijosAdmin = () => {
 	const Nav = useNavigate();
 
+	const iconMap = {
+		1: MdLocalMovies,
+		2: MdHome,
+		3: MdWaterDrop,
+		4: MdLocalGasStation,
+		5: MdSportsMartialArts,
+		6: MdLocalMovies,
+		7: MdLocalMovies,
+	};
+
 	const initialItems = [
-		{ id: 1, title: 'Netflix', date: '11 de cada mes', amount: 36000, icon: '🎞️' },
-		{ id: 2, title: 'Renta', date: '21 de cada mes', amount: 1200000, icon: '🏠' },
-		{ id: 3, title: 'Agua', date: '21 de cada mes', amount: 230000, icon: '🚰' },
-		{ id: 4, title: 'Gas', date: '21 de cada mes', amount: 200000, icon: '⛽' },
-		{ id: 5, title: 'Club de volleyball', date: '18 de cada mes', amount: 30000, icon: '🏐' },
-		{ id: 6, title: 'Disney +', date: '13 de cada mes', amount: 22000, icon: '🎬' },
-		{ id: 7, title: 'HBO max', date: '12 de cada mes', amount: 30000, icon: '🎬' },
+		{ id: 1, title: 'Netflix', date: '11 de cada mes', amount: 36000 },
+		{ id: 2, title: 'Renta', date: '21 de cada mes', amount: 1200000 },
+		{ id: 3, title: 'Agua', date: '21 de cada mes', amount: 230000 },
+		{ id: 4, title: 'Gas', date: '21 de cada mes', amount: 200000 },
+		{ id: 5, title: 'Club de volleyball', date: '18 de cada mes', amount: 30000 },
+		{ id: 6, title: 'Disney +', date: '13 de cada mes', amount: 22000 },
+		{ id: 7, title: 'HBO max', date: '12 de cada mes', amount: 30000 },
 	];
 
 	const initialItemsDetails = {
@@ -119,13 +138,31 @@ const MigestionGastosFijosAdmin = () => {
 
 	return (
 		<div className='gf-admin-page'>
-			<MigestionNavbar title='Suscripciones activas' onBack={() => Nav('/Migestion-gastos-fijos')} />
+			{/* Header - REEMPLAZADO */}
+			<div
+				style={{
+					padding: '15px 20px',
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					borderBottom: '1px solid #eee',
+				}}
+			>
+				<button
+					onClick={() => Nav('/Migestion-gastos-fijos')}
+					style={{ border: 'none', background: 'none', fontSize: '1.2em', cursor: 'pointer' }}
+				>
+					←
+				</button>
+				<h2 style={{ margin: 0, fontSize: '1.2em' }}>Suscripciones activas</h2>
+				<div style={{ width: '24px' }}></div> {/* Spacer */}
+			</div>
 
 			<main className='gf-admin-container'>
 				{items.map((it) => (
 					<article key={it.id} className='gf-admin-card' onClick={() => openDetail(it)}>
 						<div className='gf-admin-left'>
-							<div className='gf-admin-icon'>{it.icon}</div>
+							<div className='gf-admin-icon'>{iconMap[it.id] && iconMap[it.id]({ size: 32 })}</div>
 							<div className='gf-admin-meta'>
 								<strong className='gf-admin-title-item'>{it.title}</strong>
 								<span className='gf-admin-sub'>{it.date}</span>
@@ -142,17 +179,18 @@ const MigestionGastosFijosAdmin = () => {
 					<div className='gf-admin-modal' onClick={(e) => e.stopPropagation()}>
 						<div className='gf-admin-detail-header'>
 							<button className='gf-back' onClick={() => setShowDetail(false)} aria-label='Atrás'>
-								◀
+								<MdClose size={24} />
 							</button>
 							<h2>Detalle de gasto fijo</h2>
 							<button className='gf-admin-edit-btn' onClick={openEdit} aria-label='Editar'>
-								✏️
+								<MdEdit size={24} />
 							</button>
-						</div>
-
+						</div>{' '}
 						<div className='gf-admin-detail-body'>
 							<div className='gf-admin-detail-card'>
-								<div className='gf-admin-detail-icon'>{selectedItem.icon}</div>
+								<div className='gf-admin-detail-icon'>
+									{iconMap[selectedItem.id] && iconMap[selectedItem.id]({ size: 48 })}
+								</div>
 								<h3 className='gf-admin-detail-title'>{editData?.title}</h3>
 								<p className='gf-admin-detail-amount'>- $ {editData?.amount.toLocaleString('es-CO')}</p>
 							</div>
@@ -172,7 +210,6 @@ const MigestionGastosFijosAdmin = () => {
 								</div>
 							</div>
 						</div>
-
 						<button className='gf-admin-detail-btn' onClick={() => setShowDetail(false)}>
 							Salir
 						</button>
@@ -262,6 +299,7 @@ const MigestionGastosFijosAdmin = () => {
 					</div>
 				</div>
 			)}
+			<BottomNav />
 		</div>
 	);
 };

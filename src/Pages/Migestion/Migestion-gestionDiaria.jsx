@@ -1,23 +1,41 @@
 import { useNavigate } from 'react-router-dom';
-import MigestionNavbar from '../../Components/MigestionNavbar';
+// Eliminado: import MigestionNavbar from '../../Components/MigestionNavbar';
+import BottomNav from '../../Components/BottomNav';
+import {
+	MdSwapHoriz,
+	MdCreditCard,
+	MdAttachMoney,
+	MdCheckCircle,
+	MdShoppingBag,
+	MdDescription,
+	MdDomain,
+	MdHome,
+} from 'react-icons/md';
+
+const iconMap = {
+	movimientos: MdSwapHoriz,
+	presupuesto: MdCreditCard,
+	gastos: MdAttachMoney,
+	metas: MdCheckCircle,
+	productos: MdShoppingBag,
+	tributaria: MdDescription,
+	patrimonial: MdDomain,
+};
 
 const items = [
 	{
 		key: 'movimientos',
 		title: 'Movimientos',
 		desc: 'Registro actualizado de ingresos y gastos recientes.',
-		icon: '↔️',
 	},
-	{ key: 'presupuesto', title: 'Presupuesto', desc: 'Control de lo planeado vs. lo gastado en el mes.', icon: '💳' },
-	{ key: 'gastos', title: 'Gastos fijos', desc: 'Pagos organizados para evitar olvidos.', icon: '💰' },
-	{ key: 'metas', title: 'Planeación de metas', desc: 'Creación y seguimiento de tus metas financieras.', icon: '🎯' },
+	{ key: 'presupuesto', title: 'Presupuesto', desc: 'Control de lo planeado vs. lo gastado en el mes.' },
+	{ key: 'gastos', title: 'Gastos fijos', desc: 'Pagos organizados para evitar olvidos.' },
+	{ key: 'metas', title: 'Planeación de metas', desc: 'Creación y seguimiento de tus metas financieras.' },
 	{
 		key: 'productos',
 		title: 'Mis productos',
 		desc: 'Resumen de tus cuentas, tarjetas y ahorros en un solo lugar.',
-		icon: '💼',
 	},
-
 ];
 
 const MigestiongestionDiaria = () => {
@@ -25,6 +43,7 @@ const MigestiongestionDiaria = () => {
 
 	return (
 		<div className='mg-page'>
+			{/* Ya no usa MigestionNavbar, usa div personalizado */}
 			<div className='mg-header-custom'>
 				<h1 className='mg-title-custom'>Gestión diaria</h1>
 				<p className='mg-subtitle-custom'>Organiza tu día a día financiero en un solo lugar</p>
@@ -52,7 +71,7 @@ const MigestiongestionDiaria = () => {
 					return (
 						<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav(getRoute())}>
 							<div className='mg-card-left'>
-								<div className='mg-icon-emoji'>{it.icon}</div>
+								<div className='mg-icon-emoji'>{iconMap[it.key] && iconMap[it.key]({ size: 32 })}</div>
 								<div>
 									<h3 className='mg-card-title'>{it.title}</h3>
 									<p className='mg-card-desc'>{it.desc}</p>
@@ -68,12 +87,9 @@ const MigestiongestionDiaria = () => {
 				💬
 			</button>
 
-			<nav className='mg-bottom-nav' aria-label='Navegación principal'>
-				<button className='nav-item'>★</button>
-				<button className='nav-item'>📊</button>
-				<button className='nav-item nav-home'>🏠</button>
-				<button className='nav-item'>$</button>
-				<button className='nav-item'>📖</button>
+			{/* Bottom Navigation */}
+			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
+				<BottomNav />
 			</nav>
 		</div>
 	);
