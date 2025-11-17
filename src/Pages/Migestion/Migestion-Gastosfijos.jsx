@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MigestionNavbar from '../../Components/MigestionNavbar';
 
 const MigestionGastosFijos = () => {
 	const Nav = useNavigate();
@@ -165,12 +166,7 @@ const MigestionGastosFijos = () => {
 	return (
 		<div className='gf-page'>
 			{/* Header */}
-			<header className='gf-header'>
-				<button className='gf-back' onClick={() => Nav('/Migestion-gestionDiaria')} aria-label='Atrás'>
-					◀
-				</button>
-				<h1 className='gf-title'>Gastos fijos</h1>
-			</header>
+			<MigestionNavbar title='Gastos fijos' onBack={() => Nav('/Migestion-gestionDiaria')} />
 
 			<div className='gf-container'>
 				{/* Summary Card */}
@@ -329,7 +325,7 @@ const MigestionGastosFijos = () => {
 				💬
 			</button>
 
-			{/* Bottom Navigation */}
+			{/* Bottom Navigation */}			<MigestionNavbar title='Gastos fijos' onBack={() => Nav('/Migestion-gestionDiaria')} />
 			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
 				<button className='nav-item'>★</button>
 				<button className='nav-item'>📊</button>

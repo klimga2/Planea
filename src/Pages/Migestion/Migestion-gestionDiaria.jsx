@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import MigestionNavbar from '../../Components/MigestionNavbar';
 
 const items = [
 	{ key: 'movimientos', title: 'Movimientos', desc: 'Registro actualizado de ingresos y gastos recientes.' },
@@ -12,19 +13,10 @@ const items = [
 
 const MigestiongestionDiaria = () => {
 	const Nav = useNavigate();
-	const goBack = () => Nav('/');
 
 	return (
 		<div className='mg-page'>
-			<header className='mg-header'>
-				<button className='mg-back' onClick={goBack} aria-label='Atrás'>
-					◀
-				</button>
-				<div>
-					<h1 className='mg-title'>Gestión diaria</h1>
-					<p className='mg-sub'>Maneja tus ingresos y gastos</p>
-				</div>
-			</header>
+			<MigestionNavbar title='Gestión diaria' onBack={() => Nav('/')} />
 
 			<section className='mg-banner'>
 				<div className='mg-banner-illustration' aria-hidden>
