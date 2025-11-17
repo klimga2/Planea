@@ -118,6 +118,9 @@ const MigestionGastosFijos = () => {
 		date: '',
 	});
 
+	// Frecuencia para nuevo gasto (Mensual / Semanal / Quincenal)
+	const [frequency, setFrequency] = useState('Mensual');
+
 	// Calcular totales
 	const totalFixed = fixedExpenses.reduce((sum, expense) => sum + expense.amount, 0);
 	const totalIncome = 3200000; // Ejemplo de ingreso
@@ -137,6 +140,7 @@ const MigestionGastosFijos = () => {
 			const expense = {
 				id: fixedExpenses.length + 1,
 				...newExpense,
+				frequency,
 				amount: parseFloat(newExpense.amount),
 				icon: '📌',
 				color: '#17a2b8',
@@ -216,74 +220,97 @@ const MigestionGastosFijos = () => {
 					<button className='gf-btn-primary' onClick={() => setShowNewExpense(true)}>
 						Nuevo gasto
 					</button>
-					<button className='gf-btn-secondary'>Administrar gastos</button>
+					<button className='gf-btn-secondary' onClick={() => Nav('/Migestion-gastos-activas')}>
+						Administrar gastos
+					</button>
 				</div>
 			</div>
 
-			{/* New Expense Modal */}
+			{/* New Expense Modal (nuevo diseño) */}
 			{showNewExpense && (
 				<div className='gf-modal-overlay' onClick={() => setShowNewExpense(false)}>
 					<div className='gf-modal' onClick={(e) => e.stopPropagation()}>
-						<h2>Nuevo gasto fijo</h2>
-						<div className='gf-form-group'>
-							<label>Categoría</label>
-							<input
-								type='text'
-								value={newExpense.category}
-								onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}
-								placeholder='Ej: Hogar'
-								className='gf-input'
-							/>
+						{/* Header con botón atrás */}
+						<div className='gf-modal-header'>
+							<button className='gf-back' onClick={() => setShowNewExpense(false)} aria-label='Atrás'>
+								◀
+							</button>
+							<h2>Nuevo gasto fijo</h2>
 						</div>
-						<div className='gf-form-group'>
-							<label>Nombre del gasto</label>
-							<input
-								type='text'
-								value={newExpense.name}
-								onChange={(e) => setNewExpense({ ...newExpense, name: e.target.value })}
-								placeholder='Ej: Renta'
-								className='gf-input'
-							/>
-						</div>
-						<div className='gf-form-group'>
-							<label>Subcategoría</label>
-							<input
-								type='text'
-								value={newExpense.subcategory}
-								onChange={(e) => setNewExpense({ ...newExpense, subcategory: e.target.value })}
-								placeholder='Ej: Vivienda'
-								className='gf-input'
-							/>
-						</div>
-						<div className='gf-form-group'>
-							<label>Banco/Billetera</label>
-							<input
-								type='text'
-								value={newExpense.bank}
-								onChange={(e) => setNewExpense({ ...newExpense, bank: e.target.value })}
-								placeholder='Ej: BBVA'
-								className='gf-input'
-							/>
-						</div>
-						<div className='gf-form-group'>
-							<label>Monto</label>
-							<input
-								type='number'
-								value={newExpense.amount}
-								onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })}
-								placeholder='0'
-								className='gf-input'
-							/>
-						</div>
-						<div className='gf-form-group'>
-							<label>Fecha</label>
-							<input
-								type='text'
-								value={newExpense.date}
-								onChange={(e) => setNewExpense({ ...newExpense, date: e.target.value })}
-								placeholder='dd/mm/aaaa'
-								className='gf-input'
-							/>
+						<div className='gf-modal-body'>
+							{/* Monto grande */}
+							<div className='gf-amount-display'>
+								{newExpense.amount ? `$ ${Number(newExpense.amount).toLocaleString('es-CO')}` : '$ 0'}
+							</div>
+							{/* Botones de frecuencia */}
+							<div className='gf-frequency'>
+								{['Mensual', 'Semanal', 'Quincenal'].map((f) => (
+									<button
+										key={f}
+										className={`gf-frequency-btn ${frequency === f ? 'active' : ''}`}
+										onClick={() => setFrequency(f)}
+									>
+										{f}
+									</button>
+								))}
+							</div>
+
+							{/* Input de Monto (actualiza el display arriba) */}
+							<div className='gf-form-group'>
+								<label>Monto</label>
+								<input
+									type='number'
+									value={newExpense.amount}
+									onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })}
+									placeholder='0'
+									className='gf-input gf-amount-input'
+								/>
+							</div>
+
+							{/* Campos */}
+							<div className='gf-form-group'>
+								<label>Título</label>
+								<input
+									type='text'
+									value={newExpense.name}
+									onChange={(e) => setNewExpense({ ...newExpense, name: e.target.value })}
+									placeholder='Suscripción'
+									className='gf-input'
+								/>
+							</div>
+
+							<div className='gf-form-group'>
+								<label>Categoría</label>
+								<input
+									type='text'
+									value={newExpense.subcategory}
+									onChange={(e) => setNewExpense({ ...newExpense, subcategory: e.target.value })}
+									placeholder='Entretenimiento'
+									className='gf-input'
+								/>
+							</div>
+
+							<div className='gf-form-group'>
+								<label>Desde</label>
+								<input
+									type='text'
+									value={newExpense.bank}
+									onChange={(e) => setNewExpense({ ...newExpense, bank: e.target.value })}
+									placeholder='BBVA'
+									className='gf-input'
+								/>
+							</div>
+
+							<div className='gf-form-group'>
+								<label>Fecha</label>
+								<input
+									type='text'
+									value={newExpense.date}
+									onChange={(e) => setNewExpense({ ...newExpense, date: e.target.value })}
+									placeholder='14 de cada mes'
+									className='gf-input'
+								/>
+							</div>
 						</div>
 						<div className='gf-modal-actions'>
 							<button className='gf-modal-cancel' onClick={() => setShowNewExpense(false)}>
