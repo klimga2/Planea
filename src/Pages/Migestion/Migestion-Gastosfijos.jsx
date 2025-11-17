@@ -1,9 +1,36 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MigestionNavbar from '../../Components/MigestionNavbar';
+import BottomNav from '../../Components/BottomNav';
+
+import {
+	MdHome,
+	MdLocalHospital,
+	MdDirectionsCar,
+	MdMusicNote,
+	MdMovie,
+	MdMoreVert,
+	MdClose,
+	MdStarRate,
+	MdBarChart,
+	MdChatBubbleOutline,
+	MdAttachMoney,
+	MdBook,
+} from 'react-icons/md';
 
 const MigestionGastosFijos = () => {
 	const Nav = useNavigate();
+
+	const iconMap = {
+		1: MdHome,
+		2: MdHome,
+		3: MdLocalHospital,
+		4: MdLocalHospital,
+		5: MdDirectionsCar,
+		6: MdMusicNote,
+		7: MdMovie,
+		8: MdMovie,
+		9: MdMovie,
+	};
 
 	// Estado de gastos fijos
 	const [fixedExpenses, setFixedExpenses] = useState([
@@ -15,7 +42,6 @@ const MigestionGastosFijos = () => {
 			bank: 'BBVA',
 			amount: 900000,
 			date: '03/10/2025',
-			icon: '🏠',
 			color: '#17a2b8',
 		},
 		{
@@ -26,7 +52,6 @@ const MigestionGastosFijos = () => {
 			bank: 'Nequi',
 			amount: 120000,
 			date: '06/10/2025',
-			icon: '🏠',
 			color: '#17a2b8',
 		},
 		{
@@ -37,7 +62,6 @@ const MigestionGastosFijos = () => {
 			bank: 'BBVA',
 			amount: 120000,
 			date: '03/10/2025',
-			icon: '🏥',
 			color: '#17a2b8',
 		},
 		{
@@ -48,7 +72,6 @@ const MigestionGastosFijos = () => {
 			bank: 'BBVA',
 			amount: 60000,
 			date: '10/10/2025',
-			icon: '🏥',
 			color: '#17a2b8',
 		},
 		{
@@ -59,7 +82,6 @@ const MigestionGastosFijos = () => {
 			bank: 'Nequi',
 			amount: 70000,
 			date: '03/10/2025',
-			icon: '🚗',
 			color: '#17a2b8',
 		},
 		{
@@ -70,7 +92,6 @@ const MigestionGastosFijos = () => {
 			bank: 'Nu',
 			amount: 18500,
 			date: '15/10/2025',
-			icon: '🎵',
 			color: '#17a2b8',
 		},
 		{
@@ -81,7 +102,6 @@ const MigestionGastosFijos = () => {
 			bank: 'Nu',
 			amount: 29900,
 			date: '04/10/2025',
-			icon: '🎬',
 			color: '#17a2b8',
 		},
 		{
@@ -92,7 +112,6 @@ const MigestionGastosFijos = () => {
 			bank: 'Nequi',
 			amount: 24900,
 			date: '28/10/2025',
-			icon: '🎬',
 			color: '#17a2b8',
 		},
 		{
@@ -103,7 +122,6 @@ const MigestionGastosFijos = () => {
 			bank: 'Nu',
 			amount: 18900,
 			date: '25/10/2025',
-			icon: '🎬',
 			color: '#17a2b8',
 		},
 	]);
@@ -165,8 +183,25 @@ const MigestionGastosFijos = () => {
 
 	return (
 		<div className='gf-page'>
-			{/* Header */}
-			<MigestionNavbar title='Gastos fijos' onBack={() => Nav('/Migestion-gestionDiaria')} />
+			{/* Header - REEMPLAZADO */}
+			<div
+				style={{
+					padding: '15px 20px',
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					borderBottom: '1px solid #eee',
+				}}
+			>
+				<button
+					onClick={() => Nav('/Migestion-gestionDiaria')}
+					style={{ border: 'none', background: 'none', fontSize: '1.2em', cursor: 'pointer' }}
+				>
+					←
+				</button>
+				<h2 style={{ margin: 0, fontSize: '1.2em' }}>Gastos fijos</h2>
+				<div style={{ width: '24px' }}></div> {/* Spacer */}
+			</div>
 
 			<div className='gf-container'>
 				{/* Summary Card */}
@@ -192,7 +227,7 @@ const MigestionGastosFijos = () => {
 								{expenses.map((expense) => (
 									<div key={expense.id} className='gf-expense-item'>
 										<div className='gf-expense-icon'>
-											<span className='gf-icon'>{expense.icon}</span>
+											{iconMap[expense.id] && iconMap[expense.id]({ size: 24, color: expense.color })}
 										</div>
 										<div className='gf-expense-info'>
 											<h4 className='gf-expense-name'>{expense.name}</h4>
@@ -229,7 +264,7 @@ const MigestionGastosFijos = () => {
 						{/* Header con botón atrás */}
 						<div className='gf-modal-header'>
 							<button className='gf-back' onClick={() => setShowNewExpense(false)} aria-label='Atrás'>
-								◀
+								<MdClose size={24} />
 							</button>
 							<h2>Nuevo gasto fijo</h2>
 						</div>
@@ -322,16 +357,12 @@ const MigestionGastosFijos = () => {
 
 			{/* Floating Chat Button */}
 			<button className='gf-fab' aria-label='Chat'>
-				💬
+				<MdChatBubbleOutline size={24} />
 			</button>
 
 			{/* Bottom Navigation */}
 			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
-				<button className='nav-item'>★</button>
-				<button className='nav-item'>📊</button>
-				<button className='nav-item nav-home'>🏠</button>
-				<button className='nav-item'>$</button>
-				<button className='nav-item'>📖</button>
+				<BottomNav />
 			</nav>
 		</div>
 	);
