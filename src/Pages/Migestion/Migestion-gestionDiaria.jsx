@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 
 const items = [
@@ -47,25 +46,26 @@ const MigestiongestionDiaria = () => {
 					const getRoute = () => {
 						if (it.key === 'movimientos') return '/Migestion-gestionDiariaMovimientos';
 						if (it.key === 'presupuesto') return '/Migestion-presupuesto';
+						if (it.key === 'gastos') return '/Migestion-gastos-fijos';
 						return '/';
 					};
 					return (
-					<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav(getRoute())}>
-						<div className='mg-card-left'>
-							<div className='mg-icon' aria-hidden>
-								{/* simple icon circle with initials */}
-								<svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'>
-									<circle cx='18' cy='18' r='18' fill='#E8F4FF' />
-									<rect x='10' y='14' width='16' height='8' rx='2' fill='#9FCBFF' />
-								</svg>
+						<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav(getRoute())}>
+							<div className='mg-card-left'>
+								<div className='mg-icon' aria-hidden>
+									{/* simple icon circle with initials */}
+									<svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'>
+										<circle cx='18' cy='18' r='18' fill='#E8F4FF' />
+										<rect x='10' y='14' width='16' height='8' rx='2' fill='#9FCBFF' />
+									</svg>
+								</div>
+								<div>
+									<h3 className='mg-card-title'>{it.title}</h3>
+									<p className='mg-card-desc'>{it.desc}</p>
+								</div>
 							</div>
-							<div>
-								<h3 className='mg-card-title'>{it.title}</h3>
-								<p className='mg-card-desc'>{it.desc}</p>
-							</div>
-						</div>
-						<div className='mg-card-right'>›</div>
-					</article>
+							<div className='mg-card-right'>›</div>
+						</article>
 					);
 				})}
 			</main>
