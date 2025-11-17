@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MigestionNavbar from '../../Components/MigestionNavbar';
 
 // Pequeño componente de calendario modal
 const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
@@ -388,12 +389,7 @@ const MigestionMovimientos = () => {
 	return (
 		<div className='mov-page'>
 			{/* Header */}
-			<header className='mov-header'>
-				<button className='mov-back' onClick={() => Nav('/Migestion-gestionDiaria')} aria-label='Atrás'>
-					◀
-				</button>
-				<h1 className='mov-title'>Movimientos</h1>
-			</header>
+			<MigestionNavbar title='Movimientos' onBack={() => Nav('/Migestion-gestionDiaria')} />
 
 			{/* Search Bar */}
 			<div className='mov-search-container'>

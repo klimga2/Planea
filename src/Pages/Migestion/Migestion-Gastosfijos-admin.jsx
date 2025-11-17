@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import MigestionNavbar from '../../Components/MigestionNavbar';
 
 const MigestionGastosFijosAdmin = () => {
 	const Nav = useNavigate();
@@ -118,12 +119,7 @@ const MigestionGastosFijosAdmin = () => {
 
 	return (
 		<div className='gf-admin-page'>
-			<header className='gf-admin-header'>
-				<button className='gf-back' onClick={() => Nav('/Migestion-gastos-fijos')} aria-label='Atrás'>
-					◀
-				</button>
-				<h1 className='gf-admin-title'>Suscripciones activas</h1>
-			</header>
+			<MigestionNavbar title='Suscripciones activas' onBack={() => Nav('/Migestion-gastos-fijos')} />
 
 			<main className='gf-admin-container'>
 				{items.map((it) => (
