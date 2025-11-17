@@ -2,13 +2,22 @@ import { useNavigate } from 'react-router-dom';
 import MigestionNavbar from '../../Components/MigestionNavbar';
 
 const items = [
-	{ key: 'movimientos', title: 'Movimientos', desc: 'Registro actualizado de ingresos y gastos recientes.' },
-	{ key: 'presupuesto', title: 'Presupuesto', desc: 'Control de lo planeado vs. lo gastado en el mes.' },
-	{ key: 'gastos', title: 'Gastos fijos', desc: 'Pagos organizados para evitar olvidos.' },
-	{ key: 'metas', title: 'Planeación de metas', desc: 'Creación y seguimiento de tus metas financieras.' },
-	{ key: 'productos', title: 'Mis productos', desc: 'Resumen de tus cuentas, tarjetas y ahorros en un solo lugar.' },
-	{ key: 'tributaria', title: 'Planeación tributaria', desc: 'Planea tu declaración de renta sin enredos.' },
-	{ key: 'patrimonial', title: 'Planeación patrimonial', desc: 'Descubre cuánto vale realmente tu patrimonio.' },
+	{
+		key: 'movimientos',
+		title: 'Movimientos',
+		desc: 'Registro actualizado de ingresos y gastos recientes.',
+		icon: '↔️',
+	},
+	{ key: 'presupuesto', title: 'Presupuesto', desc: 'Control de lo planeado vs. lo gastado en el mes.', icon: '💳' },
+	{ key: 'gastos', title: 'Gastos fijos', desc: 'Pagos organizados para evitar olvidos.', icon: '💰' },
+	{ key: 'metas', title: 'Planeación de metas', desc: 'Creación y seguimiento de tus metas financieras.', icon: '🎯' },
+	{
+		key: 'productos',
+		title: 'Mis productos',
+		desc: 'Resumen de tus cuentas, tarjetas y ahorros en un solo lugar.',
+		icon: '💼',
+	},
+
 ];
 
 const MigestiongestionDiaria = () => {
@@ -16,20 +25,19 @@ const MigestiongestionDiaria = () => {
 
 	return (
 		<div className='mg-page'>
-			<MigestionNavbar title='Gestión diaria' onBack={() => Nav('/')} />
+			<div className='mg-header-custom'>
+				<h1 className='mg-title-custom'>Gestión diaria</h1>
+				<p className='mg-subtitle-custom'>Organiza tu día a día financiero en un solo lugar</p>
+			</div>
 
 			<section className='mg-banner'>
-				<div className='mg-banner-illustration' aria-hidden>
-					{/* simple illustration box - replace with image if available */}
-					<svg width='86' height='64' viewBox='0 0 86 64' fill='none' xmlns='http://www.w3.org/2000/svg'>
-						<rect x='2' y='6' width='82' height='50' rx='8' fill='#E6F0FF' />
-						<rect x='8' y='12' width='42' height='10' rx='3' fill='#C6E0FF' />
-						<rect x='8' y='28' width='62' height='6' rx='3' fill='#BEE3FF' />
-					</svg>
-				</div>
+				<img
+					src='data:image/svg+xml,<svg width="160" height="140" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="140" rx="20" fill="%23D6EAF8"/><circle cx="80" cy="50" r="25" fill="%231F4788"/><ellipse cx="80" cy="90" rx="40" ry="35" fill="%231F4788"/></svg>'
+					alt='banner'
+					className='mg-banner-img'
+				/>
 				<div className='mg-banner-text'>
-					<strong>Lorem ipsum dolor sit amet</strong>
-					<span>consectetur adipiscing elit pharetra, tristique ante augue tempus arcu sod</span>
+					<strong>Gestiona aquí lo esencial e importante</strong>
 				</div>
 			</section>
 
@@ -44,13 +52,7 @@ const MigestiongestionDiaria = () => {
 					return (
 						<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav(getRoute())}>
 							<div className='mg-card-left'>
-								<div className='mg-icon' aria-hidden>
-									{/* simple icon circle with initials */}
-									<svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<circle cx='18' cy='18' r='18' fill='#E8F4FF' />
-										<rect x='10' y='14' width='16' height='8' rx='2' fill='#9FCBFF' />
-									</svg>
-								</div>
+								<div className='mg-icon-emoji'>{it.icon}</div>
 								<div>
 									<h3 className='mg-card-title'>{it.title}</h3>
 									<p className='mg-card-desc'>{it.desc}</p>

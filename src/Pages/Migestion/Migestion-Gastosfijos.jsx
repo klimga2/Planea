@@ -325,7 +325,7 @@ const MigestionGastosFijos = () => {
 				💬
 			</button>
 
-			{/* Bottom Navigation */}			<MigestionNavbar title='Gastos fijos' onBack={() => Nav('/Migestion-gestionDiaria')} />
+			{/* Bottom Navigation */}
 			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
 				<button className='nav-item'>★</button>
 				<button className='nav-item'>📊</button>
