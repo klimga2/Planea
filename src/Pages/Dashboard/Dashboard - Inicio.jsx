@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import InputDropdown from "../../Components/Inputs/InputDropdown/InputDropdown";
+import Chip from "../../Components/Chips/chips";
 const Dashboard = () => {
+  const [selected, setSelected] = useState(false);
   const Nav = useNavigate();
   const Mes = () => {
     Nav("/GastosMes");
@@ -25,6 +26,12 @@ const Dashboard = () => {
       <button onClick={Racha} className="new-game-button">
         Tu racha
       </button>
+
+      <Chip
+        label="mi nombre es david cardona"
+        isSelected={selected}
+        onClick={() => setSelected(!selected)}
+      />
     </div>
   );
 };

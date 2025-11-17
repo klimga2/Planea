@@ -28,6 +28,7 @@ export default function InputDropdown({
   ];
 
  y ponerlo de esta froma en la pagina:
+ 
   const [selectedType, setSelectedType] = useState("");
   <InputDropdown
         TextTitulo="Tipo de Meta"
