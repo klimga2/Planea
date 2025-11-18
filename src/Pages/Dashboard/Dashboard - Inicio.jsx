@@ -25,16 +25,6 @@ const Dashboard = () => {
 	return (
 		<div className=''>
 			<h1>Dashboard - Inicio</h1>
-			<div className='cards-grid'>
-				{advisorsData.map((advisor) => (
-					<CourseCard key={advisor.id} {...advisor} />
-				))}
-			</div>
-			<div className='cards-grid'>
-				{coursesData.map((course) => (
-					<CourseCard key={course.id} {...course} />
-				))}
-			</div>
 			<button onClick={Mes} className='new-game-button'>
 				Distribución gastos x mes
 			</button>
