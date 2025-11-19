@@ -131,7 +131,12 @@ const SimuladorInversion = () => {
 					/>
 				</div>
 
-				<button className='btn-proyeccion'>Ver proyección</button>
+				<button 
+					className='btn-proyeccion'
+					onClick={() => navigate('/ProyeccionInversion', { state: { formData } })}
+				>
+					Ver proyección
+				</button>
 			</div>
 		</div>
 	);

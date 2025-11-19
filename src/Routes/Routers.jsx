@@ -5,6 +5,7 @@ import GastosMes from '../Pages/Dashboard/Distribución gastos x mes';
 import GastosSemana from '../Pages/Dashboard/Distribución gastos x semana';
 import Simuladores from '../Pages/Simuladores/Simuladores';
 import SimuladorInversion from '../Pages/Simuladores/SimuladorInversion';
+import ProyeccionInversion from '../Pages/Simuladores/ProyeccionInversion';
 import MigestiongestionDiaria from '../Pages/Migestion/Migestion-gestionDiaria';
 import MigestionMovimientos from '../Pages/Migestion/Migestion-gestionDiariaMovimient';
 import MigestionPresupuesto from '../Pages/Migestion/Migestion-presupuesto';
@@ -18,6 +19,7 @@ const AppRouter = () => {
 				<Route path='/Presupuesto' element={<Presupuesto />} />
 				<Route path='/Simuladores' element={<Simuladores />} />
 				<Route path='/SimuladorInversion' element={<SimuladorInversion />} />
+				<Route path='/ProyeccionInversion' element={<ProyeccionInversion />} />
 				<Route path='/Migestion-gestionDiaria' element={<MigestiongestionDiaria />} />
 				<Route path='/Migestion-gestionDiariaMovimientos' element={<MigestionMovimientos />} />
 				<Route path='/Migestion-presupuesto' element={<MigestionPresupuesto />} />
