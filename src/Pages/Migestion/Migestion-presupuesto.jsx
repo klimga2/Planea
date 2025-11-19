@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Migestion-presupuesto.css';
+import ConfiguracionesAvanzadasPopup from './ConfiguracionesAvanzadasPopup'; // Importar el popup
 
 import {
     MdChevronLeft,
@@ -11,18 +12,18 @@ import {
 
 const MigestionPresupuesto = () => {
     const navigate = useNavigate();
+    const [isPopupOpen, setPopupOpen] = useState(false); // Estado para controlar la visibilidad del popup
 
-    // Función para obtener el estado inicial desde localStorage o usar valores por defecto
+    // ... (toda la lógica de estado y efectos que ya teníamos)
     const getInitialState = () => {
         const savedData = localStorage.getItem('presupuestoData');
         if (savedData) {
             const data = JSON.parse(savedData);
-            // Asegurarse de que los valores numéricos se manejen correctamente
             return {
                 ...data,
                 fondoPresupuesto: data.fondoPresupuesto || '3000000',
                 montoAcumulado: Number(data.montoAcumulado) || 0,
-                ingresoActual: '', // Siempre empieza vacío
+                ingresoActual: '',
                 metaAlcanzadaNotificada: data.metaAlcanzadaNotificada || false
             };
         }
@@ -52,7 +53,6 @@ const MigestionPresupuesto = () => {
     const [activeCard, setActiveCard] = useState(initialState.activeCard);
     const [metaAlcanzadaNotificada, setMetaAlcanzadaNotificada] = useState(initialState.metaAlcanzadaNotificada);
 
-    // Efecto para guardar en localStorage
     useEffect(() => {
         const dataToSave = {
             fondoPresupuesto,
@@ -65,46 +65,39 @@ const MigestionPresupuesto = () => {
         localStorage.setItem('presupuestoData', JSON.stringify(dataToSave));
     }, [fondoPresupuesto, montoAcumulado, moneda, fechaInicio, activeCard, metaAlcanzadaNotificada]);
 
-    // Efecto para la alerta de meta alcanzada
     useEffect(() => {
         if (montoAcumulado >= parseInt(fondoPresupuesto.replace(/[^0-9]/g, ''), 10) && !metaAlcanzadaNotificada) {
             alert('¡Felicidades! ¡Has alcanzado tu meta de ahorro!');
             setMetaAlcanzadaNotificada(true);
         }
     }, [montoAcumulado, fondoPresupuesto, metaAlcanzadaNotificada]);
-    
+
     const formatCurrency = (value, currency) => {
         const numberValue = parseInt(String(value).replace(/[^0-9]/g, ''), 10);
         if (isNaN(numberValue)) {
-            return new Intl.NumberFormat('es-CO', {
-                style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0
-            }).format(0);
+            return new Intl.NumberFormat('es-CO', { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(0);
         }
-        return new Intl.NumberFormat('es-CO', {
-            style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0
-        }).format(numberValue);
+        return new Intl.NumberFormat('es-CO', { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(numberValue);
     };
-    
+
     const handleNumericInputChange = (setter) => (e) => {
         const numericValue = e.target.value.replace(/[^0-9]/g, '');
         setter(numericValue);
     };
-    
+
     const handleCardClick = (cardTitle) => {
         setActiveCard(cardTitle);
     };
 
-    // Sumar el ingreso actual al monto acumulado
     const handleSave = () => {
         const nuevoIngreso = parseInt(ingresoActual, 10) || 0;
         if (nuevoIngreso > 0) {
             setMontoAcumulado(prevMonto => prevMonto + nuevoIngreso);
-            setIngresoActual(''); // Limpiar el input después de sumar
+            setIngresoActual('');
         }
         alert('¡Progreso guardado!');
     };
 
-    // Resetear la notificación si la meta cambia y ya no se ha alcanzado
     useEffect(() => {
         if (montoAcumulado < parseInt(fondoPresupuesto.replace(/[^0-9]/g, ''), 10)) {
             setMetaAlcanzadaNotificada(false);
@@ -222,9 +215,11 @@ const MigestionPresupuesto = () => {
             </section>
 
             <footer className="pres-footer-actions">
-                <button className="btn btn-secondary">Configuraciones avanzadas</button>
+                <button className="btn btn-secondary" onClick={() => setPopupOpen(true)}>Configuraciones avanzadas</button>
                 <button className="btn btn-primary" onClick={handleSave}>Guardar</button>
             </footer>
+
+            <ConfiguracionesAvanzadasPopup isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />
         </div>
     );
 };
