@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './ProyeccionInversion.css';
 import { IoChevronBack, IoChevronDown } from 'react-icons/io5';
 import { Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar, ComposedChart } from 'recharts';
+import html2canvas from 'html2canvas';
+import ModalExito from '../../Components/ModalExito/ModalExito';
 
 const ProyeccionInversion = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const contentRef = useRef(null);
 	const initialFormData = location.state?.formData || {
 		montoInvertir: '1000000',
 		frecuencia: 'Anual',
@@ -18,6 +21,7 @@ const ProyeccionInversion = () => {
 	const [formData, setFormData] = useState(initialFormData);
 	const [mostrarDatos, setMostrarDatos] = useState(false);
 	const [vistaGrafica, setVistaGrafica] = useState('Meses'); // 'Meses' o 'Año'
+	const [mostrarModal, setMostrarModal] = useState(false);
 
 	// Calcular proyección basada en los datos del formulario
 	const calcularProyeccion = () => {
@@ -110,8 +114,28 @@ const ProyeccionInversion = () => {
 		return null;
 	};
 
+	const handleExportar = async () => {
+		if (contentRef.current) {
+			try {
+				const canvas = await html2canvas(contentRef.current, {
+					backgroundColor: '#f5f7fa',
+					scale: 2,
+				});
+				const link = document.createElement('a');
+				link.download = 'proyeccion-inversion.png';
+				link.href = canvas.toDataURL();
+				link.click();
+				setMostrarModal(true);
+				setTimeout(() => setMostrarModal(false), 2000);
+			} catch (error) {
+				console.error('Error al exportar:', error);
+			}
+		}
+	};
+
 	return (
 		<div className='proyeccion-container'>
+			{mostrarModal && <ModalExito onClose={() => setMostrarModal(false)} />}
 			<header className='proyeccion-header'>
 				<button className='back-button' onClick={() => navigate('/SimuladorInversion')}>
 					<IoChevronBack size={24} />
@@ -119,7 +143,7 @@ const ProyeccionInversion = () => {
 				<h1 className='proyeccion-titulo'>Simulador de inversión</h1>
 			</header>
 
-			<div className='proyeccion-content'>
+			<div className='proyeccion-content' ref={contentRef}>
 				{/* Sección editar datos */}
 				<div className='editar-datos-section'>
 					<button 
@@ -272,7 +296,7 @@ const ProyeccionInversion = () => {
 				{/* Botones de acción */}
 				<div className='acciones-botones'>
 					<button className='btn-compartir'>Compartir</button>
-					<button className='btn-exportar'>Exportar</button>
+					<button className='btn-exportar' onClick={handleExportar}>Exportar</button>
 				</div>
 			</div>
 		</div>

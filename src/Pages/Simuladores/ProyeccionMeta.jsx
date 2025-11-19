@@ -1,12 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './ProyeccionMeta.css';
 import { IoChevronBack, IoChevronDown } from 'react-icons/io5';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import html2canvas from 'html2canvas';
+import ModalExito from '../../Components/ModalExito/ModalExito';
 
 const ProyeccionMeta = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const contentRef = useRef(null);
 	const initialFormData = location.state?.formData || {
 		presupuestoMeta: '180000000',
 		aporteMensual: '1000000',
@@ -14,6 +17,7 @@ const ProyeccionMeta = () => {
 	const [formData, setFormData] = useState(initialFormData);
 	const [mostrarDatos, setMostrarDatos] = useState(false);
 	const [vistaGrafica, setVistaGrafica] = useState('meses'); // 'meses' o 'año'
+	const [mostrarModal, setMostrarModal] = useState(false);
 
 	// Calcular proyección de meta
 	const calcularProyeccion = () => {
@@ -115,8 +119,28 @@ const ProyeccionMeta = () => {
 	const valorPrimero = aporteMensualNum * primero;
 	const valorSegundo = aporteMensualNum * segundo;
 
+	const handleExportar = async () => {
+		if (contentRef.current) {
+			try {
+				const canvas = await html2canvas(contentRef.current, {
+					backgroundColor: '#f5f7fa',
+					scale: 2,
+				});
+				const link = document.createElement('a');
+				link.download = 'proyeccion-meta.png';
+				link.href = canvas.toDataURL();
+				link.click();
+				setMostrarModal(true);
+				setTimeout(() => setMostrarModal(false), 2000);
+			} catch (error) {
+				console.error('Error al exportar:', error);
+			}
+		}
+	};
+
 	return (
 		<div className='proyeccion-meta-container'>
+			{mostrarModal && <ModalExito onClose={() => setMostrarModal(false)} />}
 			<header className='proyeccion-meta-header'>
 				<button className='back-button' onClick={() => navigate('/SimuladorMeta')}>
 					<IoChevronBack size={24} />
@@ -124,7 +148,7 @@ const ProyeccionMeta = () => {
 				<h1 className='proyeccion-meta-titulo'>Simulador de meta</h1>
 			</header>
 
-			<div className='proyeccion-meta-content'>
+			<div className='proyeccion-meta-content' ref={contentRef}>
 				{/* Sección editar datos */}
 				<div className='editar-datos-section'>
 					<button
@@ -245,7 +269,7 @@ const ProyeccionMeta = () => {
 				{/* Botones de acción */}
 				<div className='botones-accion'>
 					<button className='btn-compartir'>Compartir</button>
-					<button className='btn-exportar'>Exportar</button>
+					<button className='btn-exportar' onClick={handleExportar}>Exportar</button>
 				</div>
 
 				<button className='btn-guardar-meta'>Guardar meta</button>

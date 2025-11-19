@@ -1,12 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './ProyeccionAhorro.css';
 import { IoChevronBack, IoChevronDown } from 'react-icons/io5';
 import { Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar, ComposedChart } from 'recharts';
+import html2canvas from 'html2canvas';
+import ModalExito from '../../Components/ModalExito/ModalExito';
 
 const ProyeccionAhorro = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const contentRef = useRef(null);
 	const initialFormData = location.state?.formData || {
 		sueldoMensual: '3000000',
 		porcentajeAhorrar: '10',
@@ -16,6 +19,7 @@ const ProyeccionAhorro = () => {
 	const [formData, setFormData] = useState(initialFormData);
 	const [mostrarDatos, setMostrarDatos] = useState(false);
 	const [vistaGrafica, setVistaGrafica] = useState('Meses');
+	const [mostrarModal, setMostrarModal] = useState(false);
 
 	// Calcular proyección de ahorro
 	const calcularProyeccion = () => {
@@ -105,8 +109,28 @@ const ProyeccionAhorro = () => {
 		return null;
 	};
 
+	const handleExportar = async () => {
+		if (contentRef.current) {
+			try {
+				const canvas = await html2canvas(contentRef.current, {
+					backgroundColor: '#f5f7fa',
+					scale: 2,
+				});
+				const link = document.createElement('a');
+				link.download = 'proyeccion-ahorro.png';
+				link.href = canvas.toDataURL();
+				link.click();
+				setMostrarModal(true);
+				setTimeout(() => setMostrarModal(false), 2000);
+			} catch (error) {
+				console.error('Error al exportar:', error);
+			}
+		}
+	};
+
 	return (
 		<div className='proyeccion-ahorro-container'>
+			{mostrarModal && <ModalExito onClose={() => setMostrarModal(false)} />}
 			<header className='proyeccion-ahorro-header'>
 				<button className='back-button' onClick={() => navigate('/SimuladorAhorro')}>
 					<IoChevronBack size={24} />
@@ -114,7 +138,7 @@ const ProyeccionAhorro = () => {
 				<h1 className='proyeccion-ahorro-titulo'>Simulador de ahorro</h1>
 			</header>
 
-			<div className='proyeccion-ahorro-content'>
+			<div className='proyeccion-ahorro-content' ref={contentRef}>
 				{/* Sección editar datos */}
 				<div className='editar-datos-section'>
 					<button
@@ -247,7 +271,7 @@ const ProyeccionAhorro = () => {
 				{/* Botones de acción */}
 				<div className='acciones-botones'>
 					<button className='btn-compartir'>Compartir</button>
-					<button className='btn-exportar'>Exportar</button>
+					<button className='btn-exportar' onClick={handleExportar}>Exportar</button>
 				</div>
 			</div>
 		</div>
