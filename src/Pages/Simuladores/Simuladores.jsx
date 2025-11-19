@@ -29,7 +29,7 @@ const Simuladores = () => {
 			icon: CiCreditCard1,
 			titulo: 'Simulador de crédito',
 			descripcion: 'Comprende el impacto de los atrasos y compara escenarios de pago.',
-			ruta: null,
+			ruta: '/SimuladorCredito',
 		},
 		{
 			id: 4,
