@@ -165,6 +165,7 @@ body {
 
 /* 5. Tarjetas de Resumen (Balance) */
 .summary-card {
+  box-sizing: border-box;
   width: calc(100% - 40px);
   background-color: var(--color-card-background);
   border-radius: var(--border-radius-card);
@@ -221,6 +222,7 @@ body {
 
 /* 6. Lista de Transacciones */
 .transactions-list {
+  box-sizing: border-box;
   width: calc(100% - 40px);
   margin: 0 20px;
   background-color: var(--color-card-background);
@@ -316,7 +318,6 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80px;
   background-color: var(--color-card-background);
   border-top: none;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
