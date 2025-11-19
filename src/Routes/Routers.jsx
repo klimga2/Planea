@@ -10,6 +10,8 @@ import SimuladorAhorro from '../Pages/Simuladores/SimuladorAhorro';
 import ProyeccionAhorro from '../Pages/Simuladores/ProyeccionAhorro';
 import SimuladorCredito from '../Pages/Simuladores/SimuladorCredito';
 import ProyeccionCredito from '../Pages/Simuladores/ProyeccionCredito';
+import SimuladorMeta from '../Pages/Simuladores/SimuladorMeta';
+import ProyeccionMeta from '../Pages/Simuladores/ProyeccionMeta';
 import MigestiongestionDiaria from '../Pages/Migestion/Migestion-gestionDiaria';
 import MigestionMovimientos from '../Pages/Migestion/Migestion-gestionDiariaMovimient';
 import MigestionPresupuesto from '../Pages/Migestion/Migestion-presupuesto';
@@ -28,6 +30,8 @@ const AppRouter = () => {
 				<Route path='/ProyeccionAhorro' element={<ProyeccionAhorro />} />
 				<Route path='/SimuladorCredito' element={<SimuladorCredito />} />
 				<Route path='/ProyeccionCredito' element={<ProyeccionCredito />} />
+				<Route path='/SimuladorMeta' element={<SimuladorMeta />} />
+				<Route path='/ProyeccionMeta' element={<ProyeccionMeta />} />
 				<Route path='/Migestion-gestionDiaria' element={<MigestiongestionDiaria />} />
 				<Route path='/Migestion-gestionDiariaMovimientos' element={<MigestionMovimientos />} />
 				<Route path='/Migestion-presupuesto' element={<MigestionPresupuesto />} />

@@ -36,7 +36,7 @@ const Simuladores = () => {
 			icon: MdOutlineTrackChanges,
 			titulo: 'Simulador de meta',
 			descripcion: 'Calcula cuánto puedes ahorrar para alcanzar tu meta.',
-			ruta: null,
+			ruta: '/SimuladorMeta',
 		},
 	];
 
