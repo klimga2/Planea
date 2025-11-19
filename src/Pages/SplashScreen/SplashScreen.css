@@ -1,0 +1,57 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #4D9DE0;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: center;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300%; 
+  height: 300%;
+  background-image: url('../../assets/planea-logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.1;
+}
+
+.splash-content {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-logo {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.splash-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.splash-tagline {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 10px;
+  opacity: 0.9;
+}

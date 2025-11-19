@@ -11,6 +11,10 @@ const Dashboard = () => {
   const Racha = () => {
     Nav("/Racha");
   };
+  const OnBoarding = () => {
+    Nav("/onBoarding");
+  };
+
   return (
     <div className="">
       <h1>Dashboard - Inicio</h1>
@@ -22,6 +26,9 @@ const Dashboard = () => {
       </button>
       <button onClick={Racha} className="new-game-button">
         Tu racha
+      </button>
+      <button onClick={OnBoarding} className="new-game-button">
+        On Boarding
       </button>
     </div>
   );
