@@ -56,8 +56,9 @@ body {
 .movimientos-header h1 {
   font-size: 23px;
   font-weight: 600;
-  margin: 0;
+  margin-top: 2%;
 }
+
 
 .back-arrow {
   background: none;
