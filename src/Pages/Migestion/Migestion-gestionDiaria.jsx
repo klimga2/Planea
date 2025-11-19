@@ -1,25 +1,24 @@
 import { useNavigate } from 'react-router-dom';
-// Eliminado: import MigestionNavbar from '../../Components/MigestionNavbar';
 import BottomNav from '../../Components/BottomNav';
+import './GestionDiaria.css'; // Importa el nuevo archivo CSS
+import bannerImage from '../../images/Group 1000002804.png';
+
 import {
 	MdSwapHoriz,
-	MdCreditCard,
-	MdAttachMoney,
-	MdCheckCircle,
-	MdShoppingBag,
-	MdDescription,
-	MdDomain,
-	MdHome,
+	MdPostAdd, // Icono para Presupuesto
+	MdAccountBalanceWallet, // Icono para Gastos fijos
+	MdAddCircleOutline, // Icono para Planeación de metas
+	MdDvr, // Icono para Mis productos
+  MdChat, // Icono para el chat
 } from 'react-icons/md';
 
+// Mapeo de iconos actualizado
 const iconMap = {
 	movimientos: MdSwapHoriz,
-	presupuesto: MdCreditCard,
-	gastos: MdAttachMoney,
-	metas: MdCheckCircle,
-	productos: MdShoppingBag,
-	tributaria: MdDescription,
-	patrimonial: MdDomain,
+	presupuesto: MdPostAdd,
+	gastos: MdAccountBalanceWallet,
+	metas: MdAddCircleOutline,
+	productos: MdDvr,
 };
 
 const items = [
@@ -39,28 +38,24 @@ const items = [
 ];
 
 const MigestiongestionDiaria = () => {
-	const Nav = useNavigate();
+	const navigate = useNavigate();
 
 	return (
-		<div className='mg-page'>
-			{/* Ya no usa MigestionNavbar, usa div personalizado */}
-			<div className='mg-header-custom'>
-				<h1 className='mg-title-custom'>Gestión diaria</h1>
-				<p className='mg-subtitle-custom'>Organiza tu día a día financiero en un solo lugar</p>
-			</div>
+		<div className='main-container'>
+			<header className='header'>
+				<h1>Gestión diaria</h1>
+				<p>Organiza tu día a día financiero en un solo lugar</p>
+			</header>
 
-			<section className='mg-banner'>
+			<section className='banner'>
 				<img
-					src='data:image/svg+xml,<svg width="160" height="140" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="140" rx="20" fill="%23D6EAF8"/><circle cx="80" cy="50" r="25" fill="%231F4788"/><ellipse cx="80" cy="90" rx="40" ry="35" fill="%231F4788"/></svg>'
+					src={bannerImage}
 					alt='banner'
-					className='mg-banner-img'
+					className='banner-image'
 				/>
-				<div className='mg-banner-text'>
-					<strong>Gestiona aquí lo esencial e importante</strong>
-				</div>
 			</section>
 
-			<main className='mg-list'>
+			<main className='card-list'>
 				{items.map((it) => {
 					const getRoute = () => {
 						if (it.key === 'movimientos') return '/Migestion-gestionDiariaMovimientos';
@@ -68,27 +63,27 @@ const MigestiongestionDiaria = () => {
 						if (it.key === 'gastos') return '/Migestion-gastos-fijos';
 						return '/';
 					};
+					
+					const Icon = iconMap[it.key];
+
 					return (
-						<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav(getRoute())}>
-							<div className='mg-card-left'>
-								<div className='mg-icon-emoji'>{iconMap[it.key] && iconMap[it.key]({ size: 32 })}</div>
-								<div>
-									<h3 className='mg-card-title'>{it.title}</h3>
-									<p className='mg-card-desc'>{it.desc}</p>
-								</div>
+						<article key={it.key} className='card' role='button' tabIndex={0} onClick={() => navigate(getRoute())}>
+							{Icon && <Icon className='icon' size={32} />}
+							<div className='card-content'>
+								<h3 className='card-title'>{it.title}</h3>
+								<p className='card-subtitle'>{it.desc}</p>
 							</div>
-							<div className='mg-card-right'>›</div>
+							<div className='arrow'>›</div>
 						</article>
 					);
 				})}
 			</main>
 
-			<button className='mg-fab' aria-label='Chat'>
-				💬
-			</button>
+			<div className='fab' aria-label='Chat'>
+				<MdChat />
+			</div>
 
-			{/* Bottom Navigation */}
-			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
+			<nav className='bottom-nav' aria-label='Navegación principal'>
 				<BottomNav />
 			</nav>
 		</div>
