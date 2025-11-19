@@ -1,0 +1,132 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Align to bottom */
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+  background-color: white;
+  width: 100%;
+  max-width: 420px; /* Match page width */
+  border-radius: 16px 16px 0 0; /* Rounded top corners */
+  padding: 10px 20px 20px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  /* No border needed based on image */
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.modal-header .back-arrow, .modal-header .modal-close-btn {
+    color: var(--color-text-main);
+}
+
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem; /* Adjusted size */
+  cursor: pointer;
+  color: var(--color-primary); /* Blue edit icon */
+}
+
+.modal-body .transaction-item {
+    padding: 15px 0;
+    border-bottom: none;
+}
+
+.modal-body .transaction-icon {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+}
+
+.modal-body .transaction-details .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.modal-body .transaction-amount {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+.transaction-details-card {
+  background-color: var(--color-card-background);
+  border-radius: var(--border-radius-card);
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  border: 1px solid var(--color-border-soft);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.transaction-details-card .detail-item {
+  text-align: center;
+  padding: 0 10px;
+  border-right: 1px solid var(--color-border-soft);
+}
+.transaction-details-card .detail-item:last-child {
+    border-right: none;
+}
+
+
+.transaction-details-card .detail-item .label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+.transaction-details-card .detail-item .value {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.modal-primary-btn {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 25px;
+}

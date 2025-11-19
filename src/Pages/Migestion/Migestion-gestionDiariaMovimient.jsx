@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BottomNav from '../../Components/BottomNav';
 import './Movimientos.css';
+import './Modal.css'; // Importa los nuevos estilos del modal
 
 // Importa los iconos necesarios de React Icons
 import {
@@ -16,7 +17,56 @@ import {
 	MdAdd,
 	MdKeyboardArrowDown,
     MdForum, // Icono de chat que se parece más al de la imagen
+    MdCreate, // Icono de lápiz para editar
 } from 'react-icons/md';
+
+const TransactionModal = ({ transaction, onClose, iconMap, formatAmount }) => {
+    if (!transaction) return null;
+
+    const Icon = iconMap[transaction.iconKey];
+
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <button onClick={onClose} className='back-arrow'><MdChevronLeft size={28} /></button>
+                    <h2>Detalle de transacción</h2>
+                    <button className='modal-close-btn'><MdCreate/></button>
+                </div>
+                <div className="modal-body">
+                    <div className='transaction-item' style={{ borderBottom: 'none' }}>
+                        <div className='transaction-icon'>
+                            {Icon && <Icon />}
+                        </div>
+                        <div className='transaction-details'>
+                            <p className='title'>{transaction.title}</p>
+                        </div>
+                        <p className={`transaction-amount ${transaction.isExpense ? 'amount-expense' : 'amount-income'}`}>
+                            {formatAmount(transaction.amount, transaction.isExpense)}
+                        </p>
+                    </div>
+                    <div className='transaction-details-card'>
+                        <div className='detail-item'>
+                            <p className='label'>Fecha</p>
+                            <p className='value'>7/10/2025</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='label'>Método de pago</p>
+                            <p className='value'>{transaction.bank}</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='label'>Categoría</p>
+                            <p className='value'>{transaction.category}</p>
+                        </div>
+                    </div>
+                    <button className='modal-primary-btn' onClick={onClose}>Salir</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
 
 // Pequeño componente de calendario modal
 const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
@@ -96,7 +146,6 @@ const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
 	);
 };
 
-
 const MigestionMovimientos = () => {
 	const Nav = useNavigate();
 	const [searchTerm, setSearchTerm] = useState('');
@@ -104,6 +153,8 @@ const MigestionMovimientos = () => {
 	const [activeFilter, setActiveFilter] = useState('Todos');
 	const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedTransaction, setSelectedTransaction] = useState(null);
 
 
 	// Filtros como se muestra en la imagen
@@ -180,8 +231,18 @@ const MigestionMovimientos = () => {
 	// Formatea el monto según la imagen
 	const formatAmount = (amount, isExpense) => {
 		const number = Number(amount).toLocaleString('es-CO');
-		return isExpense ? `-$${number}` : `$${number}`;
+		return isExpense ? `-$ ${number}` : `$ ${number}`;
 	};
+
+    const openModal = (transaction) => {
+        setSelectedTransaction(transaction);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedTransaction(null);
+    };
 
 	const months = [
 		'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
@@ -315,13 +376,13 @@ const MigestionMovimientos = () => {
 						{day.items.map((tx) => {
 							const Icon = iconMap[tx.iconKey];
 							return (
-								<div key={tx.id} className='transaction-item'>
+								<div key={tx.id} className='transaction-item' onClick={() => openModal(tx)}>
 									<div className='transaction-icon'>
 										{Icon && <Icon />}
 									</div>
 									<div className='transaction-details'>
 										<p className='title'>{tx.title}</p>
-										<p className='subtitle'>{`${tx.category}  ${tx.bank}`}</p>
+										<p className='subtitle'>{`${tx.category} - ${tx.bank}`}</p>
 									</div>
 									<p className={`transaction-amount ${tx.isExpense ? 'amount-expense' : 'amount-income'}`}>
 										{formatAmount(tx.amount, tx.isExpense)}
@@ -332,6 +393,13 @@ const MigestionMovimientos = () => {
 					</div>
 				))}
 			</div>
+
+            <TransactionModal
+                transaction={selectedTransaction}
+                onClose={closeModal}
+                iconMap={iconMap}
+                formatAmount={formatAmount}
+            />
 
 			{/* Botón Flotante */}
 			<button className='fab' aria-label='Chat'>
