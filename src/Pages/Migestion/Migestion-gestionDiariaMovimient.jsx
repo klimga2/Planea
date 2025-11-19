@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BottomNav from '../../Components/BottomNav';
+import './Movimientos.css';
+
+// Importa los iconos necesarios de React Icons
 import {
 	MdHome,
 	MdDirectionsCar,
@@ -9,12 +12,10 @@ import {
 	MdTrendingUp,
 	MdShowChart,
 	MdTrendingDown,
-	MdClose,
+	MdChevronLeft,
+	MdAdd,
 	MdKeyboardArrowDown,
-	MdAttachMoney,
-	MdBarChart,
-	MdBook,
-	MdStarRate,
+    MdForum, // Icono de chat que se parece más al de la imagen
 } from 'react-icons/md';
 
 // Pequeño componente de calendario modal
@@ -36,13 +37,10 @@ const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
 		'Diciembre',
 	];
 
-	const pad = (n) => (n < 10 ? `0${n}` : `${n}`);
-
 	const buildGrid = (y, m) => {
 		const firstDay = new Date(y, m, 1);
 		const firstWeekday = firstDay.getDay(); // 0=Sun
-		// We'll display weeks starting Monday per image; shift so Monday=0
-		const shift = (firstWeekday + 6) % 7;
+		const shift = (firstWeekday + 6) % 7; // Shift so Monday=0
 		const daysInMonth = new Date(y, m + 1, 0).getDate();
 		const daysInPrev = new Date(y, m, 0).getDate();
 
@@ -74,25 +72,12 @@ const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
 				<h3 className='cal-month-title'>{months[month]}</h3>
 				<div className='cal-box'>
 					<div className='cal-weekdays'>
-						<div>Mo</div>
-						<div>Tu</div>
-						<div>We</div>
-						<div>Th</div>
-						<div>Fri</div>
-						<div>Sa</div>
-						<div>Su</div>
+						<div>Lu</div><div>Ma</div><div>Mi</div><div>Ju</div><div>Vi</div><div>Sá</div><div>Do</div>
 					</div>
 					<div className='cal-grid'>
 						{cells.map((cell, idx) => {
 							const d = cell.date.getDate();
-							const isToday = (() => {
-								const t = new Date();
-								return (
-									t.getFullYear() === cell.date.getFullYear() &&
-									t.getMonth() === cell.date.getMonth() &&
-									t.getDate() === cell.date.getDate()
-								);
-							})();
+							const isToday = new Date().toDateString() === cell.date.toDateString();
 
 							return (
 								<button
@@ -106,111 +91,25 @@ const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
 						})}
 					</div>
 				</div>
-				<div className='cal-drag' />
 			</div>
 		</div>
 	);
 };
 
-// Componente modal para editar/crear transacción
-const TransactionEditModal = ({ tx, onClose, onSave }) => {
-	const [form, setForm] = useState({
-		id: tx.id,
-		title: tx.title || '',
-		amount: tx.amount ? String(tx.amount) : '',
-		category: tx.category || '',
-		bank: tx.bank || '',
-		isExpense: typeof tx.isExpense === 'boolean' ? tx.isExpense : true,
-		dateISO: tx.dateISO || '',
-	});
-
-	const handleChange = (k, v) => setForm((s) => ({ ...s, [k]: v }));
-
-	const handleSave = () => {
-		// construct updated tx; title should remain unchanged (not editable per requirement)
-		const updated = {
-			...tx,
-			title: tx.title,
-			amount: String(form.amount).replace(/[^0-9]/g, ''),
-			category: form.category,
-			bank: form.bank,
-			isExpense: form.isExpense,
-			dateISO: form.dateISO,
-		};
-		onSave(updated);
-	};
-
-	return (
-		<div className='td-overlay' onClick={onClose}>
-			<div className='edit-sheet' onClick={(e) => e.stopPropagation()}>
-				<div className='td-header'>
-					<button className='td-back' onClick={onClose}>
-						<MdClose size={24} />
-					</button>
-					<h4>Editar transacción</h4>
-				</div>
-				<div className='edit-body'>
-					<div className='edit-amount'>
-						{form.isExpense ? `- ${Number(form.amount).toLocaleString()}` : `+ ${Number(form.amount).toLocaleString()}`}
-					</div>
-					<div className='edit-types'>
-						<button
-							className={`type-btn ${form.isExpense ? 'active' : ''}`}
-							onClick={() => handleChange('isExpense', true)}
-						>
-							Gasto
-						</button>
-						<button
-							className={`type-btn ${!form.isExpense ? 'active' : ''}`}
-							onClick={() => handleChange('isExpense', false)}
-						>
-							Ingreso
-						</button>
-						<button className='type-btn'>Transferencia</button>
-					</div>
-
-					<label>Título</label>
-					<input value={form.title} disabled />
-
-					<label>Importe</label>
-					<input type='number' value={form.amount} onChange={(e) => handleChange('amount', e.target.value)} />
-
-					<label>Categoría</label>
-					<select value={form.category} onChange={(e) => handleChange('category', e.target.value)}>
-						<option>Comida</option>
-						<option>Transporte</option>
-						<option>Hogar</option>
-						<option>Trabajo</option>
-					</select>
-
-					<label>Desde</label>
-					<select value={form.bank} onChange={(e) => handleChange('bank', e.target.value)}>
-						<option>BBVA</option>
-						<option>Neqüi</option>
-						<option>Ñu</option>
-					</select>
-
-					<label>Fecha</label>
-					<input type='date' value={form.dateISO} onChange={(e) => handleChange('dateISO', e.target.value)} />
-
-					<button className='td-save' onClick={handleSave}>
-						Guardar
-					</button>
-				</div>
-			</div>
-		</div>
-	);
-};
 
 const MigestionMovimientos = () => {
 	const Nav = useNavigate();
 	const [searchTerm, setSearchTerm] = useState('');
-	const [currentMonth, setCurrentMonth] = useState(9); // octubre (0-11)
-	const [activeFilter, setActiveFilter] = useState('Para ti');
+	const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+	const [activeFilter, setActiveFilter] = useState('Todos');
+	const [showCalendar, setShowCalendar] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
 
-	const filters = ['Para ti', 'Todos', 'Ñu', 'Neqüi', 'BBVA'];
 
-	// Datos de ejemplo
+	// Filtros como se muestra en la imagen
+	const filters = ['Todos', 'Nu', 'Nequi', 'Bancolombia', 'BBVA'];
+
+	// Datos de la imagen
 	const monthlyData = {
 		balance: '$ 1.090.000',
 		income: '$ 3.200.000',
@@ -218,381 +117,229 @@ const MigestionMovimientos = () => {
 		transactionCount: 8,
 	};
 
+    // Mapa de iconos correspondiente a la imagen
 	const iconMap = {
-		1: MdHome,
-		2: MdDirectionsCar,
-		3: MdSwapHoriz,
-		4: MdBusinessCenter,
+		'pago-luz': MdHome,
+		'uber': MdDirectionsCar,
+		'transferencia': MdSwapHoriz,
+		'sueldo': MdBusinessCenter,
 	};
 
-	// Use dateISO per item to enable reliable filtering / moving between days
+	// Transacciones como en la imagen
 	const initialTransactions = [
 		{
 			date: 'Domingo 12 de octubre',
+            dateISO: '2025-10-12',
 			items: [
 				{
 					id: 1,
+                    iconKey: 'pago-luz',
 					title: 'Pago recibo de luz',
 					category: 'Hogar',
-					bank: 'Ñu',
+					bank: 'Nu',
 					amount: '136000',
 					isExpense: true,
-					dateISO: '2025-10-12',
 				},
 				{
 					id: 2,
+                    iconKey: 'uber',
 					title: 'Uber',
 					category: 'Transporte',
-					bank: 'Neqüi',
+					bank: 'Nequi',
 					amount: '12000',
 					isExpense: true,
-					dateISO: '2025-10-12',
 				},
 				{
 					id: 3,
+                    iconKey: 'transferencia',
 					title: 'Transferencia',
 					category: 'Salud',
 					bank: 'BBVA',
 					amount: '40000',
-					isExpense: false,
-					dateISO: '2025-10-12',
+					isExpense: false, // Ingreso
 				},
 			],
 		},
 		{
 			date: 'Sábado 11 de octubre',
+            dateISO: '2025-10-11',
 			items: [
 				{
 					id: 4,
+                    iconKey: 'sueldo',
 					title: 'Sueldo',
 					category: 'Trabajo',
 					bank: 'BBVA',
 					amount: '5000000',
-					isExpense: false,
-					dateISO: '2025-10-11',
+					isExpense: false, // Ingreso
 				},
 			],
 		},
 	];
 
-	const [transactions, setTransactions] = useState(initialTransactions);
-
-	// detail / edit modal state
-	const [showDetail, setShowDetail] = useState(false);
-	const [showEdit, setShowEdit] = useState(false);
-	const [activeTx, setActiveTx] = useState(null);
-	const [activeTxDateLabel, setActiveTxDateLabel] = useState('');
-
-	const openDetail = (tx, dateLabel) => {
-		setActiveTx(tx);
-		setActiveTxDateLabel(dateLabel || '');
-		setShowDetail(true);
-	};
-	const closeDetail = () => {
-		setShowDetail(false);
-		setActiveTx(null);
-		setActiveTxDateLabel('');
+	// Formatea el monto según la imagen
+	const formatAmount = (amount, isExpense) => {
+		const number = Number(amount).toLocaleString('es-CO');
+		return isExpense ? `-$${number}` : `$${number}`;
 	};
 
-	const openEdit = (tx) => {
-		setActiveTx(tx);
-		setShowEdit(true);
-		setShowDetail(false);
-	};
-	const closeEdit = () => {
-		setShowEdit(false);
-		setActiveTx(null);
-	};
+	const months = [
+		'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+	];
 
-	const formatDateLabel = (iso) => {
+	const handlePrevMonth = () => setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+	const handleNextMonth = () => setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+
+    const handleOpenCalendar = () => setShowCalendar(true);
+    const handleCloseCalendar = () => setShowCalendar(false);
+    const handleSelectDate = (date) => {
+        setSelectedDate(date);
+        setCurrentMonth(date.getMonth());
+        setShowCalendar(false);
+    };
+
+    const formatDateLabel = (iso) => {
 		const d = new Date(iso);
 		const options = { weekday: 'long', day: 'numeric', month: 'long' };
 		const label = d.toLocaleDateString('es-ES', options);
 		return label.charAt(0).toUpperCase() + label.slice(1);
 	};
 
-	const saveTransaction = (updated) => {
-		// updated should include dateISO and amount as plain numbers/strings without +/− signs
-		const oldIso = activeTx?.dateISO;
-		const newIso = updated.dateISO || oldIso;
+    const filterTransactions = () => {
+        if (!selectedDate) return initialTransactions;
 
-		setTransactions((prev) => {
-			// remove item from old day
-			let newList = prev.map((day) => ({ ...day, items: day.items.filter((it) => it.id !== updated.id) }));
-
-			// remove any empty day groups
-			newList = newList.filter((day) => day.items.length > 0);
-
-			// try to find an existing day group with matching date label
-			const targetLabel = formatDateLabel(newIso);
-			const foundIndex = newList.findIndex((d) => d.date === targetLabel);
-
-			const updatedItem = { ...updated };
-
-			if (foundIndex !== -1) {
-				newList[foundIndex] = { ...newList[foundIndex], items: [...newList[foundIndex].items, updatedItem] };
-			} else {
-				// create new day group at top
-				newList = [{ date: targetLabel, items: [updatedItem] }, ...newList];
-			}
-
-			return newList;
-		});
-
-		setShowEdit(false);
-		setActiveTx({ ...updated });
-		setActiveTxDateLabel(formatDateLabel(newIso));
-		setShowDetail(true);
-	};
-
-	const formatAmount = (tx) => {
-		const abs = Number(String(tx.amount).replace(/[^0-9]/g, '')) || 0;
-		const formatted = abs.toLocaleString('es-CO');
-		return tx.isExpense ? `- $ ${formatted}` : `+ $ ${formatted}`;
-	};
-
-	const months = [
-		'Enero',
-		'Febrero',
-		'Marzo',
-		'Abril',
-		'Mayo',
-		'Junio',
-		'Julio',
-		'Agosto',
-		'Septiembre',
-		'Octubre',
-		'Noviembre',
-		'Diciembre',
-	];
-
-	const handlePrevMonth = () => {
-		setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
-	};
-
-	const handleNextMonth = () => {
-		setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
-	};
-
-	// Calendar modal state
-	const [showCalendar, setShowCalendar] = useState(false);
-	const [selectedDate, setSelectedDate] = useState(null);
-
-	const handleOpenCalendar = () => setShowCalendar(true);
-	const handleCloseCalendar = () => setShowCalendar(false);
-
-	const handleSelectDate = (date) => {
-		setSelectedDate(date);
-		// optionally close modal
-		handleCloseCalendar();
-		// set currentMonth to selected month for coherence
-		setCurrentMonth(date.getMonth());
-	};
-
-	const filterTransactionsByDate = (transactionsList, date) => {
-		if (!date) return transactionsList;
-		const iso = date.toISOString().slice(0, 10); // YYYY-MM-DD
-		// For selected date, return day groups that contain items on that ISO date, with only those items
-		return transactionsList
-			.map((day) => {
-				const items = day.items.filter((it) => it.dateISO === iso);
-				if (items.length === 0) return null;
-				return { date: formatDateLabel(iso), items };
-			})
-			.filter(Boolean);
-	};
-
-	const visibleTransactions = filterTransactionsByDate(transactions, selectedDate);
+        const selectedISO = selectedDate.toISOString().slice(0,10);
+        
+        return initialTransactions.filter(day => {
+            const dayISO = new Date(day.dateISO).toISOString().slice(0,10);
+            return dayISO === selectedISO;
+        });
+    }
 
 	return (
-		<div className='mov-page'>
-			{/* Header - REEMPLAZADO */}
-			<div
-				style={{
-					padding: '15px 20px',
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-					borderBottom: '1px solid #eee',
-				}}
-			>
-				<button
-					onClick={() => Nav('/Migestion-gestionDiaria')}
-					style={{ border: 'none', background: 'none', fontSize: '1.2em', cursor: 'pointer' }}
-				>
-					←
+		<div className='movimientos-container'>
+			{/* Header */}
+			<div className='movimientos-header'>
+				<button onClick={() => Nav('/Migestion-gestionDiaria')} className='back-arrow'>
+					<MdChevronLeft size={28} />
 				</button>
-				<h2 style={{ margin: 0, fontSize: '1.2em' }}>Movimientos</h2>
-				<div style={{ width: '24px' }}></div> {/* Spacer */}
+				<h1>Movimientos</h1>
+				<div style={{ width: '28px' }}></div> {/* Spacer */}
 			</div>
 
-			{/* Search Bar */}
-			<div className='mov-search-container'>
+			{/* Barra de Búsqueda */}
+			<div className='search-bar'>
 				<input
 					type='text'
-					placeholder='Buscar curso'
+					placeholder='Buscar movimiento'
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
-					className='mov-search-input'
 				/>
-				<button className='mov-search-icon' aria-label='Buscar'>
-					👁️
-				</button>
 			</div>
 
-			{/* Filter Buttons */}
-			<div className='mov-filters'>
+			{/* Filtros */}
+			<div className='filters'>
 				{filters.map((filter) => (
 					<button
 						key={filter}
-						className={`mov-filter-btn ${activeFilter === filter ? 'active' : ''}`}
+						className={`filter-pill ${activeFilter === filter ? 'active' : ''}`}
 						onClick={() => setActiveFilter(filter)}
 					>
 						{filter}
 					</button>
 				))}
-				<button className='mov-filter-add' aria-label='Agregar filtro'>
-					+
+                <button className='filter-pill' aria-label='Agregar filtro'>
+					<MdAdd size={16} />
 				</button>
-				<button className='mov-filter-dropdown' aria-label='Opciones'>
-					▼
+                <button className='filter-pill' aria-label='Ver más filtros'>
+					<MdKeyboardArrowDown size={16} />
 				</button>
 			</div>
 
-			{/* Month Selector */}
-			<div className='mov-month-selector'>
-				<button className='mov-month-nav' onClick={handlePrevMonth}>
-					◀
-				</button>
-				<div className='mov-month-info' onClick={handleOpenCalendar} role='button' tabIndex={0}>
-					<h2 className='mov-month-name'>{months[currentMonth]}</h2>
-					<p className='mov-transaction-count'>{monthlyData.transactionCount} transacciones</p>
+			{/* Selector de Mes */}
+			<div className='date-selector' onClick={handleOpenCalendar} role='button' tabIndex={0}>
+				<button onClick={(e) => {e.stopPropagation(); handlePrevMonth();}} aria-label='Mes anterior'>
+					<MdChevronLeft size={24} />
+				</button>				
+                <div>
+					<h2 className='month'>{months[currentMonth]}</h2>
+					<p className='transactions'>{monthlyData.transactionCount} transacciones</p>
 				</div>
-				<button className='mov-month-nav' onClick={handleNextMonth}>
-					▶
-				</button>
+				<button onClick={(e) => {e.stopPropagation(); handleNextMonth();}} aria-label='Mes siguiente'>
+                    <MdChevronLeft style={{ transform: 'rotate(180deg)'}} size={24} />
+                </button>
 			</div>
 
-			{/* Calendar modal */}
-			<CalendarModal
-				year={new Date().getFullYear()}
-				month={currentMonth}
-				visible={showCalendar}
-				onClose={handleCloseCalendar}
-				onSelect={handleSelectDate}
-			/>
+            <CalendarModal
+                year={new Date().getFullYear()}
+                month={currentMonth}
+                visible={showCalendar}
+                onClose={handleCloseCalendar}
+                onSelect={handleSelectDate}
+            />
 
-			{/* Summary Cards */}
-			<div className='mov-summary'>
-				<div className='mov-balance-card'>
-					<div className='mov-balance-header'>
-						<span className='mov-balance-icon'>
-							<MdTrendingUp size={20} />
-						</span>
-						<span className='mov-balance-label'>Balance</span>
+			{/* Tarjeta de Resumen */}
+			<div className='summary-card'>
+				<div className='summary-section'>
+					<div className='icon'><MdShowChart /></div>
+					<div className='summary-details'>
+						<p>Balance</p>
+						<p className='amount'>{monthlyData.balance}</p>
 					</div>
-					<p className='mov-balance-amount'>{monthlyData.balance}</p>
 				</div>
-
-				<div className='mov-income-expense'>
-					<div className='mov-income-card'>
-						<div className='mov-income-header'>
-							<span className='mov-income-icon'>
-								<MdShowChart size={20} />
-							</span>
-							<span>Ingreso mensual</span>
+				<div className='divider'></div>
+				<div className='income-expense'>
+					<div className='summary-section'>
+						<div className='icon'><MdTrendingUp /></div>
+						<div className='summary-details'>
+							<p>Ingreso mensual</p>
+							<p className='amount'>{monthlyData.income}</p>
 						</div>
-						<p className='mov-income-amount'>{monthlyData.income}</p>
 					</div>
-					<div className='mov-expense-card'>
-						<div className='mov-expense-header'>
-							<span className='mov-expense-icon'>
-								<MdTrendingDown size={20} />
-							</span>
-							<span>Gasto mensual</span>
+					<div className='summary-section'>
+						<div className='icon'><MdTrendingDown /></div>
+						<div className='summary-details'>
+							<p>Gasto mensual</p>
+							<p className='amount'>{monthlyData.expense}</p>
 						</div>
-						<p className='mov-expense-amount'>{monthlyData.expense}</p>
 					</div>
 				</div>
 			</div>
 
-			{/* Transactions List */}
-			<div className='mov-transactions'>
-				{visibleTransactions.map((day, dayIndex) => (
-					<div key={dayIndex} className='mov-transaction-day'>
-						<h3 className='mov-day-label'>{day.date}</h3>
-						{day.items.map((tx) => (
-							<div key={tx.id} className='mov-transaction-item' onClick={() => openDetail(tx, day.date)}>
-								<div className='mov-tx-icon-container'>
-									<div className='mov-tx-icon'>{iconMap[tx.id] && iconMap[tx.id]({ size: 28 })}</div>
-								</div>
-								<div className='mov-tx-content'>
-									<h4 className='mov-tx-title'>{tx.title}</h4>
-									<div className='mov-tx-meta'>
-										<span className='mov-tx-category'>{tx.category}</span>
-										<span className='mov-tx-bank'>{tx.bank}</span>
+			{/* Lista de Transacciones */}
+			<div className='transactions-list'>
+				{filterTransactions().map((day, dayIndex) => (
+					<div key={dayIndex} className='transaction-group'>
+						<h3 className='transaction-group-header'>{day.date}</h3>
+						{day.items.map((tx) => {
+							const Icon = iconMap[tx.iconKey];
+							return (
+								<div key={tx.id} className='transaction-item'>
+									<div className='transaction-icon'>
+										{Icon && <Icon />}
 									</div>
+									<div className='transaction-details'>
+										<p className='title'>{tx.title}</p>
+										<p className='subtitle'>{`${tx.category}  ${tx.bank}`}</p>
+									</div>
+									<p className={`transaction-amount ${tx.isExpense ? 'amount-expense' : 'amount-income'}`}>
+										{formatAmount(tx.amount, tx.isExpense)}
+									</p>
 								</div>
-								<p className={`mov-tx-amount ${tx.isExpense ? 'expense' : 'income'}`}>{formatAmount(tx)}</p>
-							</div>
-						))}
+							);
+						})}
 					</div>
 				))}
 			</div>
 
-			{/* Transaction Detail Modal */}
-			{showDetail && activeTx && (
-				<div className='td-overlay' onClick={closeDetail}>
-					<div className='td-sheet' onClick={(e) => e.stopPropagation()}>
-						<div className='td-header'>
-							<button className='td-back' onClick={closeDetail}>
-								<MdClose size={24} />
-							</button>
-							<h4>Detalle de transacción</h4>
-							<button className='td-edit' onClick={() => openEdit(activeTx)}>
-								✎
-							</button>
-						</div>
-						<div className='td-body'>
-							<div className='td-top'>
-								<div className='td-icon'>{iconMap[activeTx.id] && iconMap[activeTx.id]({ size: 48 })}</div>
-								<div>
-									<h3 className='td-title'>{activeTx.title}</h3>
-									<p className={`td-amount ${activeTx.isExpense ? 'expense' : 'income'}`}>{formatAmount(activeTx)}</p>
-								</div>
-							</div>
-							<div className='td-meta-cards'>
-								<div className='meta-card'>
-									<div>Fecha</div>
-									<div className='meta-value'>{activeTxDateLabel}</div>
-								</div>
-								<div className='meta-card'>
-									<div>Método de pago</div>
-									<div className='meta-value'>{activeTx.bank}</div>
-								</div>
-								<div className='meta-card'>
-									<div>Categoría</div>
-									<div className='meta-value'>{activeTx.category}</div>
-								</div>
-							</div>
-							<button className='td-close' onClick={closeDetail}>
-								Salir
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
-
-			{/* Transaction Edit Modal */}
-			{showEdit && activeTx && <TransactionEditModal tx={activeTx} onClose={closeEdit} onSave={saveTransaction} />}
-
-			{/* Floating Chat Button */}
-			<button className='mov-fab' aria-label='Chat'>
-				💬
+			{/* Botón Flotante */}
+			<button className='fab' aria-label='Chat'>
+				<MdForum />
 			</button>
 
-			{/* Bottom Navigation */}
-			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
+			{/* Navegación Inferior */}
+			<nav className='bottom-nav' aria-label='Navegación principal'>
 				<BottomNav />
 			</nav>
 		</div>
