@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BottomNav from '../../Components/BottomNav';
 import './Movimientos.css';
@@ -16,11 +16,11 @@ import {
 	MdChevronLeft,
 	MdAdd,
 	MdKeyboardArrowDown,
-    MdForum, // Icono de chat que se parece más al de la imagen
+    MdChat, // Icono de chat que se parece más al de la imagen
     MdCreate, // Icono de lápiz para editar
 } from 'react-icons/md';
 
-const TransactionModal = ({ transaction, onClose, iconMap, formatAmount }) => {
+const TransactionModal = ({ transaction, onClose, iconMap, formatAmount, onEdit }) => {
     if (!transaction) return null;
 
     const Icon = iconMap[transaction.iconKey];
@@ -31,7 +31,7 @@ const TransactionModal = ({ transaction, onClose, iconMap, formatAmount }) => {
                 <div className="modal-header">
                     <button onClick={onClose} className='back-arrow'><MdChevronLeft size={28} /></button>
                     <h2>Detalle de transacción</h2>
-                    <button className='modal-close-btn'><MdCreate/></button>
+                    <button onClick={() => onEdit(transaction)} className='modal-close-btn'><MdCreate/></button>
                 </div>
                 <div className="modal-body">
                     <div className='transaction-item' style={{ borderBottom: 'none' }}>
@@ -66,7 +66,70 @@ const TransactionModal = ({ transaction, onClose, iconMap, formatAmount }) => {
     );
 };
 
+const EditTransactionModal = ({ transaction, onClose, onSave }) => {
+    const [editedTransaction, setEditedTransaction] = useState(transaction);
+    const [type, setType] = useState(transaction.isExpense ? 'gasto' : 'ingreso');
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setEditedTransaction(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleTypeChange = (newType) => {
+        setType(newType);
+    };
+
+    const handleSave = () => {
+        const isExpense = type === 'gasto';
+        onSave({ ...editedTransaction, isExpense, type });
+        onClose();
+    };
+    
+    const formatDisplayAmount = () => {
+        const prefix = type === 'gasto' ? '-$' : '$';
+        return `${prefix} ${Number(editedTransaction.amount).toLocaleString('es-CO')}`;
+    }
+
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="edit-modal-header">
+                    <button onClick={onClose} className='back-arrow'><MdChevronLeft size={28} /></button>
+                    <h2>Edita tu transacción</h2>
+                </div>
+                <div className="edit-modal-body">
+                    <div className={`amount-display ${type}`}>{formatDisplayAmount()}</div>
+                    <div className="type-selector">
+                        <button onClick={() => handleTypeChange('gasto')} className={type === 'gasto' ? 'active' : ''}>Gasto</button>
+                        <button onClick={() => handleTypeChange('ingreso')} className={type === 'ingreso' ? 'active' : ''}>Ingreso</button>
+                        <button onClick={() => handleTypeChange('transferencia')} className={type === 'transferencia' ? 'active' : ''}>Transferencia</button>
+                    </div>
+                    <div className="form-group">
+                        <label>Monto</label>
+                        <input type="number" name="amount" value={editedTransaction.amount} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Titulo</label>
+                        <input type="text" name="title" value={editedTransaction.title} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Categoria</label>
+                        <input type="text" name="category" value={editedTransaction.category} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Desde</label>
+                        <input type="text" name="bank" value={editedTransaction.bank} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Fecha</label>
+                        <input type="text" name="date" value="7/10/2025" readOnly />
+                    </div>
+                    <button className='modal-primary-btn' onClick={handleSave}>Guardar</button>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 // Pequeño componente de calendario modal
 const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
@@ -147,15 +210,30 @@ const CalendarModal = ({ year, month, visible, onClose, onSelect }) => {
 };
 
 const MigestionMovimientos = () => {
-	const Nav = useNavigate();
-	const [searchTerm, setSearchTerm] = useState('');
-	const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-	const [activeFilter, setActiveFilter] = useState('Todos');
-	const [showCalendar, setShowCalendar] = useState(false);
+    const Nav = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+    const [activeFilter, setActiveFilter] = useState('Todos');
+    const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedTransaction, setSelectedTransaction] = useState(null);
+    const [transactions, setTransactions] = useState([]);
 
+    useEffect(() => {
+        const storedTransactions = localStorage.getItem('transactions');
+        if (storedTransactions) {
+            setTransactions(JSON.parse(storedTransactions));
+        } else {
+            setTransactions(initialTransactions);
+        }
+    }, []);
+
+    const saveTransactions = (updatedTransactions) => {
+        localStorage.setItem('transactions', JSON.stringify(updatedTransactions));
+        setTransactions(updatedTransactions);
+    }
 
 	// Filtros como se muestra en la imagen
 	const filters = ['Todos', 'Nu', 'Nequi', 'Bancolombia', 'BBVA'];
@@ -234,14 +312,35 @@ const MigestionMovimientos = () => {
 		return isExpense ? `-$ ${number}` : `$ ${number}`;
 	};
 
-    const openModal = (transaction) => {
+    const openDetailModal = (transaction) => {
         setSelectedTransaction(transaction);
-        setIsModalOpen(true);
+        setIsDetailModalOpen(true);
     };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
+    const closeDetailModal = () => {
+        setIsDetailModalOpen(false);
         setSelectedTransaction(null);
+    };
+
+    const openEditModal = (transaction) => {
+        setSelectedTransaction(transaction);
+        setIsDetailModalOpen(false); // Cierra el modal de detalle
+        setIsEditModalOpen(true);
+    };
+
+    const closeEditModal = () => {
+        setIsEditModalOpen(false);
+        setSelectedTransaction(null);
+    };
+
+    const handleSaveTransaction = (editedTransaction) => {
+        const updatedTransactions = transactions.map(day => ({
+            ...day,
+            items: day.items.map(tx => 
+                tx.id === editedTransaction.id ? editedTransaction : tx
+            )
+        }));
+        saveTransactions(updatedTransactions);
     };
 
 	const months = [
@@ -268,11 +367,11 @@ const MigestionMovimientos = () => {
 	};
 
     const filterTransactions = () => {
-        if (!selectedDate) return initialTransactions;
+        if (!selectedDate) return transactions;
 
         const selectedISO = selectedDate.toISOString().slice(0,10);
         
-        return initialTransactions.filter(day => {
+        return transactions.filter(day => {
             const dayISO = new Date(day.dateISO).toISOString().slice(0,10);
             return dayISO === selectedISO;
         });
@@ -286,7 +385,6 @@ const MigestionMovimientos = () => {
 					<MdChevronLeft size={28} />
 				</button>
 				<h1>Movimientos</h1>
-				<div style={{ width: '28px' }}></div> {/* Spacer */}
 			</div>
 
 			{/* Barra de Búsqueda */}
@@ -376,7 +474,7 @@ const MigestionMovimientos = () => {
 						{day.items.map((tx) => {
 							const Icon = iconMap[tx.iconKey];
 							return (
-								<div key={tx.id} className='transaction-item' onClick={() => openModal(tx)}>
+								<div key={tx.id} className='transaction-item' onClick={() => openDetailModal(tx)}>
 									<div className='transaction-icon'>
 										{Icon && <Icon />}
 									</div>
@@ -394,16 +492,23 @@ const MigestionMovimientos = () => {
 				))}
 			</div>
 
-            <TransactionModal
+            {isDetailModalOpen && <TransactionModal
                 transaction={selectedTransaction}
-                onClose={closeModal}
+                onClose={closeDetailModal}
                 iconMap={iconMap}
                 formatAmount={formatAmount}
-            />
+                onEdit={openEditModal}
+            />}
+
+            {isEditModalOpen && <EditTransactionModal 
+                transaction={selectedTransaction}
+                onClose={closeEditModal}
+                onSave={handleSaveTransaction}
+            />}
 
 			{/* Botón Flotante */}
 			<button className='fab' aria-label='Chat'>
-				<MdForum />
+				<MdChat />
 			</button>
 
 			{/* Navegación Inferior */}

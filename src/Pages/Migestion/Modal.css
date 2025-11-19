@@ -1,3 +1,4 @@
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -129,4 +130,92 @@
   font-weight: 600;
   cursor: pointer;
   margin-top: 25px;
+}
+
+/* Styles for Edit Transaction Modal */
+.edit-modal-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.edit-modal-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.edit-modal-body .amount-display {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: left;
+    margin: 10px 0 20px;
+}
+
+.edit-modal-body .amount-display.gasto {
+    color: var(--color-balance-down);
+}
+
+.edit-modal-body .amount-display.ingreso {
+    color: var(--color-balance-up);
+}
+
+.edit-modal-body .amount-display.transferencia {
+    color: var(--color-balance-up);
+}
+
+.edit-modal-body .type-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.edit-modal-body .type-selector button {
+    padding: 8px 18px;
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--border-radius-pill);
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.edit-modal-body .type-selector button.active {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.edit-modal-body .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.edit-modal-body .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+    margin-bottom: 8px;
+}
+
+.edit-modal-body .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-soft);
+    background-color: #F7FAFC;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.edit-modal-body .form-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: white;
 }

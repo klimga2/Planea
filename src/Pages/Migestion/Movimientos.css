@@ -41,7 +41,7 @@ body {
 /* 1. Header y Navegación Superior */
 .movimientos-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Alinea a la izquierda */
   align-items: center;
   width: 100%;
   padding: 15px 10px;
@@ -50,14 +50,13 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
+  gap: 10px; /* Espacio entre la flecha y el título */
 }
 
 .movimientos-header h1 {
-  font-size: 1.1rem;
+  font-size: 23px;
   font-weight: 600;
   margin: 0;
-  flex-grow: 1;
-  text-align: center;
 }
 
 .back-arrow {
