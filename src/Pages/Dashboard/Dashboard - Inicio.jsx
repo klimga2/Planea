@@ -21,6 +21,9 @@ const Dashboard = () => {
 	const Racha = () => {
 		Nav('/Racha');
 	};
+	const Simuladores = () => {
+		Nav('/Simuladores');
+	};
 
 	return (
 		<div className=''>
@@ -33,6 +36,9 @@ const Dashboard = () => {
 			</button>
 			<button onClick={Racha} className='new-game-button'>
 				Tu racha
+			</button>
+			<button onClick={Simuladores} className='new-game-button'>
+				Simuladores
 			</button>
 		</div>
 	);
