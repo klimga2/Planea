@@ -22,7 +22,7 @@ const Simuladores = () => {
 			icon: HiOutlineCurrencyDollar,
 			titulo: 'Simulador de ahorro',
 			descripcion: 'Calcula cuánto puedes ahorrar según tus ingresos y visualiza tu progreso.',
-			ruta: null,
+			ruta: '/SimuladorAhorro',
 		},
 		{
 			id: 3,
