@@ -20,7 +20,7 @@ const AppRouter = () => {
 				<Route path='/Migestion-gestionDiariaMovimientos' element={<MigestionMovimientos />} />
 				<Route path='/Migestion-presupuesto' element={<MigestionPresupuesto />} />
 				<Route path='/Migestion-gastos-fijos' element={<MigestionGastosFijos />} />
-				<Route path='/Migestion-gastos-activas' element={<MigestionGastosFijosAdmin />} />
+				<Route path='/Migestion-Gastosfijos-admin' element={<MigestionGastosFijosAdmin />} />
 			</Routes>
 		</BrowserRouter>
 	);
