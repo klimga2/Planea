@@ -14,6 +14,7 @@ import {
 } from 'react-icons/md';
 
 import bannerProductos from "../../../assets/misproductosbanner.png";
+import BottomNav from '../../../Components/BottomNav.jsx';
 
 import './Misproductos.css'; // Asegúrate de que este archivo CSS existe
 
@@ -119,7 +120,7 @@ export default function MigestionMisProductos() {
                 ))}
             </div>
 
-
+            <BottomNav />
         </div>
     );
 }
