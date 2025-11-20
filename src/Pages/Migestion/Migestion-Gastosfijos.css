@@ -214,7 +214,7 @@
 }
 
 .gastos-fijos-scope .gf-btn.primary { background: var(--gf-primary-blue); color: white; }
-.gastos-fijos-scope .gf-btn.secondary { background: var(--gf-secondary-blue); color: var(--gf-primary-blue); }
+.gastos-fijos-scope .gf-btn.secondary { background: var(--gf-secondary-blue); color:black; }
 
 .gastos-fijos-scope .gf-fab {
   position: fixed;

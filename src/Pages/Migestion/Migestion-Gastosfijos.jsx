@@ -203,7 +203,7 @@ const MigestionGastosFijos = () => {
 
             <div className="gf-page-actions">
                 <button className="gf-btn primary" onClick={() => setPopupOpen(true)}>Nuevo gasto</button>
-                <button className="gf-btn secondary">Administrar gastos</button>
+                <button className="gf-btn secondary" onClick={() => navigate('/Migestion-Gastosfijos-admin')}>Administrar gastos</button>
             </div>
 
             <button className="gf-fab" aria-label="Abrir chat"><MdChat /></button>
