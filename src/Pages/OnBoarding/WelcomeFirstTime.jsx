@@ -1,6 +1,6 @@
 import React from 'react';
 import './WelcomeStart.css';
-import financialServices from '../../assets/financial-services.png'
+import financialServices from '../../assets/financial-services-hands.png'
 import { useNavigate } from "react-router-dom";
 
 const WelcomeFirstTime = () => {

@@ -1,13 +1,13 @@
 import React from 'react';
 import './WelcomeStart.css';
 import womanCelebrating from '../../assets/woman-celebrating.png';
-import planeaLogo from '../../assets/planea-logo.svg';
+import planeaLogo from '../../assets/planea-logo-horizontal.png';
 
 const WelcomeStart = () => {
   return (
     <div className="welcome-container">
       <header className="welcome-header">
-        <img src={planeaLogo} alt="Planea Logo" className="logo" />
+        <img src={planeaLogo} alt="Planea Logo" className="logo-horizontal" />
       </header>
       <main className="welcome-main">
         <img src={womanCelebrating} alt="Woman celebrating" className="main-image" />
