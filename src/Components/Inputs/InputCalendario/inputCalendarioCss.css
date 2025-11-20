@@ -1,0 +1,61 @@
+/* Contenedor del input calendario */
+.input-calendario-container {
+  width: 130px;
+  margin: 0 auto;
+}
+
+/* Estilo del label */
+.input-calendario-container label {
+  display: block;
+  font-size: clamp(14px, 2vw, 16px);
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Estilo del input date */
+.input-calendario-container input[type="date"] {
+  width: 100%;
+  padding: clamp(5px, 2vw, 5px) clamp(5px, 3vw, 5px);
+  font-size: clamp(14px, 2vw, 16px);
+  border: 2px solid #e0e0e0;
+  border-radius: clamp(20px, 4vw, 28px);
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  outline: none;
+  box-sizing: border-box;
+  color: #333;
+  font-family: inherit;
+  color: #000000;
+}
+
+/* Estilos para el ícono del calendario */
+.input-calendario-container
+  input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: opacity(0.6);
+  transition: filter 0.3s ease;
+}
+
+.input-calendario-container
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  filter: opacity(1);
+}
+
+/* Placeholder personalizado cuando no hay fecha seleccionada */
+.input-calendario-container input[type="date"]:not(:focus):invalid {
+  color: #999;
+}
+
+/* Efecto hover */
+.input-calendario-container input[type="date"]:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #d0d0d0;
+}
+
+/* Efecto focus */
+.input-calendario-container input[type="date"]:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 4px 16px rgba(74, 144, 226, 0.2);
+  background-color: #fff;
+}
