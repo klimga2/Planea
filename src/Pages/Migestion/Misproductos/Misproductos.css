@@ -8,10 +8,13 @@
 }
 
 .top-bar {
-    display: flex;
+    display: flex
+;
     align-items: center;
     padding: 15px 0;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-right: 14rem;
+    justify-content: flex-end;
 }
 
 .back-arrow {

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -7,17 +8,26 @@ import {
     MdTrendingDown,
     MdClose,
     MdSwapHorizontalCircle,
-    MdAttachMoney
+    MdAttachMoney,
+    MdChevronLeft,
+    MdChevronRight,
+    MdHome,
+    MdFastfood,
+    MdSwapHoriz,
+    MdWork,
+    MdDirectionsCar,
 } from 'react-icons/md';
 import './DetalleMediodepago.css';
 
 // --- Funciones Helper ---
 
 // Helper para formatear moneda
-const formatCurrency = (amount) => {
-    const num = Number(amount) || 0;
-    return `$${num.toLocaleString('es-CO')}`;
+const formatCurrency = (amount, isExpense = false) => {
+    const num = Math.abs(Number(amount)) || 0;
+    const sign = isExpense ? '-' : '';
+    return `${sign}$${num.toLocaleString('es-CO')}`;
 };
+
 
 // Helper para formatear números de tarjeta (mostrar solo los últimos 4 dígitos)
 const formatCardNumber = (number) => {
@@ -75,12 +85,203 @@ const calculateCreditCardDates = (cutDayOfMonth = 5, paymentDayOfMonth = 20) => 
     };
 };
 
+const MovimientosPopup = ({ isOpen, onClose }) => {
+    const iconColor = '#4D9DE0';
+
+    const transactions = {
+        'Domingo 12 de oct': [
+            { icon: <MdHome size={24} color="#fff" />, title: 'Pago recibo de luz', category: 'Hogar', method: 'Efectivo', amount: -136000 },
+            { icon: <MdDirectionsCar size={24} color="#fff" />, title: 'Uber', category: 'Transporte', method: 'Efectivo', amount: -12000 },
+            { icon: <MdSwapHoriz size={24} color="#fff" />, title: 'Transferencia', category: 'Salud', method: 'Efectivo', amount: 40000 },
+        ],
+        'Sábado 11 de oct': [
+            { icon: <MdWork size={24} color="#fff" />, title: 'Sueldo', category: 'Trabajo', method: 'Efectivo', amount: 5000000 },
+            { icon: <MdHome size={24} color="#fff" />, title: 'Pago recibo de luz', category: 'Hogar', method: 'Efectivo', amount: -136000 },
+            { icon: <MdDirectionsCar size={24} color="#fff" />, title: 'Uber', category: 'Transporte', method: 'Efectivo', amount: -12000 },
+            { icon: <MdWork size={24} color="#fff" />, title: 'Prima', category: 'Trabajo', method: 'Efectivo', amount: 5000000 },
+        ],
+    };
+
+    const TransactionItem = ({ icon, title, category, method, amount }) => {
+        const isExpense = amount < 0;
+        return (
+            <div className="transaction-item">
+                <div className="transaction-icon-container">
+                    {icon}
+                </div>
+                <div className="transaction-details">
+                    <span className="transaction-title">{title}</span>
+                    <span className="transaction-category">{`${category} - ${method}`}</span>
+                </div>
+                <span className={`transaction-amount ${isExpense ? 'expense' : 'income'}`}>
+                    {formatCurrency(amount, isExpense)}
+                </span>
+            </div>
+        );
+    };
+
+
+    return (
+        <div className={`movimientos-popup-overlay ${isOpen ? 'open' : ''}`} onClick={onClose}>
+            <div className="movimientos-popup-content" onClick={(e) => e.stopPropagation()}>
+                <div className="movimientos-popup-header">
+                    <MdClose size={28} color={iconColor} onClick={onClose} style={{ cursor: 'pointer' }} />
+                </div>
+                
+                <div className="month-selector">
+                    <MdChevronLeft size={28} color="#000" />
+                    <div className="month-text">
+                        <span className="month-name">Octubre</span>
+                        <span className="transaction-count">8 transacciones</span>
+                    </div>
+                    <MdChevronRight size={28} color="#000" />
+                </div>
+
+                <div className="transactions-list">
+                    {Object.entries(transactions).map(([date, items]) => (
+                        <div key={date}>
+                            <h3 className="transaction-date-header">{date}</h3>
+                            {items.map((item, index) => (
+                                <TransactionItem key={index} {...item} />
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <style>{`
+                .movimientos-popup-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    z-index: 1001;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 0.3s ease, visibility 0s 0.3s linear;
+                }
+                .movimientos-popup-overlay.open {
+                    opacity: 1;
+                    visibility: visible;
+                    transition: opacity 0.3s ease;
+                }
+                .movimientos-popup-content {
+                    background-color: #F8F9FA;
+                    width: 100%;
+                    max-width: 420px;
+                    height: 95%;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                    padding: 16px;
+                    box-sizing: border-box;
+                    transform: translateY(100%);
+                    transition: transform 0.3s ease-out;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .movimientos-popup-overlay.open .movimientos-popup-content {
+                    transform: translateY(0);
+                }
+                .movimientos-popup-header {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    margin-bottom: 16px;
+                }
+                .month-selector {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: #FFFFFF;
+                    padding: 16px;
+                    border-radius: 12px;
+                    margin-bottom: 24px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                }
+                .month-text {
+                    text-align: center;
+                }
+                .month-name {
+                    font-size: 1.1rem;
+                    font-weight: bold;
+                    color: #1A202C;
+                }
+                .transaction-count {
+                    font-size: 0.8rem;
+                    color: #A0AEC0;
+                    display: block;
+                }
+                .transactions-list {
+                    flex-grow: 1;
+                    overflow-y: auto;
+                    background-color: #FFFFFF;
+                    padding: 16px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                }
+                .transaction-date-header {
+                    font-size: 1rem;
+                    font-weight: bold;
+                    color: #1A202C;
+                    margin-top: 16px;
+                    margin-bottom: 12px;
+                }
+                .transaction-date-header:first-of-type {
+                    margin-top: 0;
+                }
+                .transaction-item {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 16px;
+                }
+                .transaction-icon-container {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 10px;
+                    background-color: ${iconColor};
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 12px;
+                }
+                .transaction-details {
+                    flex-grow: 1;
+                }
+                .transaction-title {
+                    display: block;
+                    font-weight: 500;
+                    color: #1A202C;
+                }
+                .transaction-category {
+                    font-size: 0.9rem;
+                    color: #A0AEC0;
+                }
+                .transaction-amount {
+                    font-weight: bold;
+                }
+                .transaction-amount.income {
+                    color: #48BB78;
+                }
+                .transaction-amount.expense {
+                    color: #F56565;
+                }
+            `}</style>
+        </div>
+    );
+};
+
 
 // --- Componente Principal ---
 export default function DetalleMediodePago() {
     const navigate = useNavigate();
     const { id } = useParams();
     const iconColor = '#4D9DE0';
+    const [showMovimientos, setShowMovimientos] = useState(false);
+
 
     const [producto, setProducto] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -209,28 +410,28 @@ export default function DetalleMediodePago() {
     // Detalles para Tarjeta de Ahorro/Débito (Promedio mensual)
     const renderDebitDetails = () => (
         <>
-            <h2 class='promedio-title'>Promedio mensual</h2>
+            <h2 className='promedio-title'>Promedio mensual</h2>
 
-            <div class='promedio-cards-container'>
+            <div className='promedio-cards-container'>
                 {/* Card Ingresos */}
-                <div class='promedio-card'>
-                    <div class='promedio-icon-text'>
+                <div className='promedio-card'>
+                    <div className='promedio-icon-text'>
                         <MdShowChart size={24} color="#4CAF50" />
                     </div>
-                    <div class='montoeegr'>
-                        <span class='tituloegresos'>Ingresos</span>
-                        <span class='promedio-monto-ingreso'>{formatCurrency(ingresosMensuales)}</span>
+                    <div className='montoeegr'>
+                        <span className='tituloegresos'>Ingresos</span>
+                        <span className='promedio-monto-ingreso'>{formatCurrency(ingresosMensuales)}</span>
                     </div>
                 </div>
 
                 {/* Card Egresos */}
-                <div class='promedio-card'>
-                    <div class='promedio-icon-text'>
+                <div className='promedio-card'>
+                    <div className='promedio-icon-text'>
                         <MdTrendingDown size={24} color="#F44336" />
                     </div>
-                    <div class='montoeegr'>
-                        <span class='tituloegresos'>Egresos</span>
-                        <span class='promedio-monto-egreso'>{formatCurrency(egresosMensuales)}</span>
+                    <div className='montoeegr'>
+                        <span className='tituloegresos'>Egresos</span>
+                        <span className='promedio-monto-egreso'>{formatCurrency(egresosMensuales)}</span>
                     </div>
                 </div>
             </div>
@@ -245,66 +446,66 @@ export default function DetalleMediodePago() {
         return (
             <>
                 {/* 3. Cupo Usado (Barra de progreso) */}
-                <div class='cupo-progress-container'>
-                    <div class='cupito'>
-                        <h2 class='cupo-title'>Cupo usado</h2>
-                        <span class='cupo-percentage'>{porcentajeUsado}%</span>
+                <div className='cupo-progress-container'>
+                    <div className='cupito'>
+                        <h2 className='cupo-title'>Cupo usado</h2>
+                        <span className='cupo-percentage'>{porcentajeUsado}%</span>
                     </div>
-                    <div class='cupo-progress-bar'>
+                    <div className='cupo-progress-bar'>
                         {/* Barra de progreso */}
                         <div
-                            class='cupo-progress-fill'
+                            className='cupo-progress-fill'
                             style={{ width: `${porcentajeUsado}%` }}
                         ></div>
                     </div>
                     {/* Rango de montos */}
-                    <div class='cupo-amounts'>
+                    <div className='cupo-amounts'>
                         <span>{formatCurrency(creditData.cupoUsado)}</span>
                         <span>{formatCurrency(creditData.cupoTotal)}</span>
                     </div>
                 </div>
 
                 {/* 4. Fechas de Corte y Pago */}
-                <div class='date-info-container'>
+                <div className='date-info-container'>
                     {/* Fecha de corte */}
-                    <div class='date-card'>
-                        <div class='date-content'>
-                            <span class='date-label'>Fecha de corte</span>
-                            <span class='date-value'>{cutDate}</span>
+                    <div className='date-card'>
+                        <div className='date-content'>
+                            <span className='date-label'>Fecha de corte</span>
+                            <span className='date-value'>{cutDate}</span>
                         </div>
-                        <div class='date-badge'>
+                        <div className='date-badge'>
                             <span>{daysToCut}</span>
-                            <span class='days-text'>días</span>
+                            <span className='days-text'>días</span>
                         </div>
                     </div>
 
                     {/* Fecha de pago */}
-                    <div class='date-card'>
-                        <div class='date-content'>
-                            <span class='date-label'>Fecha de pago</span>
-                            <span class='date-value'>{paymentDate}</span>
+                    <div className='date-card'>
+                        <div className='date-content'>
+                            <span className='date-label'>Fecha de pago</span>
+                            <span className='date-value'>{paymentDate}</span>
                         </div>
-                        <div class='date-badge payment-badge'>
+                        <div className='date-badge payment-badge'>
                             <span>{daysToPay}</span>
-                            <span class='days-text'>días</span>
+                            <span className='days-text'>días</span>
                         </div>
                     </div>
                 </div>
 
                 {/* 5. Pagos Mínimo y Sugerido */}
-                <div class='payment-info-container'>
+                <div className='payment-info-container'>
                     {/* Pago Mínimo */}
-                    <div class='payment-card'>
-                        <MdAttachMoney size={24} color="#333" class='payment-icon' />
-                        <span class='payment-label'>Pago mínimo</span>
-                        <span class='payment-amount'>{formatCurrency(creditData.pagoMinimo)}</span>
+                    <div className='payment-card'>
+                        <MdAttachMoney size={24} color="#333" className='payment-icon' />
+                        <span className='payment-label'>Pago mínimo</span>
+                        <span className='payment-amount'>{formatCurrency(creditData.pagoMinimo)}</span>
                     </div>
 
                     {/* Pago Sugerido */}
-                    <div class='payment-card'>
-                        <MdAttachMoney size={24} color="#333" class='payment-icon' />
-                        <span class='payment-label'>Pago sugerido</span>
-                        <span class='payment-amount'>{formatCurrency(creditData.pagoSugerido)}</span>
+                    <div className='payment-card'>
+                        <MdAttachMoney size={24} color="#333" className='payment-icon' />
+                        <span className='payment-label'>Pago sugerido</span>
+                        <span className='payment-amount'>{formatCurrency(creditData.pagoSugerido)}</span>
                     </div>
                 </div>
             </>
@@ -325,7 +526,7 @@ export default function DetalleMediodePago() {
     };
 
     if (isLoading || !producto) {
-        return <div class='loading-container'>Cargando detalle del medio de pago...</div>;
+        return <div className='loading-container'>Cargando detalle del medio de pago...</div>;
     }
 
     // El título principal debe reflejar el tipo de cuenta asociado
@@ -333,47 +534,47 @@ export default function DetalleMediodePago() {
 
 
     return (
-        <div class='payment-detail-container'>
+        <div className='payment-detail-container'>
             {/* 1. Barra superior */}
-            <div class='top-bar'>
-                <span class='back-arrow' onClick={handleBack}>
+            <div className='top-bar'>
+                <span className='back-arrow' onClick={handleBack}>
                     <MdArrowBack size={24} color={iconColor} />
                 </span>
-                <span class='top-bar-title'>Medios de pago</span>
+                <span className='top-bar-title'>Medios de pago</span>
             </div>
 
-            <h1 class='payment-title'>{mainTitle}</h1>
+            <h1 className='payment-title'>{mainTitle}</h1>
 
             {/* 2. Tarjeta Principal (Común para ambos tipos) */}
             <div className={cardClass}>
-                <div class='payment-card-header'>
+                <div className='payment-card-header'>
                     <MdCreditCard size={24} color="#fff" style={{ opacity: 0.8 }}/>
                     <span>{producto.entidad}</span>
                 </div>
 
-                <div class='card-network-logo'>
-                    <span class='network-text'>VISA</span>
-                    <span class='network-type'>{producto.tipoProducto === 'Tarjeta Débito' ? 'Débito' : 'Crédito'}</span>
+                <div className='card-network-logo'>
+                    <span className='network-text'>VISA</span>
+                    <span className='network-type'>{producto.tipoProducto === 'Tarjeta Débito' ? 'Débito' : 'Crédito'}</span>
                 </div>
 
-                <div class='card-number-display'>
+                <div className='card-number-display'>
                     {formatCardNumber(producto.numeroReferencia)}
                 </div>
 
-                <div class='card-info-row'>
-                    <div class='card-info-item'>
-                        <span class='card-info-label'>Titular</span>
-                        <span class='card-info-value'>{producto.titular}</span>
+                <div className='card-info-row'>
+                    <div className='card-info-item'>
+                        <span className='card-info-label'>Titular</span>
+                        <span className='card-info-value'>{producto.titular}</span>
                     </div>
-                    <div class='card-info-item expiration'>
-                        <span class='card-info-label'>Expiración</span>
-                        <span class='card-info-value'>{producto.fechaExpiracion}</span>
+                    <div className='card-info-item expiration'>
+                        <span className='card-info-label'>Expiración</span>
+                        <span className='card-info-value'>{producto.fechaExpiracion}</span>
                     </div>
                 </div>
             </div>
 
             {/* Botón de acción centralizado (Común para ambos tipos) */}
-            <button class='action-btn center-btn'>
+            <button className='action-btn center-btn'>
                 <MdSwapHorizontalCircle size={20} color="#333" />
                 Cambiar a cuenta principal
             </button>
@@ -382,26 +583,28 @@ export default function DetalleMediodePago() {
             {renderProductDetails()}
 
             {/* 6. Botones de Acción (Movimientos/Alertas) (Común para ambos) */}
-            <div class='action-buttons-row'>
-                <button class='action-btn primary'>Movimientos</button>
-                <button class='action-btn secondary'>Alertas</button>
+            <div className='action-buttons-row'>
+            <button className='action-btn primary' onClick={() => setShowMovimientos(true)}>Movimientos</button>
+                <button className='action-btn secondary'>Alertas</button>
             </div>
 
             {/* 7. Botones Inferiores (Eliminar y Regresar) (Común para ambos) */}
-            <div class='action-buttons-column'>
+            <div className='action-buttons-column'>
                 <button
-                    class='action-btn full-width delete-btn'
+                    className='action-btn full-width delete-btn'
                     onClick={handleDeleteProduct}
                 >
                     Eliminar producto <MdClose size={24} color="#fff" />
                 </button>
                 <button
-                    class='action-btn full-width return-btn'
+                    className='action-btn full-width return-btn'
                     onClick={handleBack}
                 >
                     Regresar a mis productos
                 </button>
             </div>
+            <MovimientosPopup isOpen={showMovimientos} onClose={() => setShowMovimientos(false)} />
         </div>
     );
 }
+
