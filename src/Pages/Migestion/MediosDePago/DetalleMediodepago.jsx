@@ -9,7 +9,7 @@ import {
     MdSwapHorizontalCircle,
     MdAttachMoney
 } from 'react-icons/md';
-import './DetalleMediodePago.css';
+import './DetalleMediodepago.css';
 
 // --- Funciones Helper ---
 
@@ -209,28 +209,28 @@ export default function DetalleMediodePago() {
     // Detalles para Tarjeta de Ahorro/Débito (Promedio mensual)
     const renderDebitDetails = () => (
         <>
-            <h2 className='promedio-title'>Promedio mensual</h2>
+            <h2 class='promedio-title'>Promedio mensual</h2>
 
-            <div className='promedio-cards-container'>
+            <div class='promedio-cards-container'>
                 {/* Card Ingresos */}
-                <div className='promedio-card'>
-                    <div className='promedio-icon-text'>
+                <div class='promedio-card'>
+                    <div class='promedio-icon-text'>
                         <MdShowChart size={24} color="#4CAF50" />
                     </div>
-                    <div className='montoeegr'>
-                        <span className='tituloegresos'>Ingresos</span>
-                        <span className='promedio-monto-ingreso'>{formatCurrency(ingresosMensuales)}</span>
+                    <div class='montoeegr'>
+                        <span class='tituloegresos'>Ingresos</span>
+                        <span class='promedio-monto-ingreso'>{formatCurrency(ingresosMensuales)}</span>
                     </div>
                 </div>
 
                 {/* Card Egresos */}
-                <div className='promedio-card'>
-                    <div className='promedio-icon-text'>
+                <div class='promedio-card'>
+                    <div class='promedio-icon-text'>
                         <MdTrendingDown size={24} color="#F44336" />
                     </div>
-                    <div className='montoeegr'>
-                        <span className='tituloegresos'>Egresos</span>
-                        <span className='promedio-monto-egreso'>{formatCurrency(egresosMensuales)}</span>
+                    <div class='montoeegr'>
+                        <span class='tituloegresos'>Egresos</span>
+                        <span class='promedio-monto-egreso'>{formatCurrency(egresosMensuales)}</span>
                     </div>
                 </div>
             </div>
@@ -245,66 +245,66 @@ export default function DetalleMediodePago() {
         return (
             <>
                 {/* 3. Cupo Usado (Barra de progreso) */}
-                <div className='cupo-progress-container'>
-                    <div className='cupito'>
-                        <h2 className='cupo-title'>Cupo usado</h2>
-                        <span className='cupo-percentage'>{porcentajeUsado}%</span>
+                <div class='cupo-progress-container'>
+                    <div class='cupito'>
+                        <h2 class='cupo-title'>Cupo usado</h2>
+                        <span class='cupo-percentage'>{porcentajeUsado}%</span>
                     </div>
-                    <div className='cupo-progress-bar'>
+                    <div class='cupo-progress-bar'>
                         {/* Barra de progreso */}
                         <div
-                            className='cupo-progress-fill'
+                            class='cupo-progress-fill'
                             style={{ width: `${porcentajeUsado}%` }}
                         ></div>
                     </div>
                     {/* Rango de montos */}
-                    <div className='cupo-amounts'>
+                    <div class='cupo-amounts'>
                         <span>{formatCurrency(creditData.cupoUsado)}</span>
                         <span>{formatCurrency(creditData.cupoTotal)}</span>
                     </div>
                 </div>
 
                 {/* 4. Fechas de Corte y Pago */}
-                <div className='date-info-container'>
+                <div class='date-info-container'>
                     {/* Fecha de corte */}
-                    <div className='date-card'>
-                        <div className='date-content'>
-                            <span className='date-label'>Fecha de corte</span>
-                            <span className='date-value'>{cutDate}</span>
+                    <div class='date-card'>
+                        <div class='date-content'>
+                            <span class='date-label'>Fecha de corte</span>
+                            <span class='date-value'>{cutDate}</span>
                         </div>
-                        <div className='date-badge'>
+                        <div class='date-badge'>
                             <span>{daysToCut}</span>
-                            <span className='days-text'>días</span>
+                            <span class='days-text'>días</span>
                         </div>
                     </div>
 
                     {/* Fecha de pago */}
-                    <div className='date-card'>
-                        <div className='date-content'>
-                            <span className='date-label'>Fecha de pago</span>
-                            <span className='date-value'>{paymentDate}</span>
+                    <div class='date-card'>
+                        <div class='date-content'>
+                            <span class='date-label'>Fecha de pago</span>
+                            <span class='date-value'>{paymentDate}</span>
                         </div>
-                        <div className='date-badge payment-badge'>
+                        <div class='date-badge payment-badge'>
                             <span>{daysToPay}</span>
-                            <span className='days-text'>días</span>
+                            <span class='days-text'>días</span>
                         </div>
                     </div>
                 </div>
 
                 {/* 5. Pagos Mínimo y Sugerido */}
-                <div className='payment-info-container'>
+                <div class='payment-info-container'>
                     {/* Pago Mínimo */}
-                    <div className='payment-card'>
-                        <MdAttachMoney size={24} color="#333" className='payment-icon' />
-                        <span className='payment-label'>Pago mínimo</span>
-                        <span className='payment-amount'>{formatCurrency(creditData.pagoMinimo)}</span>
+                    <div class='payment-card'>
+                        <MdAttachMoney size={24} color="#333" class='payment-icon' />
+                        <span class='payment-label'>Pago mínimo</span>
+                        <span class='payment-amount'>{formatCurrency(creditData.pagoMinimo)}</span>
                     </div>
 
                     {/* Pago Sugerido */}
-                    <div className='payment-card'>
-                        <MdAttachMoney size={24} color="#333" className='payment-icon' />
-                        <span className='payment-label'>Pago sugerido</span>
-                        <span className='payment-amount'>{formatCurrency(creditData.pagoSugerido)}</span>
+                    <div class='payment-card'>
+                        <MdAttachMoney size={24} color="#333" class='payment-icon' />
+                        <span class='payment-label'>Pago sugerido</span>
+                        <span class='payment-amount'>{formatCurrency(creditData.pagoSugerido)}</span>
                     </div>
                 </div>
             </>
@@ -325,7 +325,7 @@ export default function DetalleMediodePago() {
     };
 
     if (isLoading || !producto) {
-        return <div className='loading-container'>Cargando detalle del medio de pago...</div>;
+        return <div class='loading-container'>Cargando detalle del medio de pago...</div>;
     }
 
     // El título principal debe reflejar el tipo de cuenta asociado
@@ -333,47 +333,47 @@ export default function DetalleMediodePago() {
 
 
     return (
-        <div className='payment-detail-container'>
+        <div class='payment-detail-container'>
             {/* 1. Barra superior */}
-            <div className='top-bar'>
-                <span className='back-arrow' onClick={handleBack}>
+            <div class='top-bar'>
+                <span class='back-arrow' onClick={handleBack}>
                     <MdArrowBack size={24} color={iconColor} />
                 </span>
-                <span className='top-bar-title'>Medios de pago</span>
+                <span class='top-bar-title'>Medios de pago</span>
             </div>
 
-            <h1 className='payment-title'>{mainTitle}</h1>
+            <h1 class='payment-title'>{mainTitle}</h1>
 
             {/* 2. Tarjeta Principal (Común para ambos tipos) */}
             <div className={cardClass}>
-                <div className='payment-card-header'>
+                <div class='payment-card-header'>
                     <MdCreditCard size={24} color="#fff" style={{ opacity: 0.8 }}/>
                     <span>{producto.entidad}</span>
                 </div>
 
-                <div className='card-network-logo'>
-                    <span className='network-text'>VISA</span>
-                    <span className='network-type'>{producto.tipoProducto === 'Tarjeta Débito' ? 'Débito' : 'Crédito'}</span>
+                <div class='card-network-logo'>
+                    <span class='network-text'>VISA</span>
+                    <span class='network-type'>{producto.tipoProducto === 'Tarjeta Débito' ? 'Débito' : 'Crédito'}</span>
                 </div>
 
-                <div className='card-number-display'>
+                <div class='card-number-display'>
                     {formatCardNumber(producto.numeroReferencia)}
                 </div>
 
-                <div className='card-info-row'>
-                    <div className='card-info-item'>
-                        <span className='card-info-label'>Titular</span>
-                        <span className='card-info-value'>{producto.titular}</span>
+                <div class='card-info-row'>
+                    <div class='card-info-item'>
+                        <span class='card-info-label'>Titular</span>
+                        <span class='card-info-value'>{producto.titular}</span>
                     </div>
-                    <div className='card-info-item expiration'>
-                        <span className='card-info-label'>Expiración</span>
-                        <span className='card-info-value'>{producto.fechaExpiracion}</span>
+                    <div class='card-info-item expiration'>
+                        <span class='card-info-label'>Expiración</span>
+                        <span class='card-info-value'>{producto.fechaExpiracion}</span>
                     </div>
                 </div>
             </div>
 
             {/* Botón de acción centralizado (Común para ambos tipos) */}
-            <button className='action-btn center-btn'>
+            <button class='action-btn center-btn'>
                 <MdSwapHorizontalCircle size={20} color="#333" />
                 Cambiar a cuenta principal
             </button>
@@ -382,21 +382,21 @@ export default function DetalleMediodePago() {
             {renderProductDetails()}
 
             {/* 6. Botones de Acción (Movimientos/Alertas) (Común para ambos) */}
-            <div className='action-buttons-row'>
-                <button className='action-btn primary'>Movimientos</button>
-                <button className='action-btn secondary'>Alertas</button>
+            <div class='action-buttons-row'>
+                <button class='action-btn primary'>Movimientos</button>
+                <button class='action-btn secondary'>Alertas</button>
             </div>
 
             {/* 7. Botones Inferiores (Eliminar y Regresar) (Común para ambos) */}
-            <div className='action-buttons-column'>
+            <div class='action-buttons-column'>
                 <button
-                    className='action-btn full-width delete-btn'
+                    class='action-btn full-width delete-btn'
                     onClick={handleDeleteProduct}
                 >
                     Eliminar producto <MdClose size={24} color="#fff" />
                 </button>
                 <button
-                    className='action-btn full-width return-btn'
+                    class='action-btn full-width return-btn'
                     onClick={handleBack}
                 >
                     Regresar a mis productos

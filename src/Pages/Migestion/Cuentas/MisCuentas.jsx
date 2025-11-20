@@ -10,7 +10,7 @@ import {
     MdWork,
 } from 'react-icons/md';
 
-import bannerCuentas from "../../../assets/bannercuentas.png";
+import bannerCuentas from "../../../assets/Bannercuentas.png";
 import './MisCuentas.css';
 
 // Componente para la Tarjeta de Cuenta

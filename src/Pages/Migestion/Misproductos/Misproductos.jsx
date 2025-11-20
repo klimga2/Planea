@@ -15,7 +15,7 @@ import {
 
 import bannerProductos from "../../../assets/misproductosbanner.png";
 
-import './MisProductos.css'; // Asegúrate de que este archivo CSS existe
+import './Misproductos.css'; // Asegúrate de que este archivo CSS existe
 
 // --- Componente Principal ---
 export default function MigestionMisProductos() {
