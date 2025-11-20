@@ -1,371 +1,108 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BottomNav from '../../Components/BottomNav';
+import './Migestion-Gastosfijos.css'; // Importa el CSS final y aislado
 
 import {
+	MdChevronLeft,
 	MdHome,
 	MdLocalHospital,
 	MdDirectionsCar,
-	MdMusicNote,
-	MdMovie,
-	MdMoreVert,
-	MdClose,
-	MdStarRate,
+	MdTheaters,
+	MdChat,
+	MdStarOutline,
 	MdBarChart,
-	MdChatBubbleOutline,
 	MdAttachMoney,
 	MdBook,
 } from 'react-icons/md';
 
+const gastosPorCategoria = [
+    { categoria: 'Hogar', items: [
+        { icono: MdHome, nombre: 'Renta', subtitulo: 'Vivienda · BBVA', monto: 900000, fecha: '03/10/2025' },
+        { icono: MdHome, nombre: 'Internet y TV', subtitulo: 'Vivienda · Nequi', monto: 120000, fecha: '06/10/2025' }
+    ]},
+    { categoria: 'Salud', items: [
+        { icono: MdLocalHospital, nombre: 'EPS', subtitulo: 'Salud · BBVA', monto: 120000, fecha: '03/10/2025' },
+        { icono: MdLocalHospital, nombre: 'Seguro médico', subtitulo: 'Salud · BBVA', monto: 60000, fecha: '10/10/2025' }
+    ]},
+    { categoria: 'Transporte', items: [
+        { icono: MdDirectionsCar, nombre: 'Parqueadero', subtitulo: 'Transporte · Nequi', monto: 70000, fecha: '03/10/2025' },
+    ]},
+    { categoria: 'Suscripciones', items: [
+        { icono: MdTheaters, nombre: 'Spotify', subtitulo: 'Entretenimiento · Nu', monto: 18500, fecha: '15/10/2025' },
+        { icono: MdTheaters, nombre: 'Netflix', subtitulo: 'Entretenimiento · Nu', monto: 29900, fecha: '04/10/2025' },
+        { icono: MdTheaters, nombre: 'Disney +', subtitulo: 'Entretenimiento · Nequi', monto: 24900, fecha: '28/10/2025' },
+        { icono: MdTheaters, nombre: 'HBO max', subtitulo: 'Entretenimiento · Nu', monto: 18900, fecha: '25/10/2025' },
+    ]}
+];
+
+const navItems = [ { icon: MdStarOutline }, { icon: MdBarChart }, { icon: MdHome }, { icon: MdAttachMoney }, { icon: MdBook }];
+
+const formatCurrency = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+
+// --- Componente Principal con Contenedor de Aislamiento ---
 const MigestionGastosFijos = () => {
-	const Nav = useNavigate();
+    const navigate = useNavigate();
 
-	const iconMap = {
-		1: MdHome,
-		2: MdHome,
-		3: MdLocalHospital,
-		4: MdLocalHospital,
-		5: MdDirectionsCar,
-		6: MdMusicNote,
-		7: MdMovie,
-		8: MdMovie,
-		9: MdMovie,
-	};
+    return (
+        <div className="gastos-fijos-scope"> {/* Contenedor de aislamiento */} 
+            <div className="gastos-fijos-page">
+                <header className="gf-header">
+                    <button onClick={() => navigate('/Migestion-gestionDiaria')} className="back-arrow"><MdChevronLeft /></button>
+                    <h1>Gastos fijos</h1>
+                </header>
 
-	// Estado de gastos fijos
-	const [fixedExpenses, setFixedExpenses] = useState([
-		{
-			id: 1,
-			category: 'Hogar',
-			name: 'Renta',
-			subcategory: 'Vivienda',
-			bank: 'BBVA',
-			amount: 900000,
-			date: '03/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 2,
-			category: 'Hogar',
-			name: 'Internet y TV',
-			subcategory: 'Vivienda',
-			bank: 'Nequi',
-			amount: 120000,
-			date: '06/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 3,
-			category: 'Salud',
-			name: 'EPS',
-			subcategory: 'Salud',
-			bank: 'BBVA',
-			amount: 120000,
-			date: '03/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 4,
-			category: 'Salud',
-			name: 'Seguro médico',
-			subcategory: 'Salud',
-			bank: 'BBVA',
-			amount: 60000,
-			date: '10/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 5,
-			category: 'Transporte',
-			name: 'Parqueadero',
-			subcategory: 'Transporte',
-			bank: 'Nequi',
-			amount: 70000,
-			date: '03/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 6,
-			category: 'Suscripciones',
-			name: 'Spotify',
-			subcategory: 'Entretenimiento',
-			bank: 'Nu',
-			amount: 18500,
-			date: '15/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 7,
-			category: 'Suscripciones',
-			name: 'Netflix',
-			subcategory: 'Entretenimiento',
-			bank: 'Nu',
-			amount: 29900,
-			date: '04/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 8,
-			category: 'Suscripciones',
-			name: 'Disney+',
-			subcategory: 'Entretenimiento',
-			bank: 'Nequi',
-			amount: 24900,
-			date: '28/10/2025',
-			color: '#17a2b8',
-		},
-		{
-			id: 9,
-			category: 'Suscripciones',
-			name: 'HBO max',
-			subcategory: 'Entretenimiento',
-			bank: 'Nu',
-			amount: 18900,
-			date: '25/10/2025',
-			color: '#17a2b8',
-		},
-	]);
+                <main>
+                    <div className="gf-summary-card">
+                        <div className="summary-section">
+                            <p className="amount">$1.362.200</p>
+                            <p className="description">Gastos fijos mensuales</p>
+                        </div>
+                        <div className="divider"></div>
+                        <div className="summary-section">
+                            <p className="percentage">42.6 %</p>
+                            <p className="description">de tus ingresos</p>
+                        </div>
+                    </div>
 
-	// Estado para el modal de nuevo gasto
-	const [showNewExpense, setShowNewExpense] = useState(false);
-	const [newExpense, setNewExpense] = useState({
-		category: '',
-		name: '',
-		subcategory: '',
-		bank: '',
-		amount: '',
-		date: '',
-	});
+                    <div className="gf-gastos-container">
+                        <h2>Mis gastos fijos</h2>
+                        {gastosPorCategoria.map((grupo, index) => (
+                            <section key={index} className="gf-category-group">
+                                <h3 className="category-title">{grupo.categoria}</h3>
+                                {grupo.items.map((item, itemIndex) => {
+                                    const Icono = item.icono;
+                                    return (
+                                        <article key={itemIndex} className="gf-gasto-card">
+                                            <div className="icon-container"><Icono /></div>
+                                            <div className="details">
+                                                <p className="title">{item.nombre}</p>
+                                                <p className="subtitle">{item.subtitulo}</p>
+                                            </div>
+                                            <div className="amount-section">
+                                                <p className="amount">{formatCurrency(item.monto)}</p>
+                                                <p className="date">{item.fecha}</p>
+                                            </div>
+                                        </article>
+                                    );
+                                })}
+                            </section>
+                        ))}
+                    </div>
+                </main>
+            </div>
 
-	// Frecuencia para nuevo gasto (Mensual / Semanal / Quincenal)
-	const [frequency, setFrequency] = useState('Mensual');
+            {/* --- Elementos Fijos --- */}
+            <div className="gf-page-actions">
+                <button className="gf-btn primary">Nuevo gasto</button>
+                <button className="gf-btn secondary">Administrar gastos</button>
+            </div>
 
-	// Calcular totales
-	const totalFixed = fixedExpenses.reduce((sum, expense) => sum + expense.amount, 0);
-	const totalIncome = 3200000; // Ejemplo de ingreso
-	const percentageOfIncome = Math.round((totalFixed / totalIncome) * 100);
-
-	// Agrupar gastos por categoría
-	const groupedExpenses = fixedExpenses.reduce((acc, expense) => {
-		if (!acc[expense.category]) {
-			acc[expense.category] = [];
-		}
-		acc[expense.category].push(expense);
-		return acc;
-	}, {});
-
-	const handleAddExpense = () => {
-		if (newExpense.name && newExpense.amount && newExpense.date) {
-			const expense = {
-				id: fixedExpenses.length + 1,
-				...newExpense,
-				frequency,
-				amount: parseFloat(newExpense.amount),
-				icon: '📌',
-				color: '#17a2b8',
-			};
-			setFixedExpenses([...fixedExpenses, expense]);
-			setNewExpense({
-				category: '',
-				name: '',
-				subcategory: '',
-				bank: '',
-				amount: '',
-				date: '',
-			});
-			setShowNewExpense(false);
-		}
-	};
-
-	const handleDeleteExpense = (id) => {
-		setFixedExpenses(fixedExpenses.filter((expense) => expense.id !== id));
-	};
-
-	return (
-		<div className='gf-page'>
-			{/* Header - REEMPLAZADO */}
-			<div
-				style={{
-					padding: '15px 20px',
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-					borderBottom: '1px solid #eee',
-				}}
-			>
-				<button
-					onClick={() => Nav('/Migestion-gestionDiaria')}
-					style={{ border: 'none', background: 'none', fontSize: '1.2em', cursor: 'pointer' }}
-				>
-					←
-				</button>
-				<h2 style={{ margin: 0, fontSize: '1.2em' }}>Gastos fijos</h2>
-				<div style={{ width: '24px' }}></div> {/* Spacer */}
-			</div>
-
-			<div className='gf-container'>
-				{/* Summary Card */}
-				<div className='gf-summary-card'>
-					<div className='gf-summary-amount'>
-						<h2>${totalFixed.toLocaleString('es-CO')}</h2>
-						<p>Gastos fijos mensuales</p>
-					</div>
-					<div className='gf-summary-percent'>
-						<h2 className='gf-percent-number'>{percentageOfIncome}%</h2>
-						<p>de tus ingresos</p>
-					</div>
-				</div>
-
-				{/* Expenses by Category */}
-				<div className='gf-expenses-container'>
-					<h2 className='gf-section-title'>Mis gastos fijos</h2>
-
-					{Object.entries(groupedExpenses).map(([category, expenses]) => (
-						<div key={category} className='gf-category-group'>
-							<h3 className='gf-category-title'>{category}</h3>
-							<div className='gf-expense-list'>
-								{expenses.map((expense) => (
-									<div key={expense.id} className='gf-expense-item'>
-										<div className='gf-expense-icon'>
-											{iconMap[expense.id] && iconMap[expense.id]({ size: 24, color: expense.color })}
-										</div>
-										<div className='gf-expense-info'>
-											<h4 className='gf-expense-name'>{expense.name}</h4>
-											<p className='gf-expense-details'>
-												{expense.subcategory} <span className='gf-separator'>•</span> {expense.bank}
-											</p>
-										</div>
-										<div className='gf-expense-amount'>
-											<p className='gf-amount'>${expense.amount.toLocaleString('es-CO')}</p>
-											<p className='gf-date'>{expense.date}</p>
-										</div>
-									</div>
-								))}
-							</div>
-						</div>
-					))}
-				</div>
-
-				{/* Action Buttons */}
-				<div className='gf-actions'>
-					<button className='gf-btn-primary' onClick={() => setShowNewExpense(true)}>
-						Nuevo gasto
-					</button>
-					<button className='gf-btn-secondary' onClick={() => Nav('/Migestion-gastos-activas')}>
-						Administrar gastos
-					</button>
-				</div>
-			</div>
-
-			{/* New Expense Modal (nuevo diseño) */}
-			{showNewExpense && (
-				<div className='gf-modal-overlay' onClick={() => setShowNewExpense(false)}>
-					<div className='gf-modal' onClick={(e) => e.stopPropagation()}>
-						{/* Header con botón atrás */}
-						<div className='gf-modal-header'>
-							<button className='gf-back' onClick={() => setShowNewExpense(false)} aria-label='Atrás'>
-								<MdClose size={24} />
-							</button>
-							<h2>Nuevo gasto fijo</h2>
-						</div>
-						<div className='gf-modal-body'>
-							{/* Monto grande */}
-							<div className='gf-amount-display'>
-								{newExpense.amount ? `$ ${Number(newExpense.amount).toLocaleString('es-CO')}` : '$ 0'}
-							</div>
-							{/* Botones de frecuencia */}
-							<div className='gf-frequency'>
-								{['Mensual', 'Semanal', 'Quincenal'].map((f) => (
-									<button
-										key={f}
-										className={`gf-frequency-btn ${frequency === f ? 'active' : ''}`}
-										onClick={() => setFrequency(f)}
-									>
-										{f}
-									</button>
-								))}
-							</div>
-
-							{/* Input de Monto (actualiza el display arriba) */}
-							<div className='gf-form-group'>
-								<label>Monto</label>
-								<input
-									type='number'
-									value={newExpense.amount}
-									onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })}
-									placeholder='0'
-									className='gf-input gf-amount-input'
-								/>
-							</div>
-
-							{/* Campos */}
-							<div className='gf-form-group'>
-								<label>Título</label>
-								<input
-									type='text'
-									value={newExpense.name}
-									onChange={(e) => setNewExpense({ ...newExpense, name: e.target.value })}
-									placeholder='Suscripción'
-									className='gf-input'
-								/>
-							</div>
-
-							<div className='gf-form-group'>
-								<label>Categoría</label>
-								<input
-									type='text'
-									value={newExpense.subcategory}
-									onChange={(e) => setNewExpense({ ...newExpense, subcategory: e.target.value })}
-									placeholder='Entretenimiento'
-									className='gf-input'
-								/>
-							</div>
-
-							<div className='gf-form-group'>
-								<label>Desde</label>
-								<input
-									type='text'
-									value={newExpense.bank}
-									onChange={(e) => setNewExpense({ ...newExpense, bank: e.target.value })}
-									placeholder='BBVA'
-									className='gf-input'
-								/>
-							</div>
-
-							<div className='gf-form-group'>
-								<label>Fecha</label>
-								<input
-									type='text'
-									value={newExpense.date}
-									onChange={(e) => setNewExpense({ ...newExpense, date: e.target.value })}
-									placeholder='14 de cada mes'
-									className='gf-input'
-								/>
-							</div>
-						</div>
-						<div className='gf-modal-actions'>
-							<button className='gf-modal-cancel' onClick={() => setShowNewExpense(false)}>
-								Cancelar
-							</button>
-							<button className='gf-modal-save' onClick={handleAddExpense}>
-								Guardar
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
-
-			{/* Floating Chat Button */}
-			<button className='gf-fab' aria-label='Chat'>
-				<MdChatBubbleOutline size={24} />
-			</button>
-
-			{/* Bottom Navigation */}
-			<nav className='gf-bottom-nav' aria-label='Navegación principal'>
-				<BottomNav />
-			</nav>
-		</div>
-	);
+            <button className="gf-fab" aria-label="Abrir chat"><MdChat /></button>
+            
+            <nav className="gf-bottom-nav">
+                {navItems.map((item, index) => <div key={index} className="nav-item"><item.icon /></div>)}
+            </nav>
+        </div>
+    );
 };
 
 export default MigestionGastosFijos;
