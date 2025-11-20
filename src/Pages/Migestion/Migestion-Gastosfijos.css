@@ -27,13 +27,12 @@
 .gastos-fijos-scope .gastos-fijos-page {
   max-width: 390px;
   margin: 0 auto;
-  /* CORRECCIÓN: Se revierte el padding-top a 0 (o al valor que tenías antes de intentar fijarlo) */
   padding: 0 20px 250px 20px; 
   box-sizing: border-box;
 }
 
 /* ------------------------------------------------ */
-/* --- Estilos del Header (CORREGIDO - Scroll Normal) --- */
+/* --- Estilos del Header (CORREGIDO) --- */
 /* ------------------------------------------------ */
 
 .gastos-fijos-scope .gf-header {
@@ -43,17 +42,16 @@
   width: 100%;
   padding: 15px 10px;
   border-bottom: none;
-  
-  /* PROPIEDADES ELIMINADAS/REVERTIDAS: */
-  position: static; /* No fijo */
+  position: static;
   top: initial; 
-  background-color: transparent; /* O elimínalo si quieres que use el del scope */
+  background-color: transparent; 
   left: initial;
   transform: none;
-  max-width: none; /* Permite que ocupe el ancho del contenedor padre */
-  
+  max-width: none;
   z-index: 50;
-  gap: 10px;
+  
+  /* CAMBIO CLAVE: Reducir el gap para acercar el título a la flecha */
+  gap: 5px; 
 }
 
 .gastos-fijos-scope .gf-header .back-arrow {
@@ -63,20 +61,23 @@
   padding: 0;
   font-size: 2.2rem;
   color: var(--gf-text-main);
-  display: flex;
+  display: flex
+;
   align-items: center;
+  margin-left: -3rem;
+  margin-top: -2rem;
 }
 
-.gastos-fijos-scope .gf-header h1 {
-  font-family: var(--gf-font-family);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--gf-text-main);
-  margin: 0;
+  .gastos-fijos-scope .gf-header h1 {
+    font-family: var(--gf-font-family);
+    font-size: 23px;
+    font-weight: 600;
+    color: var(--gf-text-main);
+    margin-top: -8%;
 }
 
 /* ------------------------------------------------ */
-/* --- Resto de los componentes --- */
+/* --- Resto de los componentes (Sin Cambios) --- */
 /* ------------------------------------------------ */
 
 .gastos-fijos-scope .gf-summary-card {
