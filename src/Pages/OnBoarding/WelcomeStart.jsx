@@ -10,7 +10,7 @@ const WelcomeStart = () => {
         <img src={planeaLogo} alt="Planea Logo" className="logo-horizontal" />
       </header>
       <main className="welcome-main">
-        <img src={womanCelebrating} alt="Woman celebrating" className="main-image" />
+        <img src={womanCelebrating} alt="Woman celebrating" className="main-image-start" />
         <section className="welcome-text">
           <h1>¡Bienvenido!</h1>
           <p>Ya estamos alineados según tus objetivos y preferencias.</p>

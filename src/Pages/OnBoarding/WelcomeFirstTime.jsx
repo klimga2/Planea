@@ -12,7 +12,7 @@ const WelcomeFirstTime = () => {
   return (
     <div className="welcome-container">
       <main className="welcome-main">
-        <img src={financialServices} alt="financial services" className="main-image" />
+        <img src={financialServices} alt="financial services" className="main-image-first" />
         <section className="welcome-text">
           <h1>Configura tu experiencia financiera</h1>
           <p>Tus respuestas nos permitirán definir tu perfil de riesgo y brindarte servicios alineados con tus preferencias y objetivos financieros.</p>
