@@ -61,6 +61,8 @@ const MigestiongestionDiaria = () => {
 						if (it.key === 'movimientos') return '/Migestion-gestionDiariaMovimientos';
 						if (it.key === 'presupuesto') return '/Migestion-presupuesto';
 						if (it.key === 'gastos') return '/Migestion-gastos-fijos';
+						if (it.key === 'metas') return '/Migestion-planeacionmetas';
+						if (it.key === 'productos') return '/Migestion-misproductos';
 						return '/';
 					};
 					
