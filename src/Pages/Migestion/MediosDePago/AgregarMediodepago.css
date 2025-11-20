@@ -1,0 +1,227 @@
+/* ---------------------------------- */
+/* VARIABLES Y GENERALES */
+/* ---------------------------------- */
+.agregar-producto-container {
+    width: 320px;
+    min-height: 100vh;
+}
+
+/* Contenedor de botones (para Tasa y Modalidad) */
+.tasa-checkbox-container, .modalidad-buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px; /* Espacio debajo del grupo de botones */
+}
+
+/* Estilo base para los botones de selección (Tasa/Modalidad) */
+.tasa-btn, .modalidad-btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Estilo para el botón activo */
+.tasa-btn.active, .modalidad-btn.active {
+    background-color: #4D9DE0; /* Azul principal */
+    color: white;
+    border-color: #4D9DE0;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste para los botones de Estado, si son diferentes */
+.estado-buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+/* ---------------------------------- */
+/* BARRA SUPERIOR */
+/* ---------------------------------- */
+.top-barcuenta {
+  text-align: start;
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.back-arrow {
+    cursor: pointer;
+    padding-right: 15px;
+    display: flex;
+}
+
+.top-bar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4D9DE0; /* Azul principal */
+}
+
+/* ---------------------------------- */
+/* TARJETA DEL FORMULARIO */
+/* ---------------------------------- */
+.agregar-producto-form-card {
+    text-align: start;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 80%;
+    justify-self: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-input-agregar {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    color: #333;
+    background-color: transparent;
+    outline: none;
+}
+
+.form-input-agregar::placeholder {
+    color: #bbb;
+}
+
+.form-input-agregar:focus {
+    border-color: #4D9DE0;
+}
+
+/* ---------------------------------- */
+/* DROPDOWN (GLOBAL) */
+/* ---------------------------------- */
+.dropdown-select-agregar {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    /* Estilos para el dropdown usado como input normal */
+    margin-bottom: 25px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.dropdown-select-agregar span {
+    color: #333;
+}
+
+.dropdown-select-agregar span.placeholder {
+    color: #999;
+}
+
+
+.dropdown-list-agregar {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 5px;
+    margin-bottom: 25px; /* Agregamos este margen inferior para separar de los siguientes campos */
+    overflow: hidden;
+}
+
+.dropdown-list-item-agregar {
+    padding: 12px 15px;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-list-item-agregar:last-child {
+    border-bottom: none;
+}
+
+.dropdown-list-item-agregar:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-list-item-agregar.selected {
+    background-color: #e6f7ff;
+    color: #4D9DE0;
+    font-weight: 500;
+}
+
+/* ---------------------------------- */
+/* SELECTOR DE ESTADO (ACTIVA/INACTIVA) */
+/* ---------------------------------- */
+.estado-buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    margin-bottom: 25px;
+}
+
+.estado-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.estado-btn.active {
+    background-color: #4D9DE0;
+    color: #fff;
+    border-color: #4D9DE0;
+    box-shadow: 0 2px 5px rgba(77, 157, 224, 0.2);
+}
+
+/* ---------------------------------- */
+/* BOTÓN DE GUARDAR PRODUCTO */
+/* ---------------------------------- */
+.guardar-producto-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #4D9DE0;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(77, 157, 224, 0.4);
+}
+
+.guardar-producto-btn:hover {
+    background-color: #3a8cdb;
+}
+
+.bothvv {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: flex-end;
+}

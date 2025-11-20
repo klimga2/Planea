@@ -1,0 +1,148 @@
+/* ---------------------------------- */
+/* 1. CONTENEDOR PRINCIPAL (LAYOUT) */
+/* ---------------------------------- */
+.mis-cuentas-screen-layout {
+    /* Ocupa el 100% de la altura de la ventana */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+
+/* ---------------------------------- */
+/* 2. SECCIÓN SUPERIOR (FIJA) */
+/* ---------------------------------- */
+.Partedearriba {
+
+    width: 100%;
+    /* Esta sección toma solo el espacio que necesita, no se encoge. */
+    flex-shrink: 0;
+}
+
+.cuentas-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: start;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 10px;
+}
+
+.back-arrow {
+    cursor: pointer;
+    padding-right: 15px;
+    display: flex;
+}
+
+.top-bar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4D9DE0;
+}
+
+.bannercuenta {
+    margin-bottom: 20px;
+}
+
+/* ---------------------------------- */
+/* 3. ÁREA DE SCROLL (Lista de Cuentas) */
+/* ---------------------------------- */
+.product-list-scroll-area {
+    /* Ocupa el espacio restante en el layout */
+    flex-grow: 1;
+    /* Habilita el scroll vertical */
+    overflow-y: hidden;
+    /* Añadir padding al final para que el botón fijo no tape la última card */
+    padding-bottom: 90px;
+    /* Evita el scroll horizontal */
+    overflow-x: hidden;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+/* Estilos de las Tarjetas */
+.product-row-card {
+    text-align: start;
+    flex-direction: column;
+    align-items: start;
+    padding: 15px 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    border: 1px solid #eee;
+    justify-content: space-between;
+}
+
+
+
+.product-icon-section {
+    display: flex;
+}
+
+.product-text-section {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.product-description {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+
+/* ---------------------------------- */
+/* 4. BOTÓN DE AGREGAR PRODUCTO (FIJO) */
+/* ---------------------------------- */
+.add-product-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Ajusta el ancho para compensar el padding del layout */
+    width: calc(100% - 30px);
+    max-width: 538px;
+    padding: 15px;
+    background-color: #4D9DE0;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(77, 157, 224, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    z-index: 1000;
+}
+
+.add-product-btn:hover {
+    background-color: #3a8cdb;
+}
+
+/* Estilos de banner no utilizados eliminados para limpiar */
