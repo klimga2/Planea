@@ -7,6 +7,9 @@ import Simuladores from '../Pages/Dashboard/Simuladores';
 import MigestiongestionDiaria from '../Pages/Migestion/Migestion-gestionDiaria';
 import MigestionMovimientos from '../Pages/Migestion/Migestion-gestionDiariaMovimient';
 import MigestionPresupuesto from '../Pages/Migestion/Migestion-presupuesto';
+import MigestionGastosFijos from '../Pages/Migestion/Migestion-Gastosfijos';
+import MigestionGastosFijosAdmin from '../Pages/Migestion/Migestion-Gastosfijos-admin';
+
 const AppRouter = () => {
 	return (
 		<BrowserRouter>
@@ -19,6 +22,8 @@ const AppRouter = () => {
 				<Route path='/Migestion-gestionDiaria' element={<MigestiongestionDiaria />} />
 				<Route path='/Migestion-gestionDiariaMovimientos' element={<MigestionMovimientos />} />
 				<Route path='/Migestion-presupuesto' element={<MigestionPresupuesto />} />
+				<Route path='/Migestion-gastos-fijos' element={<MigestionGastosFijos />} />
+				<Route path='/Migestion-Gastosfijos-admin' element={<MigestionGastosFijosAdmin />} />
 			</Routes>
 		</BrowserRouter>
 	);

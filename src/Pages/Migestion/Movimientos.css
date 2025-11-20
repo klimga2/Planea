@@ -1,0 +1,441 @@
+/* Variables de Diseño Inspiradas en la Imagen */
+:root {
+  --color-primary: #4299E1; /* Azul medio para elementos activos */
+  --color-primary-soft: #EBF8FF; /* Fondo azul muy claro para iconos y filtros */
+  --color-text-main: #1A202C; /* Negro/Gris muy oscuro para texto principal */
+  --color-text-secondary: #A0AEC0; /* Gris medio para texto secundario y placeholders */
+  --color-background: #F8F9FA; /* Fondo de la app, un blanco roto/gris muy claro */
+  --color-card-background: #FFFFFF; /* Fondo blanco puro para tarjetas */
+  --color-border-soft: #E2E8F0; /* Borde gris muy suave */
+  --color-balance-up: #48BB78; /* Verde para ingresos */
+  --color-balance-down: #F56565; /* Rojo para gastos */
+  --color-fab: #00B5D8; /* Cian/Turquesa para el Botón Flotante */
+  --border-radius-card: 16px;
+  --border-radius-pill: 20px;
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+/* Estilos Globales y Contenedor Principal */
+.movimientos-container {
+  background-color: var(--color-background);
+  min-height: 100vh;
+  padding-bottom: 80px;
+  font-family: var(--font-family-sans);
+  color: var(--color-text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 390px; /* Ancho fijo para el diseño móvil */
+  margin: 0 auto;
+  border: none; /* Sin borde */
+  box-sizing: border-box;
+}
+
+
+/* 1. Header y Navegación Superior */
+.movimientos-header {
+  display: flex;
+  justify-content: flex-start; /* Alinea a la izquierda */
+  align-items: center;
+  width: 100%;
+  padding: 15px 10px;
+  background-color: var(--color-background);
+  border-bottom: none;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: 10px; /* Espacio entre la flecha y el título */
+}
+
+.movimientos-header h1 {
+  font-size: 23px;
+  font-weight: 600;
+  margin-top: -8%;
+}
+
+
+.back-arrow {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--color-text-main);
+  padding: 0 10px;
+  margin-left: -1rem;
+  margin-top: -2rem;
+}
+}
+
+/* 2. Barra de Búsqueda */
+.search-bar {
+  width: calc(100% - 40px);
+  margin: 10px 20px 15px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 12px;
+  height: 48px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar input {
+  width: 17rem;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  font-size: 0.95rem;
+  background-color: white;
+  color: var(--color-text-main);
+  border-radius: 11rem;
+  margin-bottom: 2rem;
+  height: 42px;
+}
+
+
+
+.search-bar input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.mov-search-icon {
+    display: none; /* No se ve en la imagen */
+}
+
+/* 3. Botones de Filtro (Pills) */
+.filters {
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.filters::-webkit-scrollbar { display: none; }
+
+.filter-pill {
+  padding: 8px 18px;
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--border-radius-pill);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.filter-pill.active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+/* 4. Selector de Mes */
+.date-selector {
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin: 0 20px 20px;
+  background-color: var(--color-card-background);
+  border-radius: var(--border-radius-card);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.date-selector button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.date-selector .month {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.date-selector .transactions {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+/* 5. Tarjetas de Resumen (Balance) */
+.summary-card {
+  box-sizing: border-box;
+  width: calc(100% - 40px);
+  background-color: var(--color-card-background);
+  border-radius: var(--border-radius-card);
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.summary-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.summary-section .icon {
+  font-size: 1.4rem;
+}
+
+.summary-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+}
+
+.summary-details .amount {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-top: 2px;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--color-border-soft);
+  margin: 0;
+}
+
+.income-expense {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.income-expense .summary-section {
+  flex: 1;
+}
+
+.summary-section:first-child .icon { color: var(--color-primary); }
+.income-expense .summary-section:first-child .icon { color: var(--color-balance-up); }
+.income-expense .summary-section:last-child .icon { color: var(--color-balance-down); }
+
+
+/* 6. Lista de Transacciones */
+.transactions-list {
+  box-sizing: border-box;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  background-color: var(--color-card-background);
+  border-radius: var(--border-radius-card);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 10px 0;
+}
+
+.transaction-group {
+  margin-bottom: 15px;
+}
+
+.transaction-group-header {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 15px;
+  padding: 0 20px;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.transaction-item:not(:last-child) {
+    border-bottom: 1px solid var(--color-border-soft);
+}
+
+.transaction-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px; /* Cuadrado redondeado */
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.6rem;
+}
+
+.transaction-details {
+  flex-grow: 1;
+}
+
+.transaction-details .title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.transaction-details .subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.transaction-amount {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.amount-expense { color: var(--color-balance-down); }
+.amount-income { color: var(--color-balance-up); }
+
+/* 7. Botón Flotante (FAB) */
+.fab {
+  position: fixed;
+  bottom: 100px; /* Suficiente espacio sobre el nav */
+  right: 25px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-fab);
+  color: white;
+  font-size: 1.8rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 8. Navegación Inferior (BottomNav) */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-card-background);
+  border-top: none;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  z-index: 999;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+/* 9. Estilos del Calendario Modal */
+.cal-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex
+;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1100;
+}
+
+.cal-container {
+  background-color: var(--color-card-background);
+  border-radius: var(--border-radius-card);
+  padding: 20px;
+  width: calc(100% - 40px);
+  max-width: 350px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+
+.cal-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0px;
+    align-items: center;
+}
+
+.cal-month-title {
+  font-size: 1.5rem; /* Letra más grande para el mes */
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 25px 0;
+}
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 15px;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px 5px; /* Más espacio vertical */
+}
+
+.cal-cell {
+  border: none;
+  background: none;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-day {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border 0.2s;
+  border: 2px solid transparent;
+}
+
+.cal-cell.muted .cal-day { color: var(--color-text-secondary); }
+
+/* Día seleccionado */
+.cal-cell.selected .cal-day {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+}
+
+/* Hoy pero no seleccionado */
+.cal-cell.today .cal-day {
+  border: 2px solid var(--color-primary);
+}
+
+.cal-cell:focus, .cal-cell:active {
+    outline: none;
+}
+
+
+/* Limpieza de Media Queries anteriores - no son necesarias si el diseño es fijo a 390px */
+@media (max-width: 390px) {
+    /* Todas las reglas principales ya están diseñadas para este tamaño */
+}

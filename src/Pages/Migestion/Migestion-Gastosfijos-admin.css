@@ -1,0 +1,344 @@
+/* src/Pages/Migestion/Migestion-Gastosfijos-admin.css */
+
+.gfa-page {
+  background-color: #F9F8F6;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #1F2937;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.gfa-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #F9F8F6;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.gfa-back-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #1F2937;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.gfa-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 auto;
+  transform: translateX(-1rem); /* Adjust for back button width */
+}
+
+.gfa-list {
+  padding: 0 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.gfa-card {
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gfa-card:hover {
+    transform: translateY(-2px);
+}
+
+.gfa-icon-container {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  min-width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  font-size: 1.75rem;
+  margin-right: 1rem;
+}
+
+.gfa-details {
+  flex-grow: 1;
+}
+
+.gfa-details .title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 0.25rem 0;
+  color: #1F2937;
+}
+
+.gfa-details .subtitle {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.gfa-amount {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #EF4444;
+  white-space: nowrap;
+}
+
+/* Popup Styles */
+.gfa-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.gfa-popup-content {
+  background-color: #FFFFFF;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.gfa-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.gfa-popup-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.gfa-popup-back-button,
+.gfa-popup-edit-button {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: #1F2937;
+  cursor: pointer;
+}
+
+.gfa-popup-body {
+  padding: 0 1rem;
+}
+
+.gfa-popup-main-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.gfa-popup-main-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1F2937;
+}
+
+.gfa-popup-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #EF4444;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.gfa-popup-info-grid {
+  display: flex;
+  justify-content: space-between;
+  background-color: #F9F8F6;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.gfa-popup-info-item {
+  text-align: center;
+  flex: 1;
+  padding: 0 0.5rem;
+  position: relative;
+}
+
+.gfa-popup-info-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 70%;
+    background-color: #E5E7EB;
+}
+
+.gfa-popup-info-item .value {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1F2937;
+}
+
+.gfa-popup-info-item .label {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+.gfa-popup-footer {
+    padding: 1rem 0;
+}
+
+.gfa-popup-btn {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 1.5rem; /* 24px */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Edit Popup Styles */
+.gfa-edit-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.gfa-edit-popup-content {
+  background-color: #fff;
+  width: 100%;
+  max-width: 500px;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  padding: 1rem;
+  animation: slide-up 0.3s ease-out;
+}
+
+.gfa-edit-popup-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.gfa-edit-popup-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  flex-grow: 1;
+  margin-left: -2rem; /* Balance out the back button */
+}
+
+.gfa-edit-popup-body {
+  padding: 0 1rem;
+}
+
+.gfa-edit-amount-input {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.gfa-edit-amount-input input {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1F2937;
+  border: none;
+  background: transparent;
+  text-align: center;
+  width: 100%;
+}
+
+.gfa-frequency-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.gfa-frequency-selector button {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid #D1D5DB;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.gfa-frequency-selector button.active {
+  background-color: #3B82F6;
+  color: #fff;
+  border-color: #3B82F6;
+}
+
+.gfa-edit-form-group {
+  margin-bottom: 1rem;
+}
+
+.gfa-edit-form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.gfa-edit-form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.gfa-edit-popup-footer {
+  margin-top: 2rem;
+}
+
+.gfa-edit-popup-btn {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
