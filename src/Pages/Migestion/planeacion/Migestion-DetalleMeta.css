@@ -1,0 +1,238 @@
+.detalle-container {
+
+  min-height: 100vh;
+ text-align: start;
+  font-family: "Inter", sans-serif;
+}
+
+/* Top bar */
+.detalle-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.back-icon {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.detalle-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Tarjeta azul */
+.detalle-azul-card {
+  background: #123b79;
+  padding: 18px;
+  border-radius: 16px;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.detalle-azul-valores {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+}
+
+.detalle-actual {
+  font-weight: 600;
+}
+
+.detalle-total {
+  opacity: 0.8;
+}
+
+.detalle-progress-bg {
+  width: 100%;
+  height: 10px;
+  background: #85a8d9;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.detalle-progress-fill {
+  height: 10px;
+  background: #c1d9ff;
+  border-radius: 10px;
+}
+
+.detalle-azul-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.detalle-faltan {
+  opacity: 0.9;
+}
+
+/* Tarjeta blanca */
+.detalle-card-blanca {
+  background: #fff;
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+  border: 1px solid #e5e8ed;
+}
+
+.detalle-flex-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #b5c7f7;
+  border-radius: 26px;
+  transition: 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+input:checked + .slider {
+  background: #4ea1ff;
+}
+
+input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
+/* Calculadora */
+.detalle-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.detalle-input-title {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.detalle-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #bad4f8;
+  border-radius: 12px;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+/* Meses */
+.detalle-meses-opciones {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.detalle-meses-opciones button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #bad4f8;
+  font-size: 14px;
+}
+
+.detalle-meses-opciones .active {
+  background: #76b2ff;
+  border: none;
+  color: #fff;
+}
+
+/* Result card */
+.detalle-resultado {
+  background: linear-gradient(180deg, #dceeff, #c5dbef);
+  padding: 18px;
+  border-radius: 16px;
+  margin-top: 16px;
+}
+
+.detalle-resultado-monto {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.detalle-resultado-text {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Opciones */
+.detalle-opcion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detalle-opcion-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.detalle-opcion-text {
+  font-size: 14px;
+  width: 80%;
+}
+
+.detalle-opcion-arrow {
+  font-size: 22px;
+  color: #4283e5;
+}
+
+/* Botones */
+.detalle-btn-rojo {
+  width: 100%;
+  padding: 14px;
+  background: #d8506d;
+  color: white;
+  font-size: 16px;
+  border-radius: 26px;
+  border: none;
+  margin-top: 5px;
+}
+
+.detalle-btn-azul {
+  width: 100%;
+  padding: 14px;
+  background: #3b8bf1;
+  color: white;
+  font-size: 16px;
+  border-radius: 26px;
+  border: none;
+  margin-top: 10px;
+}
+
+.detallesec{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}

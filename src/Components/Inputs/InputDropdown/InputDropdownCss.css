@@ -1,0 +1,37 @@
+.input-dropdown-container {
+  position: relative;
+  min-width: 200px; /* Further increased width */
+}
+
+.input-dropdown-container select {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem; /* Further increased padding */
+  font-size: 1.25rem; /* Further increased font size */
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  outline: none;
+  box-sizing: border-box;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.75rem;
+}
+
+.input-dropdown-container select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.input-dropdown-container select option {
+  padding: 14px;
+  background-color: #fff;
+  color: #333;
+}

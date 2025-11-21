@@ -1,0 +1,504 @@
+/* =================================================== */
+/* A. ESTILOS BASE Y GENERALES (Comunes a ambos)        */
+/* =================================================== */
+
+.mis-cuentas-screen-layout {
+	/* Estilo genérico de layout, tu componente de documentos usa doc-tributario-layout */
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	max-width: 600px;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	box-sizing: border-box;
+}
+
+/* Base para el Título de Barra Superior */
+.top-bar-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #4d9de0; /* Azul principal */
+}
+
+/* Base para la Flecha de Regreso */
+.back-arrow {
+	cursor: pointer;
+	padding-right: 15px;
+	display: flex;
+}
+
+/* =================================================== */
+/* B. ESTILOS PARA LA PÁGINA: MisDocumentosTributarios */
+/* =================================================== */
+
+/* 1. LAYOUT PRINCIPAL */
+.doc-tributario-layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	max-width: 600px;
+	margin: 0 auto;
+	padding-left: 15px;
+
+	padding-right: 15px;
+	box-sizing: border-box;
+	position: relative; /* Base para el botón fijo */
+}
+
+/* 2. SECCIÓN SUPERIOR */
+.doc-tributario-top-section {
+	width: 100%;
+	flex-shrink: 0;
+}
+
+.doc-tributario-header-bar {
+	display: flex;
+	align-items: center;
+	padding: 15px 0;
+	margin-bottom: 10px;
+}
+
+.doc-tributario-back-arrow {
+	cursor: pointer;
+	padding-right: 15px;
+	display: flex;
+}
+
+.doc-tributario-header-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #4d9de0;
+}
+
+.doc-tributario-title {
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: #333;
+	margin-bottom: 15px;
+	text-align: start;
+}
+
+.doc-tributario-banner {
+	margin-bottom: 20px;
+	width: 100%;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.doc-tributario-banner-img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* 3. ÁREA DE SCROLL Y FILTROS */
+.doc-tributario-scroll-area {
+	flex-grow: 1;
+	overflow-y: auto;
+	padding-bottom: 90px;
+	overflow-x: hidden;
+}
+
+/* Contenedor del Filtro */
+.doc-tributario-filter-container {
+	padding-top: 10px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+}
+
+.doc-tributario-search-header {
+	margin-bottom: 8px;
+}
+
+.doc-tributario-search-label {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #666;
+}
+
+.doc-tributario-dropdown-wrapper {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	outline: none;
+}
+
+/* ESTILO DEL SELECT NATIVO (EL QUE SE VE MAL EXPANDIDO) */
+.doc-tributario-year-select {
+	width: 100%;
+	padding: 12px 15px;
+	border: 1px solid #ddd; /* Usamos ddd para consistencia */
+	border-radius: 8px;
+	background-color: #fff;
+	color: #333;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+
+	/* Oculta la flecha nativa para usar una personalizada */
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	/* Flecha personalizada (estilizada) */
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%234D9DE0' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 15px center;
+	background-size: 16px;
+}
+
+.doc-tributario-year-select:focus {
+	border-color: #4d9de0;
+	box-shadow: 0 0 0 3px rgba(77, 157, 224, 0.2);
+	outline: none;
+}
+/* FIN ESTILO SELECT NATIVO */
+
+.doc-tributario-filtered-title {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #333;
+	margin-bottom: 15px;
+	margin-top: 10px;
+	text-align: start;
+}
+
+/* 4. LISTA DE DOCUMENTOS (Cards) */
+.doc-tributario-list {
+	display: flex;
+	flex-direction: column;
+	margin-top: 5px;
+	gap: 20px;
+}
+
+.doc-tributario-card {
+	text-align: start;
+	padding: 15px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	cursor: pointer;
+	border: 1px solid #eee;
+}
+
+.doc-card-content {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: start;
+	gap: 15px;
+}
+
+.doc-card-icon-section {
+	display: flex;
+}
+
+.doc-card-text-section {
+	width: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.doc-card-title {
+	width: 100%;
+	font-size: 1rem;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 3px;
+}
+
+.doc-card-description {
+	font-size: 0.85rem;
+	color: #666;
+}
+
+.doc-tributario-empty-message {
+	font-size: 1rem;
+	color: #666;
+	text-align: center;
+	padding: 30px 15px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	margin-top: 20px;
+}
+
+/* 5. BOTÓN DE AGREGAR (Fijo) */
+.doc-tributario-add-btn {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: calc(100% - 30px);
+	max-width: 538px;
+	padding: 15px;
+	background-color: #4d9de0;
+	color: white;
+	font-weight: 600;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	box-shadow: 0 4px 10px rgba(77, 157, 224, 0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1rem;
+	z-index: 1000;
+	flex-shrink: 0;
+}
+
+.doc-tributario-add-btn:hover {
+	background-color: #3a8cdb;
+}
+
+/* =================================================================== */
+/* C. ESTILOS PARA EL FORMULARIO: MigestionAgregarDocumento (CUSTOM DROPDOWN) */
+/* =================================================================== */
+
+/* Layout */
+.agregar-producto-container {
+	width: 320px; /* Ajuste si necesitas más ancho */
+	min-height: 100vh;
+	max-width: 600px;
+	margin: 0 auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	box-sizing: border-box;
+	text-align: start;
+}
+
+/* Barra Superior del Formulario */
+.top-barcuenta {
+	text-align: start;
+	display: flex;
+	align-items: center;
+	padding: 15px 0;
+	margin-bottom: 20px;
+}
+
+/* Tarjeta del Formulario */
+.agregar-producto-form-card {
+	text-align: start;
+	background-color: #fff;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	margin-bottom: 20px;
+}
+
+/* Input y Label */
+.form-label {
+	display: block;
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 8px;
+	font-weight: 500;
+}
+
+.form-input-agregar {
+	width: 100%;
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 1rem;
+	margin-bottom: 25px;
+	box-sizing: border-box;
+	color: #333;
+	background-color: transparent;
+	outline: none;
+}
+
+.form-input-agregar::placeholder {
+	color: #bbb;
+}
+
+.form-input-agregar:focus {
+	border-color: #4d9de0;
+}
+
+/* Contenedor del Dropdown Custom (para posicionar la lista) */
+.detallesec {
+	position: relative; /* ¡CLAVE para que la lista flotante se posicione bien! */
+	margin-bottom: 25px; /* Mantiene el espaciado entre campos */
+}
+
+/* 1. ESTILO DEL SELECT CUSTOM CERRADO (Input visible) */
+.dropdown-select-agregar {
+	width: 100%;
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 1rem;
+	color: #333;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	background-color: #fff;
+	box-sizing: border-box;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.dropdown-select-agregar:hover {
+	border-color: #a0a0a0;
+}
+
+/* Clase si el dropdown está abierto (Simulando foco) */
+.dropdown-select-agregar.active-dropdown {
+	border-color: #4d9de0;
+	box-shadow: 0 0 0 1px #4d9de0;
+}
+
+.dropdown-select-agregar span {
+	color: #333;
+	flex-grow: 1;
+}
+
+.dropdown-select-agregar span.placeholder {
+	color: #999;
+}
+
+/* 2. ESTILO DE LA LISTA DESPLEGADA (Lo que se veía feo) */
+.dropdown-list-agregar {
+	/* Flota sobre los demás elementos */
+	position: absolute;
+	z-index: 10;
+
+	/* Asegura que el ancho sea el mismo que el input padre */
+	width: 100%;
+
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background-color: #fff;
+
+	/* MEJORA: Sombra más pronunciada para efecto flotante */
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+
+	margin-top: 2px; /* Pequeño espacio entre el input y la lista */
+	overflow: hidden;
+}
+
+/* 3. ESTILO DE LAS OPCIONES INDIVIDUALES */
+.dropdown-list-item-agregar {
+	padding: 12px 15px;
+	font-size: 1rem;
+	color: #333;
+	cursor: pointer;
+	border-bottom: 1px solid #eee;
+	transition: background-color 0.15s;
+}
+
+.dropdown-list-item-agregar:last-child {
+	border-bottom: none;
+}
+
+/* MEJORA: Hover de la opción */
+.dropdown-list-item-agregar:hover {
+	background-color: #f0f8ff; /* Fondo muy suave de tu color principal */
+	color: #333;
+}
+
+/* MEJORA: Opción seleccionada */
+.dropdown-list-item-agregar.selected {
+	background-color: #4d9de0; /* Azul principal */
+	color: white; /* Letra blanca para contraste */
+	font-weight: 600;
+}
+
+/* ---------------------------------- */
+/* BOTONES DE ARCHIVO */
+/* ---------------------------------- */
+.add-file-btnY {
+	/* Usaremos el estilo general del botón principal */
+	width: 100%;
+	padding: 12px 15px;
+	background-color: #4d9de0;
+	color: white;
+	font-weight: 600;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.2s;
+}
+
+.add-file-btnY:hover {
+	background-color: #3a8cdb;
+}
+
+.attached-file-preview {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 15px;
+	background-color: #f0fff0; /* Fondo muy suave para indicar éxito */
+	border: 1px solid #2ecc71;
+	border-radius: 8px;
+	margin-bottom: 5px;
+}
+
+.file-name-text {
+	font-size: 0.95rem;
+	color: #333;
+	flex-grow: 1;
+}
+
+.remove-file-btnY {
+	background-color: darkred;
+	color: white;
+	font-weight: 500;
+	border: none;
+	border-radius: 4px;
+	padding: 6px 10px;
+	margin-left: 10px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	font-size: 0.85rem;
+	transition: background-color 0.2s;
+}
+
+.remove-file-btnY:hover {
+	background-color: #a00000;
+}
+
+/* Nota de ayuda */
+.helper-text {
+	font-size: 0.8rem;
+	color: #999;
+	margin-bottom: 25px;
+}
+
+/* ---------------------------------- */
+/* BOTÓN DE GUARDAR DOCUMENTO */
+/* ---------------------------------- */
+.guardar-producto-btn {
+	width: 100%;
+	padding: 15px;
+	background-color: #4d9de0;
+	color: white;
+	font-weight: 600;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	font-size: 1rem;
+	box-shadow: 0 4px 10px rgba(77, 157, 224, 0.4);
+}
+
+.guardar-producto-btn:hover {
+	background-color: #3a8cdb;
+}
+
+.doc-card-download-btn {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	background-color: #3a8cdb;
+	width: fit-content;
+	height: 40px;
+	margin-top: 20px;
+}

@@ -1,0 +1,449 @@
+/* General Mobile Styles */
+.dashboard-mobile {
+  background-color: #f0f4f8; /* Light greyish-blue background */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px; /* Add padding to prevent content from being hidden by the footer */
+}
+
+/* Header */
+.header-mobile {
+  background: #4D9DE0;
+  color: white;
+  padding: 20px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: relative;
+  min-height: 190px;
+}
+
+.profile-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  margin-bottom: 10px;
+}
+
+.welcome-text h2 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+.welcome-text p {
+  margin: 0;
+  font-size: 1em;
+  opacity: 0.9;
+}
+
+.header-icons-mobile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.streak-icon, .logout-icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.streak-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1em;
+}
+
+.streak-icon span {
+    font-size: 0.9em;
+}
+
+.logout-icon {
+    font-size: 1.5em;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: white;
+}
+
+.logout-icon:focus,
+.logout-icon:active {
+    outline: none;
+    box-shadow: none;
+}
+
+
+
+/* Main Content */
+.main-content-mobile {
+  padding: 20px 15px;
+  flex-grow: 1;
+  background-color: #f9f9f9; /* Off-white background for cards area */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: -30px; /* Pulls the content area up to overlap header */
+  box-shadow: 0 -4px 10px rgba(77,157,224,0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.card-mobile {
+    background-color: #FFFEFC;
+
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 2px rgba(77,157,224,0.5);
+}
+
+.balance-card span {
+  font-size: 1.1em;
+  color: #555;
+}
+
+.balance-card h3 {
+  margin: 5px 0 0;
+  font-size: 2.2em;
+  color: #333;
+}
+
+.cards-row-mobile {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.cards-row-mobile .card-mobile {
+  width: 50%;
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header span{
+    font-size: 1em;
+    color: #555;
+    margin-left: 8px;
+}
+
+.income-card p, .expense-card p {
+  font-size: 1.4em;
+  margin: 0;
+  font-weight: 600;
+}
+
+.income-arrow {
+  color: #28a745; /* Green */
+}
+
+.expense-arrow {
+  color: #dc3545; /* Red */
+}
+
+.chart-card p {
+    text-align: center;
+    color: #888;
+}
+.chart-card {
+    position: relative;
+
+    left: -17px;
+}
+/* Budget Card */
+
+.card-header-alt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header-alt h3 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.budget-main {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.budget-used {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.budget-total {
+    font-size: 1em;
+    color: #777;
+}
+
+.progress-bar-container {
+    background-color: #e9ecef;
+    border-radius: 10px;
+    height: 12px;
+    margin-bottom: 10px;
+    overflow: hidden; /* Ensures the fill stays within the container bounds */
+}
+
+.progress-bar-fill {
+    background: #4D9DE0;
+
+    height: 100%;
+    border-radius: 10px;
+}
+
+.budget-footer-alt {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Good Pace Card */
+.good-pace-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFEFC;
+
+}
+
+.good-pace-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: #2DB482;
+
+}
+
+.good-pace-content p {
+    margin: 0 0 10px 0;
+  color:  #23457E;
+
+    font-weight: 700;
+}
+
+.good-pace-content ul {
+    margin: 0;
+    padding-left: 20px;
+    color:  #23457E;
+}
+
+.good-pace-content ul li {
+    margin-bottom: 5px;
+}
+
+.good-pace-image img {
+    max-width: 100px;
+    border-radius: 10px;
+}
+
+/* Financial Goals Card */
+
+.financial-goals-card .goal-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.financial-goals-card .goal-icon {
+    font-size: 1.5em;
+    margin-right: 15px;
+    color: #007bff;
+}
+
+.financial-goals-card .goal-details {
+    flex-grow: 1;
+}
+
+.financial-goals-card .goal-details p {
+    margin: 0 0 5px 0;
+}
+
+.financial-goals-card .goal-progress-bar {
+    background-color: #4D9DE0; /* A purple color for the second goal */
+}
+
+.financial-goals-card .goal-item:first-child .goal-progress-bar {
+    background-color: #d2e8ff; /* Blue for the first goal */
+}
+
+.financial-goals-card .goal-percentage {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-left: 15px;
+}
+
+/* Spending Distribution Card */
+
+.spending-distribution-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.donut-chart-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #1AB8C7 0% 25%,
+        #A787FB 25% 45%,
+        #23457E 45% 60%,
+        #4D9DE0 60% 90%,
+        #9BCFFD 90% 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.donut-chart-center {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.donut-chart-center p {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.donut-chart-center span {
+    font-size: 0.9em;
+    color: #e53935; /* Red as in the image */
+}
+
+.spending-legend {
+    flex-grow: 1;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.legend-item span:last-child {
+    margin-left: auto;
+    font-weight: 600;
+}
+
+/* Products Card */
+
+.credit-card-container{
+    padding: 10px;
+}
+
+.credit-card-visual {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.credit-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-chip {
+    width: 40px;
+    height: 30px;
+    background-color: #ffd700; /* Gold */
+    border-radius: 5px;
+}
+
+.card-brand {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.credit-card-number {
+    font-family: 'monospace';
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.credit-card-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-label {
+    display: block;
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.card-holder, .card-expiration {
+    display: block;
+    font-size: 1em;
+}
+
+/* Footer */
+.footer-mobile {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  padding: 15px 0;
+  border-top: 1px solid #eee;
+  position: fixed; /* Changed from sticky to fixed */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+  z-index: 1000; /* High z-index to ensure it's on top */
+}
+
+.footer-icon {
+  font-size: 1.8em;
+  color: #aaa;
+}
+
+.footer-icon.active {
+  color: #007bff;
+}
