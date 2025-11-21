@@ -4,6 +4,7 @@ import { FiArrowUpRight, FiArrowDownRight, FiLogOut, FiHome, FiBarChart2, FiStar
 import { FaFire, FaExclamationCircle, FaGraduationCap } from 'react-icons/fa';
 import BottomNav from '../../Components/BottomNav.jsx';
 import { Link } from 'react-router-dom';
+import SimpleBarChart from '../../Components/SimpleBarChart/SimpleBarChart.jsx';
 
 
 
@@ -95,7 +96,7 @@ const DashboardInicio = () => {
     <div className="dashboard-mobile">
       <header className="header-mobile">
         <div className="profile-area">
-            <img src="https://via.placeholder.com/50" alt="Profile" className="profile-pic" />
+            <img src="https://i.pinimg.com/736x/c7/9a/37/c79a37e13ef14be556b51143bcbb1b01.jpg" alt="Profile" className="profile-pic" />
             <div className="welcome-text">
                 <h2>Hola, {name}</h2>
                 <p>Bienvenido a tu tablero financiero</p>
@@ -135,16 +136,15 @@ const DashboardInicio = () => {
           </div>
         </div>
 
-        {/* Bar chart will go here */}
-        <div className="card-mobile chart-card">
-            <p>Aquí irá el gráfico de barras</p>
+        <div className="chart-card">
+            <SimpleBarChart />
         </div>
 
         {/* Budget Section */}
         <div className="card-mobile budget-card">
             <div className="card-header-alt">
                 <h3>Presupuesto</h3>
-                <Link to="/GastosMes"><FiChevronRight /></Link>
+                <Link to="/Migestion-presupuesto"><FiChevronRight /></Link>
             </div>
             <div className="budget-main">
                 <span className="budget-used">${(budget.used ?? 0).toLocaleString('es-CO')}</span>
@@ -171,7 +171,7 @@ const DashboardInicio = () => {
                 </ul>
             </div>
             <div className="good-pace-image">
-              <img src="https://via.placeholder.com/100" alt="Good Pace" />
+            
             </div>
         </div>
 
