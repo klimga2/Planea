@@ -1,0 +1,203 @@
+/* Variables de Color */
+:root {
+    --color-primary: #4D9DE0;
+    --color-secondary: #607D8B; /* Gris azulado para Alertas */
+    --color-ingresos: #4CAF50;
+    --color-egresos: #F44336;
+    --color-add-btn: #4D9DE0;
+    --color-delete-btn: #E91E63; /* Rojo/rosa de la imagen */
+}
+
+/* ---------------------------------- */
+/* CONTENEDOR Y BARRA SUPERIOR */
+/* ---------------------------------- */
+.efectivo-container {
+    margin: 0 auto;
+  text-align: start;
+    min-height: 100vh;
+    width: 320px;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 5px;
+}
+
+.tituloegresos{
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.montoeegr{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.back-arrow {
+    cursor: pointer;
+    padding-right: 15px;
+    display: flex;
+}
+
+.top-bar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.efectivo-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* ---------------------------------- */
+/* TARJETA PRINCIPAL (AZUL) */
+/* ---------------------------------- */
+.efectivo-main-card {
+    background: linear-gradient(135deg, #4D9DE0 0%, #2196F3 100%);
+    border-radius: 15px;
+    padding: 25px;
+    color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+
+    WIDTH: 80%;
+    align-self: center;
+    justify-self: center;
+}
+
+.efectivo-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.efectivo-monto {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.efectivo-no-disponible-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: default;
+}
+
+
+/* ---------------------------------- */
+/* PROMEDIO MENSUAL */
+/* ---------------------------------- */
+.promedio-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.promedio-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.promedio-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.promedio-icon-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.promedio-monto-ingreso,
+.promedio-monto-egreso {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+/* ---------------------------------- */
+/* BOTONES DE ACCIÓN */
+/* ---------------------------------- */
+.action-buttons-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.action-btn {
+    padding: 12px 0;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.action-btn.primary {
+    flex: 1;
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.action-btn.secondary {
+    flex: 1;
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.action-buttons-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-btn.full-width {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-btn {
+    background-color: var(--color-add-btn);
+    color: white;
+}
+
+.delete-btn {
+    background-color: var(--color-delete-btn);
+    color: white;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+}
