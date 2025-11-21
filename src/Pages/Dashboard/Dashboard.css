@@ -10,7 +10,7 @@
 
 /* Header */
 .header-mobile {
-  background: #3880ff; /* Solid blue background */
+  background: #4D9DE0;
   color: white;
   padding: 20px 15px;
   display: flex;
@@ -19,7 +19,7 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   position: relative;
-  min-height: 180px;
+  min-height: 190px;
 }
 
 .profile-area {
@@ -98,7 +98,7 @@
   background-color: #f9f9f9; /* Off-white background for cards area */
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  margin-top: -40px; /* Pulls the content area up to overlap header */
+  margin-top: -30px; /* Pulls the content area up to overlap header */
   box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
   position: relative;
   z-index: 1;
@@ -300,11 +300,11 @@
     height: 150px;
     border-radius: 50%;
     background: conic-gradient(
-        #00bcd4 0% 25%,
-        #8c9eff 25% 45%,
-        #673ab7 45% 60%,
-        #3f51b5 60% 90%,
-        #cddc39 90% 100%
+        #1AB8C7 0% 25%,
+        #A787FB 25% 45%,
+        #23457E 45% 60%,
+        #4D9DE0 60% 90%,
+        #9BCFFD 90% 100%
     );
     display: flex;
     justify-content: center;
@@ -325,7 +325,7 @@
 
 .donut-chart-center p {
     margin: 0;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 600;
 }
 

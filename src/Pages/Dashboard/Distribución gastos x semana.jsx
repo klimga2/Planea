@@ -101,33 +101,33 @@ const DistribucionGastosSemana = () => {
         </div>
 
         <div className="gastos-list">
-          {data.gastos.map((gasto, index) => (
-            <div key={index} className="gasto-card">
-              <div className="gasto-card-header">
-                <div className="gasto-card-icon" style={{ color: gasto.color }}>{gasto.icono}</div>
-                <h3 style={{ color: gasto.color }}>{gasto.categoria}</h3>
-              </div>
-              <div className="gasto-card-body">
-                {gasto.items.map((item, i) => (
-                  <div key={i} className="gasto-item">
-                    <p>{item.nombre}</p>
+          {data.gastos.map((gasto, index) => {
+            const totalPorcentaje = gasto.items.reduce((acc, item) => acc + item.porcentaje, 0);
+            return (
+              <div key={index} className="gasto-card">
+                <div className="gasto-card-header">
+                  <div className="gasto-card-icon" style={{ color: gasto.color }}>{gasto.icono}</div>
+                  <h3 style={{ color: gasto.color }}>{gasto.categoria}</h3>
+                </div>
+                <div className="gasto-card-body">
+                  <div className="gasto-item">
                     <div className="progress-bar-container">
                         <div className="progress-bar-wrapper">
                             <ProgressBar
-                                progress={item.porcentaje}
+                                progress={totalPorcentaje}
                                 color={gasto.color}
                                 lightColor={gasto.lightColor}
                             />
                         </div>
                         <span className="progress-bar-percentage" style={{ color: gasto.color }}>
-                            {item.porcentaje}%
+                            {totalPorcentaje}%
                         </span>
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </main>
     </div>
