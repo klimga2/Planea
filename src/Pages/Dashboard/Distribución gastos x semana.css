@@ -1,154 +1,169 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap');
 
-
-/* Main container styles */
 .distribucion-gastos-semana {
-  font-family: "Nunito Sans", sans-serif;
-  background-color: var(--background);
-  padding: 20px;
-  color: var(--text-main);
-  max-width: 390px;
-  margin: 0 auto;
-  box-sizing: border-box;
+    padding: 20px;
+    background-color: #F8F9FA;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-/* Header styles */s
-.header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+.distribucion-gastos-semana-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.back-arrow {
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-right: 15px;
-  color: #000;
+.distribucion-gastos-semana-back-arrow {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 15px;
 }
 
-.header h1 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0;
+.distribucion-gastos-semana-header h1 {
+    font-size: 20px;
+    margin: 0;
 }
 
-/* Chart card styles */
-.chart-card {
-  background: var(--cards-background);
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: var(--card-shadow);
+.distribucion-gastos-semana-chart-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.distribucion-gastos-semana-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.chart-header h2 {
-  font-size: 16px;
-  color: var(--text-secondary);
-  font-weight: 600;
-  margin: 0;
+.distribucion-gastos-semana-chart-header h2 {
+    font-size: 16px;
+    margin: 0;
+    color: #888;
 }
 
-.chart-main {
-  position: relative;
-  height: 180px;
-  margin-bottom: 1rem;
+.distribucion-gastos-semana-chart-main {
+    position: relative;
+  top : 20px
 }
 
-.chart-tooltip {
-  position: absolute;
-  top: -10px;
-  left: 10px;
-  background-color: var(--light-blue-tooltip);
-  color: #3C3C3C;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  z-index: 10;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.distribucion-gastos-semana-chart-tooltip {
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    background-color: #4D9DE0;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-/* Legend styles */
-.legend {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 20px;
-  font-size: 12px;
-  color: var(--text-main);
+
+.distribucion-gastos-semana-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
 }
 
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.distribucion-gastos-semana-legend-item {
+    display: flex;
+    align-items: center;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.distribucion-gastos-semana-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
-/* Gastos list styles */
-.gastos-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.distribucion-gastos-semana-summary-cards {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 20px;
+    height: 100px;
+    width: 350px;
 }
 
-.gasto-card {
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.distribucion-gastos-semana-summary-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 5px;
+    flex-grow: 1;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-.gasto-card-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+.distribucion-gastos-semana-summary-card h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #555;
+    font-weight: normal;
 }
 
-.gasto-card-icon {
-  font-size: 20px;
-  margin-right: 10px;
+.distribucion-gastos-semana-summary-card p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
 
-.gasto-card-header h3 {
-  margin: 0;
-  font-size: 16px;
+
+.distribucion-gastos-semana-gastos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.gasto-card-body {
+.distribucion-gastos-semana-gasto-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.distribucion-gastos-semana-gasto-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.distribucion-gastos-semana-gasto-card-icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.distribucion-gastos-semana-gasto-card-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.distribucion-gastos-semana-gasto-card-body {
    padding: 0;
 }
 
-.gasto-item {
+.distribucion-gastos-semana-gasto-item {
    margin: 0;
 }
 
-.progress-bar-container {
+.distribucion-gastos-semana-progress-bar-container {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-.progress-bar-wrapper {
+.distribucion-gastos-semana-progress-bar-wrapper {
     flex-grow: 1;
     margin-right: 15px;
 }
 
-.progress-bar-percentage {
+.distribucion-gastos-semana-progress-bar-percentage {
     font-weight: bold;
     font-size: 16px;
 }
