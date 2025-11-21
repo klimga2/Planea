@@ -15,7 +15,7 @@
     margin: 0 auto;
   text-align: start;
     min-height: 100vh;
-    width: 320px;
+    width: 350px;
 }
 
 .top-bar {
@@ -69,8 +69,6 @@
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
-
-    WIDTH: 80%;
     align-self: center;
     justify-self: center;
 }

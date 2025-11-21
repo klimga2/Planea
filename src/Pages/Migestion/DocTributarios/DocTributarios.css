@@ -7,7 +7,7 @@
 	height: fit-content;
 	display: flex;
 	flex-direction: column;
-	max-width: 600px;
+	max-width: 360px;
 	margin: 0 auto;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -37,7 +37,7 @@
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	max-width: 600px;
+	max-width: 350px;
 	margin: 0 auto;
 	padding-left: 15px;
 
@@ -57,6 +57,7 @@
 	align-items: center;
 	padding: 15px 0;
 	margin-bottom: 10px;
+	margin-top: 30px;
 }
 
 .doc-tributario-back-arrow {
@@ -258,7 +259,7 @@
 
 /* Layout */
 .agregar-producto-container {
-	width: 320px; /* Ajuste si necesitas más ancho */
+	width: 360px; /* Ajuste si necesitas más ancho */
 	min-height: 100vh;
 	max-width: 600px;
 	margin: 0 auto;
@@ -275,6 +276,7 @@
 	align-items: center;
 	padding: 15px 0;
 	margin-bottom: 20px;
+	margin-top: 30px;
 }
 
 /* Tarjeta del Formulario */
@@ -501,4 +503,7 @@
 	width: fit-content;
 	height: 40px;
 	margin-top: 20px;
+	border-radius: 10px;
+	border: transparent;
+	color: white;
 }

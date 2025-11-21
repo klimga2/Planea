@@ -34,6 +34,7 @@ body, .planeacion-container {
 .top-bar-title {
   font-size: 15px;
   font-weight: 500;
+  width: fit-content;
 }
 
 .main-title {

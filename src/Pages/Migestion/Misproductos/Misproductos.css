@@ -3,24 +3,28 @@
 /* ---------------------------------- */
 .mis-productos-container {
 
-    max-width: 600px;
+    max-width: 350px;
     margin: 0 auto;
 }
 
 .top-bar {
-    display: flex
-;
+    display: flex;
+    width: fit-content;
     align-items: center;
     padding: 15px 0;
+    margin-top: 30px;
     margin-bottom: 20px;
     margin-right: 14rem;
-    justify-content: flex-end;
+    right: 0;
+    justify-content: flex-start;
 }
 
 .back-arrow {
-    cursor: pointer;
+       cursor: pointer;
     padding-right: 15px;
     display: flex;
+    align-items: center;
+    margin: 0;
 }
 
 .iconinntos{

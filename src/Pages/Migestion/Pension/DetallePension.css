@@ -12,6 +12,8 @@
     align-items: center;
     padding: 15px 0;
     margin-bottom: 20px;
+    width: fit-content;
+    margin-right: 0;
 }
 
 .back-arrow {
