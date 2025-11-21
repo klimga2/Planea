@@ -18,13 +18,11 @@ body, .planeacion-container {
 }
 
 .top-bar {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  padding: 24px 20px 0 20px;
-  font-size: 16px;
-  color: #3A5BA0;
-  font-weight: 500;
+    display: flex
+;
+    align-items: center;
+    padding: 15px 15px;
+    margin-bottom: 20px;
 }
 
 .back-arrow {

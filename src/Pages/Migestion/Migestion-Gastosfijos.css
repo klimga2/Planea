@@ -37,21 +37,19 @@
 
 .gastos-fijos-scope .gf-header {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  padding: 15px 10px;
+  padding: 34px 30px 14px;
   border-bottom: none;
   position: static;
-  top: initial; 
-  background-color: transparent; 
+  top: initial;
+  background-color: transparent;
   left: initial;
   transform: none;
   max-width: none;
   z-index: 50;
-  
-  /* CAMBIO CLAVE: Reducir el gap para acercar el título a la flecha */
-  gap: 5px; 
+  gap: 5px;
+  justify-content: flex-start;
 }
 
 .gastos-fijos-scope .gf-back-button {
@@ -67,12 +65,13 @@
   margin-top: -2rem;
 }
 
-  .gastos-fijos-scope .gf-header h1 {
-    font-family: var(--gf-font-family);
-    font-size: 23px;
-    font-weight: 600;
-    color: var(--gf-text-main);
-    margin-top: -8%;
+.gastos-fijos-scope .gf-header h1 {
+  font-family: var(--gf-font-family);
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--gf-text-main);
+  margin-top: -6%;
+  margin-left: 0rem;
 }
 
 /* ------------------------------------------------ */
@@ -97,9 +96,9 @@ astos-fijos-scope .gf-summary-card {
 .gastos-fijos-scope .gf-summary-card .summary-section {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .gastos-fijos-scope .gf-summary-card p {
@@ -125,10 +124,10 @@ astos-fijos-scope .gf-summary-card {
   border-radius: var(--gf-main-border-radius);
   padding: 24px 20px;
   border: 1px solid var(--gf-border-color);
-  width: 23rem;
+  width: 21rem;
   box-sizing: border-box;
   margin-bottom: 20px;
-  margin-left: -0.5rem;
+  margin-left: -1rem;
 }
 
 .gastos-fijos-scope .gf-gastos-container h2 {
