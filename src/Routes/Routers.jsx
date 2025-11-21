@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from '../Pages/Dashboard/Dashboard - Inicio';
 import Presupuesto from '../Pages/Dashboard/Presupuesto';
-import GastosMes from '../Pages/Dashboard/Distribución gastos x mes';
-import GastosSemana from '../Pages/Dashboard/Distribución gastos x semana';
+import GastosMes from '../Pages/Dashboard/GastosMes';
+import GastosSemana from '../Pages/Dashboard/GastosSemana';
 import Simuladores from '../Pages/Dashboard/Simuladores';
 import MigestiongestionDiaria from '../Pages/Migestion/Migestion-gestionDiaria';
 import MigestionMovimientos from '../Pages/Migestion/Migestion-gestionDiariaMovimient';

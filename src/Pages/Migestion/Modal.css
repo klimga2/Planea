@@ -40,17 +40,16 @@
 .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 10px 0;
   margin-bottom: 15px;
-  /* No border needed based on image */
 }
 
 .modal-header h2 {
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0;
-  text-align: center;
+  text-align: left;
   flex-grow: 1;
 }
 
@@ -136,7 +135,7 @@
 .edit-modal-header {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   padding: 10px 0;
   margin-bottom: 15px;
   gap: 15px;

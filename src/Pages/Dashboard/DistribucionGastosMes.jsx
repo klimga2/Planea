@@ -6,7 +6,7 @@ import { BarChart, Bar, XAxis, ResponsiveContainer, Cell } from 'recharts';
 
 import InputDropdown from "../../Components/Inputs/InputDropdown/InputDropdown";
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
-import "./Distribución gastos x mes.css";
+import "./DistribucionGastosMes.css";
 
 const allData = {
   "Mensual": {

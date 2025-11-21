@@ -1,0 +1,128 @@
+.gastos-mes {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .gastos-mes-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .gastos-mes-back-arrow {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .gastos-mes-chart-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .gastos-mes-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .gastos-mes-chart-main {
+    display: flex;
+    align-items: center;
+  }
+  
+  .gastos-mes-chart-tooltip {
+    background-color: #23457E;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+  }
+  
+  .gastos-mes-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .gastos-mes-legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .gastos-mes-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .gastos-mes-summary-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .gastos-mes-summary-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+  }
+  
+  .gastos-mes-gastos-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .gastos-mes-gasto-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .gastos-mes-gasto-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .gastos-mes-gasto-card-icon {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .gastos-mes-gasto-card-body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .gastos-mes-gasto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .gastos-mes-progress-bar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .gastos-mes-progress-bar-wrapper {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .gastos-mes-progress-bar-percentage {
+    font-weight: bold;
+  }
+  

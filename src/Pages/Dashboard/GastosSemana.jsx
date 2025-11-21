@@ -6,7 +6,7 @@ import { BarChart, Bar, XAxis, ResponsiveContainer } from 'recharts';
 
 import InputDropdown from "../../Components/Inputs/InputDropdown/InputDropdown";
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
-import "./Distribución gastos x semana.css";
+import "./GastosSemana.css";
 
 const allData = {
   "Semana 1": {
@@ -193,7 +193,7 @@ const iconMap = {
     FaDollarSign: <FaDollarSign />,
 };
 
-const DistribucionGastosSemana = () => {
+const GastosSemana = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("Semana 2");
   const navigate = useNavigate();
 
@@ -211,17 +211,17 @@ const DistribucionGastosSemana = () => {
   };
 
   return (
-    <div className="distribucion-gastos-semana">
-      <header className="distribucion-gastos-semana-header">
-        <div className="distribucion-gastos-semana-back-arrow" onClick={handleBackClick}>
+    <div className="gastos-semana">
+      <header className="gastos-semana-header">
+        <div className="gastos-semana-back-arrow" onClick={handleBackClick}>
           &lt;
         </div>
         <h1>Distribución de gastos</h1>
       </header>
 
       <main>
-        <div className="distribucion-gastos-semana-chart-card">
-          <div className="distribucion-gastos-semana-chart-header">
+        <div className="gastos-semana-chart-card">
+          <div className="gastos-semana-chart-header">
             <h2>{selectedPeriod}</h2>
             <InputDropdown
               options={options}
@@ -229,8 +229,8 @@ const DistribucionGastosSemana = () => {
               onChange={setSelectedPeriod}
             />
           </div>
-          <div className="distribucion-gastos-semana-chart-main">
-            <div className="distribucion-gastos-semana-chart-tooltip">
+          <div className="gastos-semana-chart-main">
+            <div className="gastos-semana-chart-tooltip">
               <span>{data.total}</span>
             </div>
             <ResponsiveContainer width="100%" height={150}>
@@ -242,11 +242,11 @@ const DistribucionGastosSemana = () => {
                 </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="distribucion-gastos-semana-legend">
+          <div className="gastos-semana-legend">
             {data.categories.map((category, index) => (
-              <div className="distribucion-gastos-semana-legend-item" key={index}>
+              <div className="gastos-semana-legend-item" key={index}>
                 <span
-                  className="distribucion-gastos-semana-dot"
+                  className="gastos-semana-dot"
                   style={{ backgroundColor: category.color }}
                 ></span>{" "}
                 {category.name}
@@ -255,21 +255,21 @@ const DistribucionGastosSemana = () => {
           </div>
         </div>
 
-        <div className="distribucion-gastos-semana-gastos-list">
+        <div className="gastos-semana-gastos-list">
           {data.gastos.map((gasto, index) => (
-            <div key={index} className="distribucion-gastos-semana-gasto-card">
-              <div className="distribucion-gastos-semana-gasto-card-header">
-                <div className="distribucion-gastos-semana-gasto-card-icon" style={{ color: gasto.color }}>
+            <div key={index} className="gastos-semana-gasto-card">
+              <div className="gastos-semana-gasto-card-header">
+                <div className="gastos-semana-gasto-card-icon" style={{ color: gasto.color }}>
                   {iconMap[gasto.icono]}
                 </div>
                 <h3 style={{ color: gasto.color }}>{gasto.categoria}</h3>
               </div>
-              <div className="distribucion-gastos-semana-gasto-card-body">
+              <div className="gastos-semana-gasto-card-body">
                 {gasto.items.map((item, itemIndex) => (
-                  <div key={itemIndex} className="distribucion-gastos-semana-gasto-item">
-                    <span className="distribucion-gastos-semana-gasto-item-name">{item.name}</span>
-                    <div className="distribucion-gastos-semana-progress-bar-container">
-                      <div className="distribucion-gastos-semana-progress-bar-wrapper">
+                  <div key={itemIndex} className="gastos-semana-gasto-item">
+                    <span className="gastos-semana-gasto-item-name">{item.name}</span>
+                    <div className="gastos-semana-progress-bar-container">
+                      <div className="gastos-semana-progress-bar-wrapper">
                         <ProgressBar
                           progress={item.porcentaje}
                           color={gasto.color}
@@ -277,7 +277,7 @@ const DistribucionGastosSemana = () => {
                         />
                       </div>
                       <span
-                        className="distribucion-gastos-semana-progress-bar-percentage"
+                        className="gastos-semana-progress-bar-percentage"
                         style={{ color: gasto.color }}
                       >
                         {item.porcentaje}%
@@ -294,4 +294,4 @@ const DistribucionGastosSemana = () => {
   );
 };
 
-export default DistribucionGastosSemana;
+export default GastosSemana;

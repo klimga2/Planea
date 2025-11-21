@@ -47,17 +47,17 @@ body {
   background-color: var(--color-background);
   border-bottom: none;
   position: sticky;
-  top: 0;
+  top: 25px;
   z-index: 50;
   gap: 0;
   align-items: center;
 }
 
 .movimientos-header h1 {
-    font-size: 23px;
-    font-weight: 600;
-    margin-top: -1%;
-    margin-left: -3%;
+  font-size: 23px;
+  font-weight: 600;
+  margin-top: -4%;
+  margin-left: -3%;
 }
 
 
@@ -65,8 +65,7 @@ body {
   cursor: pointer;
   padding-right: 15px;
   display: flex;
-  margin-left: 15px;
-  margin-top: -11px;
+  margin-left: -6px;
 }
 
 
