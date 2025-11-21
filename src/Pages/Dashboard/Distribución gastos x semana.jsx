@@ -1,133 +1,293 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUtensils } from "react-icons/fa";
+import { FaUtensils, FaDollarSign } from "react-icons/fa";
 import { AiOutlineCar } from "react-icons/ai";
-import { BiDollarCircle } from "react-icons/bi";
+import { BarChart, Bar, XAxis, ResponsiveContainer } from 'recharts';
 
 import InputDropdown from "../../Components/Inputs/InputDropdown/InputDropdown";
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
-import MixedBarChart from "../../Components/MixedBarChart/MixedBarChart";
 import "./Distribución gastos x semana.css";
 
 const allData = {
   "Semana 1": {
-    total: "$4,200,000",
-    chartData: [{ name: 'Lunes', Alimentación: 4000, Transporte: 2400, Otros: 2400 }, { name: 'Martes', Alimentación: 3000, Transporte: 1398, Otros: 2210 }, { name: 'Miércoles', Alimentación: 2000, Transporte: 9800, Otros: 2290 }, { name: 'Jueves', Alimentación: 2780, Transporte: 3908, Otros: 2000 }, { name: 'Viernes', Alimentación: 1890, Transporte: 4800, Otros: 2181 }],
-    gastos: [
-        { categoria: "Alimentación", icono: <FaUtensils />, color: "#1AB8C7", lightColor: "#EAF9FA", items: [{ nombre: "Mercado", porcentaje: 15 }, { nombre: "Almuerzo oficina", porcentaje: 20 }] },
-        { categoria: "Transporte", icono: <AiOutlineCar />, color: "#6992E8", lightColor: "#E8EFFB", items: [{ nombre: "Uber", porcentaje: 10 }, { nombre: "MIO", porcentaje: 10 }] },
-        { categoria: "Otros", icono: <BiDollarCircle />, color: "#C682E8", lightColor: "#F5EEFB", items: [{ nombre: "Compras", porcentaje: 5 }, { nombre: "Cumpleaños", porcentaje: 10 }] },
+    total: "$3,200,000",
+    chartData: [
+        { day: 'Lunes', Alimentación: 350, Transporte: 200, Otros: 100 },
+        { day: 'Martes', Alimentación: 400, Transporte: 250, Otros: 120 },
+        { day: 'Miércoles', Alimentación: 300, Transporte: 210, Otros: 150 },
+        { day: 'Jueves', Alimentación: 250, Transporte: 190, Otros: 80 },
+        { day: 'Viernes', Alimentación: 150, Transporte: 120, Otros: 90 },
     ],
+    categories: [
+      { name: "Alimentación", color: "#00BCD4" },
+      { name: "Transporte", color: "#4D9DE0" },
+      { name: "Otros", color: "#A787FB" },
+    ],
+    gastos: [
+      {
+        categoria: "Alimentación",
+        icono: "FaUtensils",
+        color: "#00BCD4",
+        items: [
+          { name: "Mercado", porcentaje: 20 },
+          { name: "Almuerzo oficina", porcentaje: 25 }
+        ]
+      },
+      {
+        categoria: "Transporte",
+        icono: "AiOutlineCar",
+        color: "#4D9DE0",
+        items: [
+          { name: "Uber", porcentaje: 12 },
+          { name: "MIO", porcentaje: 15 }
+        ]
+      },
+      {
+        categoria: "Otros",
+        icono: "FaDollarSign",
+        color: "#A787FB",
+        items: [
+          { name: "Compras", porcentaje: 8 },
+          { name: "Cumpleaños", porcentaje: 12 }
+        ]
+      }
+    ]
   },
   "Semana 2": {
     total: "$3,500,000",
-    chartData: [{ name: 'Lunes', Alimentación: 3500, Transporte: 2200, Otros: 2000 }, { name: 'Martes', Alimentación: 2500, Transporte: 1200, Otros: 2000 }, { name: 'Miércoles', Alimentación: 1500, Transporte: 8800, Otros: 2100 }, { name: 'Jueves', Alimentación: 2400, Transporte: 3500, Otros: 1800 }, { name: 'Viernes', Alimentación: 1500, Transporte: 4200, Otros: 2000 }],
-    gastos: [
-      { categoria: "Alimentación", icono: <FaUtensils />, color: "#1AB8C7", lightColor: "#EAF9FA", items: [{ nombre: "Mercado", porcentaje: 15 }, { nombre: "Almuerzo oficina", porcentaje: 20 }] },
-      { categoria: "Transporte", icono: <AiOutlineCar />, color: "#6992E8", lightColor: "#E8EFFB", items: [{ nombre: "Uber", porcentaje: 10 }, { nombre: "MIO", porcentaje: 10 }] },
-      { categoria: "Otros", icono: <BiDollarCircle />, color: "#C682E8", lightColor: "#F5EEFB", items: [{ nombre: "Compras", porcentaje: 5 }, { nombre: "Cumpleaños", porcentaje: 10 }] },
+    chartData: [
+        { day: 'Lunes', Alimentación: 400, Transporte: 240, Otros: 150 },
+        { day: 'Martes', Alimentación: 300, Transporte: 200, Otros: 100 },
+        { day: 'Miércoles', Alimentación: 350, Transporte: 220, Otros: 180 },
+        { day: 'Jueves', Alimentación: 200, Transporte: 180, Otros: 50 },
+        { day: 'Viernes', Alimentación: 100, Transporte: 100, Otros: 80 },
     ],
+    categories: [
+      { name: "Alimentación", color: "#00BCD4" },
+      { name: "Transporte", color: "#4D9DE0" },
+      { name: "Otros", color: "#A787FB" },
+    ],
+    gastos: [
+      {
+        categoria: "Alimentación",
+        icono: "FaUtensils",
+        color: "#00BCD4",
+        items: [
+          { name: "Mercado", porcentaje: 15 },
+          { name: "Almuerzo oficina", porcentaje: 20 }
+        ]
+      },
+      {
+        categoria: "Transporte",
+        icono: "AiOutlineCar",
+        color: "#4D9DE0",
+        items: [
+          { name: "Uber", porcentaje: 10 },
+          { name: "MIO", porcentaje: 10 }
+        ]
+      },
+      {
+        categoria: "Otros",
+        icono: "FaDollarSign",
+        color: "#A787FB",
+        items: [
+          { name: "Compras", porcentaje: 5 },
+          { name: "Cumpleaños", porcentaje: 10 }
+        ]
+      }
+    ]
   },
-  "Semana 3": {
+    "Semana 3": {
     total: "$3,800,000",
-    chartData: [{ name: 'Lunes', Alimentación: 4200, Transporte: 2600, Otros: 2600 }, { name: 'Martes', Alimentación: 3200, Transporte: 1500, Otros: 2300 }, { name: 'Miércoles', Alimentación: 2200, Transporte: 10000, Otros: 2400 }, { name: 'Jueves', Alimentación: 2900, Transporte: 4100, Otros: 2100 }, { name: 'Viernes', Alimentación: 2000, Transporte: 5000, Otros: 2300 }],
-    gastos: [
-        { categoria: "Alimentación", icono: <FaUtensils />, color: "#1AB8C7", lightColor: "#EAF9FA", items: [{ nombre: "Mercado", porcentaje: 18 }, { nombre: "Almuerzo oficina", porcentaje: 18 }] },
-        { categoria: "Transporte", icono: <AiOutlineCar />, color: "#6992E8", lightColor: "#E8EFFB", items: [{ nombre: "Uber", porcentaje: 15 }, { nombre: "MIO", porcentaje: 7 }] },
-        { categoria: "Otros", icono: <BiDollarCircle />, color: "#C682E8", lightColor: "#F5EEFB", items: [{ nombre: "Regalos", porcentaje: 12 }, { nombre: "Fiesta", porcentaje: 8 }] },
+    chartData: [
+        { day: 'Lunes', Alimentación: 450, Transporte: 280, Otros: 180 },
+        { day: 'Martes', Alimentación: 350, Transporte: 220, Otros: 130 },
+        { day: 'Miércoles', Alimentación: 400, Transporte: 250, Otros: 200 },
+        { day: 'Jueves', Alimentación: 220, Transporte: 200, Otros: 70 },
+        { day: 'Viernes', Alimentación: 120, Transporte: 150, Otros: 100 },
     ],
-  },
-  "Semana 4": {
-    total: "$4,500,000",
-    chartData: [{ name: 'Lunes', Alimentación: 4500, Transporte: 2800, Otros: 2800 }, { name: 'Martes', Alimentación: 3500, Transporte: 1700, Otros: 2500 }, { name: 'Miércoles', Alimentación: 2500, Transporte: 10500, Otros: 2600 }, { name: 'Jueves', Alimentación: 3100, Transporte: 4300, Otros: 2300 }, { name: 'Viernes', Alimentación: 2200, Transporte: 5200, Otros: 2500 }],
-    gastos: [
-        { categoria: "Alimentación", icono: <FaUtensils />, color: "#1AB8C7", lightColor: "#EAF9FA", items: [{ nombre: "Mercado", porcentaje: 22 }, { nombre: "Almuerzo oficina", porcentaje: 16 }] },
-        { categoria: "Transporte", icono: <AiOutlineCar />, color: "#6992E8", lightColor: "#E8EFFB", items: [{ nombre: "Uber", porcentaje: 10 }, { nombre: "MIO", porcentaje: 13 }] },
-        { categoria: "Otros", icono: <BiDollarCircle />, color: "#C682E8", lightColor: "#F5EEFB", items: [{ nombre: "Paseo", porcentaje: 15 }, { nombre: "Cumpleaños", porcentaje: 9 }] },
+    categories: [
+      { name: "Alimentación", color: "#00BCD4" },
+      { name: "Transporte", color: "#4D9DE0" },
+      { name: "Otros", color: "#A787FB" },
     ],
-  },
-  "Mensual": {
-    total: "$16,000,000",
-    chartData: [{ name: 'Semana 1', Alimentación: 16800, Transporte: 10400, Otros: 10400 }, { name: 'Semana 2', Alimentación: 14000, Transporte: 8800, Otros: 8000 }, { name: 'Semana 3', Alimentación: 15200, Transporte: 11200, Otros: 10400 }, { name: 'Semana 4', Alimentación: 18000, Transporte: 12000, Otros: 11200 }],
     gastos: [
-        { categoria: "Alimentación", icono: <FaUtensils />, color: "#1AB8C7", lightColor: "#EAF9FA", items: [{ nombre: "Mercado", porcentaje: 19 }, { nombre: "Almuerzo oficina", porcentaje: 17 }] },
-        { categoria: "Transporte", icono: <AiOutlineCar />, color: "#6992E8", lightColor: "#E8EFFB", items: [{ nombre: "Uber", porcentaje: 12 }, { nombre: "MIO", porcentaje: 9 }] },
-        { categoria: "Otros", icono: <BiDollarCircle />, color: "#C682E8", lightColor: "#F5EEFB", items: [{ nombre: "Varios", porcentaje: 20 }, { nombre: "Ahorro", porcentaje: 23 }] },
-    ],
+      {
+        categoria: "Alimentación",
+        icono: "FaUtensils",
+        color: "#00BCD4",
+        items: [
+          { name: "Mercado", porcentaje: 18 },
+          { name: "Almuerzo oficina", porcentaje: 22 }
+        ]
+      },
+      {
+        categoria: "Transporte",
+        icono: "AiOutlineCar",
+        color: "#4D9DE0",
+        items: [
+          { name: "Uber", porcentaje: 14 },
+          { name: "MIO", porcentaje: 12 }
+        ]
+      },
+      {
+        categoria: "Otros",
+        icono: "FaDollarSign",
+        color: "#A787FB",
+        items: [
+          { name: "Compras", porcentaje: 7 },
+          { name: "Cumpleaños", porcentaje: 15 }
+        ]
+      }
+    ]
   },
+    "Semana 4": {
+    total: "$3,100,000",
+    chartData: [
+        { day: 'Lunes', Alimentación: 380, Transporte: 220, Otros: 120 },
+        { day: 'Martes', Alimentación: 320, Transporte: 180, Otros: 110 },
+        { day: 'Miércoles', Alimentación: 370, Transporte: 240, Otros: 160 },
+        { day: 'Jueves', Alimentación: 180, Transporte: 160, Otros: 60 },
+        { day: 'Viernes', Alimentación: 90, Transporte: 110, Otros: 70 },
+    ],
+    categories: [
+      { name: "Alimentación", color: "#00BCD4" },
+      { name: "Transporte", color: "#4D9DE0" },
+      { name: "Otros", color: "#A787FB" },
+    ],
+    gastos: [
+      {
+        categoria: "Alimentación",
+        icono: "FaUtensils",
+        color: "#00BCD4",
+        items: [
+          { name: "Mercado", porcentaje: 12 },
+          { name: "Almuerzo oficina", porcentaje: 18 }
+        ]
+      },
+      {
+        categoria: "Transporte",
+        icono: "AiOutlineCar",
+        color: "#4D9DE0",
+        items: [
+          { name: "Uber", porcentaje: 8 },
+          { name: "MIO", porcentaje: 8 }
+        ]
+      },
+      {
+        categoria: "Otros",
+        icono: "FaDollarSign",
+        color: "#A787FB",
+        items: [
+          { name: "Compras", porcentaje: 6 },
+          { name: "Cumpleaños", porcentaje: 8 }
+        ]
+      }
+    ]
+  },
+};
+
+const iconMap = {
+    FaUtensils: <FaUtensils />,
+    AiOutlineCar: <AiOutlineCar />,
+    FaDollarSign: <FaDollarSign />,
 };
 
 const DistribucionGastosSemana = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("Semana 2");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (selectedPeriod === "Mensual") {
+      navigate(`/GastosMes`);
+    }
+  }, [selectedPeriod, navigate]);
+
   const options = ["Mensual", "Semana 1", "Semana 2", "Semana 3", "Semana 4"];
-  const data = allData[selectedPeriod];
+  const data = allData[selectedPeriod] || allData["Semana 2"];
 
   const handleBackClick = () => {
-    navigate(-1);
+    navigate(`/GastosMes`);
   };
 
   return (
     <div className="distribucion-gastos-semana">
-      <header className="header">
-        <div className="back-arrow" onClick={handleBackClick}>&lt;</div>
+      <header className="distribucion-gastos-semana-header">
+        <div className="distribucion-gastos-semana-back-arrow" onClick={handleBackClick}>
+          &lt;
+        </div>
         <h1>Distribución de gastos</h1>
       </header>
 
       <main>
-        <div className="chart-card">
-          <div className="chart-header">
+        <div className="distribucion-gastos-semana-chart-card">
+          <div className="distribucion-gastos-semana-chart-header">
             <h2>{selectedPeriod}</h2>
-            <InputDropdown options={options} value={selectedPeriod} onChange={setSelectedPeriod} />
+            <InputDropdown
+              options={options}
+              value={selectedPeriod}
+              onChange={setSelectedPeriod}
+            />
           </div>
-          <div className="chart-main">
-            <div className="chart-tooltip">
-                <span>{data.total}</span>
+          <div className="distribucion-gastos-semana-chart-main">
+            <div className="distribucion-gastos-semana-chart-tooltip">
+              <span>{data.total}</span>
             </div>
-            <MixedBarChart data={data.chartData} />
+            <ResponsiveContainer width="100%" height={150}>
+                <BarChart data={data.chartData} margin={{ top: 20, right: 5, left: 5, bottom: 5 }}>
+                    <XAxis dataKey="day" tickLine={false} axisLine={false} tick={{ fontSize: 12 }} />
+                    <Bar dataKey="Alimentación" fill="#00BCD4" radius={[5, 5, 0, 0]} barSize={10} />
+                    <Bar dataKey="Transporte" fill="#4D9DE0" radius={[5, 5, 0, 0]} barSize={10} />
+                    <Bar dataKey="Otros" fill="#A787FB" radius={[5, 5, 0, 0]} barSize={10} />
+                </BarChart>
+            </ResponsiveContainer>
           </div>
-          <div className="legend">
-            <div className="legend-item">
-              <span className="dot" style={{ backgroundColor: '#1AB8C7' }}></span> Alimentación
-            </div>
-            <div className="legend-item">
-              <span className="dot" style={{ backgroundColor: '#6992E8' }}></span> Transporte
-            </div>
-            <div className="legend-item">
-              <span className="dot" style={{ backgroundColor: '#C682E8' }}></span> Otros
-            </div>
+          <div className="distribucion-gastos-semana-legend">
+            {data.categories.map((category, index) => (
+              <div className="distribucion-gastos-semana-legend-item" key={index}>
+                <span
+                  className="distribucion-gastos-semana-dot"
+                  style={{ backgroundColor: category.color }}
+                ></span>{" "}
+                {category.name}
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="gastos-list">
-          {data.gastos.map((gasto, index) => {
-            const totalPorcentaje = gasto.items.reduce((acc, item) => acc + item.porcentaje, 0);
-            return (
-              <div key={index} className="gasto-card">
-                <div className="gasto-card-header">
-                  <div className="gasto-card-icon" style={{ color: gasto.color }}>{gasto.icono}</div>
-                  <h3 style={{ color: gasto.color }}>{gasto.categoria}</h3>
+        <div className="distribucion-gastos-semana-gastos-list">
+          {data.gastos.map((gasto, index) => (
+            <div key={index} className="distribucion-gastos-semana-gasto-card">
+              <div className="distribucion-gastos-semana-gasto-card-header">
+                <div className="distribucion-gastos-semana-gasto-card-icon" style={{ color: gasto.color }}>
+                  {iconMap[gasto.icono]}
                 </div>
-                <div className="gasto-card-body">
-                  <div className="gasto-item">
-                    <div className="progress-bar-container">
-                        <div className="progress-bar-wrapper">
-                            <ProgressBar
-                                progress={totalPorcentaje}
-                                color={gasto.color}
-                                lightColor={gasto.lightColor}
-                            />
-                        </div>
-                        <span className="progress-bar-percentage" style={{ color: gasto.color }}>
-                            {totalPorcentaje}%
-                        </span>
+                <h3 style={{ color: gasto.color }}>{gasto.categoria}</h3>
+              </div>
+              <div className="distribucion-gastos-semana-gasto-card-body">
+                {gasto.items.map((item, itemIndex) => (
+                  <div key={itemIndex} className="distribucion-gastos-semana-gasto-item">
+                    <span className="distribucion-gastos-semana-gasto-item-name">{item.name}</span>
+                    <div className="distribucion-gastos-semana-progress-bar-container">
+                      <div className="distribucion-gastos-semana-progress-bar-wrapper">
+                        <ProgressBar
+                          progress={item.porcentaje}
+                          color={gasto.color}
+                          lightColor={`${gasto.color}33`}
+                        />
+                      </div>
+                      <span
+                        className="distribucion-gastos-semana-progress-bar-percentage"
+                        style={{ color: gasto.color }}
+                      >
+                        {item.porcentaje}%
+                      </span>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </main>
     </div>
