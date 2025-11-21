@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import { FiArrowUpRight, FiArrowDownRight, FiLogOut, FiHome, FiBarChart2, FiStar, FiDollarSign, FiBookOpen, FiChevronRight } from 'react-icons/fi';
 import { FaFire, FaExclamationCircle, FaGraduationCap } from 'react-icons/fa';
+import BottomNav from '../../Components/BottomNav.jsx';
+import { Link } from 'react-router-dom';
+import SimpleBarChart from '../../Components/SimpleBarChart/SimpleBarChart.jsx';
+
 
 
 // Mock data, to be replaced with localStorage
@@ -38,10 +42,10 @@ const initialUserData = {
       total: 2050000,
       categories: [
           { name: 'Alimentos', percentage: 25, color: '#00bcd4'},
-          { name: 'Transporte', percentage: 20, color: '#8c9eff'},
-          { name: 'Ocio', percentage: 15, color: '#673ab7'},
-          { name: 'Vivienda', percentage: 30, color: '#3f51b5'},
-          { name: 'Otros', percentage: 10, color: '#cddc39'},
+          { name: 'Transporte', percentage: 20, color: '#4D9DE0'},
+          { name: 'Ocio', percentage: 15, color: '#23457E'},
+          { name: 'Vivienda', percentage: 30, color: '#A787FB'},
+          { name: 'Otros', percentage: 10, color: '#9BCFFD'},
       ]
   },
   products: [
@@ -92,7 +96,7 @@ const DashboardInicio = () => {
     <div className="dashboard-mobile">
       <header className="header-mobile">
         <div className="profile-area">
-            <img src="https://via.placeholder.com/50" alt="Profile" className="profile-pic" />
+            <img src="https://i.pinimg.com/736x/c7/9a/37/c79a37e13ef14be556b51143bcbb1b01.jpg" alt="Profile" className="profile-pic" />
             <div className="welcome-text">
                 <h2>Hola, {name}</h2>
                 <p>Bienvenido a tu tablero financiero</p>
@@ -132,16 +136,15 @@ const DashboardInicio = () => {
           </div>
         </div>
 
-        {/* Bar chart will go here */}
-        <div className="card-mobile chart-card">
-            <p>Aquí irá el gráfico de barras</p>
+        <div className="chart-card">
+            <SimpleBarChart />
         </div>
 
         {/* Budget Section */}
         <div className="card-mobile budget-card">
             <div className="card-header-alt">
                 <h3>Presupuesto</h3>
-                <FiChevronRight />
+                <Link to="/Migestion-presupuesto"><FiChevronRight /></Link>
             </div>
             <div className="budget-main">
                 <span className="budget-used">${(budget.used ?? 0).toLocaleString('es-CO')}</span>
@@ -168,7 +171,7 @@ const DashboardInicio = () => {
                 </ul>
             </div>
             <div className="good-pace-image">
-              <img src="https://via.placeholder.com/100" alt="Good Pace" />
+            
             </div>
         </div>
 
@@ -176,7 +179,7 @@ const DashboardInicio = () => {
         <div className="card-mobile financial-goals-card">
             <div className="card-header-alt">
                 <h3>Metas financieras</h3>
-                <FiChevronRight />
+                <Link to="/GastosMes"><FiChevronRight /></Link>
             </div>
             {financialGoals.map((goal, index) => (
                 <div className="goal-item" key={index}>
@@ -196,7 +199,7 @@ const DashboardInicio = () => {
         <div className="card-mobile spending-distribution-card">
             <div className="card-header-alt">
                 <h3>Distribución de gastos</h3>
-                <FiChevronRight />
+                <Link to="/GastosMes"><FiChevronRight /></Link>
             </div>
             <div className="spending-distribution-content">
                 <div className="donut-chart-placeholder">
@@ -221,7 +224,7 @@ const DashboardInicio = () => {
         <div className="card-mobile products-card">
             <div className="card-header-alt">
                 <h3>Tus productos</h3>
-                <FiChevronRight />
+                <Link to="/GastosMes"><FiChevronRight /></Link>
             </div>
             <div className="products-content">
                 {products.map((product, index) => (
@@ -250,13 +253,7 @@ const DashboardInicio = () => {
         
       </main>
 
-      <footer className="footer-mobile">
-        <FiStar className="footer-icon" />
-        <FiBarChart2 className="footer-icon" />
-        <FiHome className="footer-icon active" />
-        <FiDollarSign className="footer-icon" />
-        <FiBookOpen className="footer-icon" />
-      </footer>
+      <BottomNav />
     </div>
   );
 };

@@ -10,7 +10,7 @@
 
 /* Header */
 .header-mobile {
-  background: #3880ff; /* Solid blue background */
+  background: #4D9DE0;
   color: white;
   padding: 20px 15px;
   display: flex;
@@ -19,7 +19,7 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   position: relative;
-  min-height: 180px;
+  min-height: 190px;
 }
 
 .profile-area {
@@ -98,18 +98,19 @@
   background-color: #f9f9f9; /* Off-white background for cards area */
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  margin-top: -40px; /* Pulls the content area up to overlap header */
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+  margin-top: -30px; /* Pulls the content area up to overlap header */
+  box-shadow: 0 -4px 10px rgba(77,157,224,0.5);
   position: relative;
   z-index: 1;
 }
 
 .card-mobile {
-  background-color: white;
+    background-color: #FFFEFC;
+
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 2px rgba(77,157,224,0.5);
 }
 
 .balance-card span {
@@ -163,7 +164,11 @@
     text-align: center;
     color: #888;
 }
+.chart-card {
+    position: relative;
 
+    left: -17px;
+}
 /* Budget Card */
 
 .card-header-alt {
@@ -205,7 +210,8 @@
 }
 
 .progress-bar-fill {
-    background-color: #007bff;
+    background: #4D9DE0;
+
     height: 100%;
     border-radius: 10px;
 }
@@ -222,24 +228,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #eaf7f2; /* A light green background */
+    background: #FFFEFC;
+
 }
 
 .good-pace-content h3 {
     margin: 0 0 10px 0;
     font-size: 1.2em;
-    color: #155724; /* Dark green text */
+    color: #2DB482;
+
 }
 
 .good-pace-content p {
     margin: 0 0 10px 0;
-    color: #155724;
+  color:  #23457E;
+
+    font-weight: 700;
 }
 
 .good-pace-content ul {
     margin: 0;
     padding-left: 20px;
-    color: #155724;
+    color:  #23457E;
 }
 
 .good-pace-content ul li {
@@ -274,11 +284,11 @@
 }
 
 .financial-goals-card .goal-progress-bar {
-    background-color: #8A2BE2; /* A purple color for the second goal */
+    background-color: #4D9DE0; /* A purple color for the second goal */
 }
 
 .financial-goals-card .goal-item:first-child .goal-progress-bar {
-    background-color: #007bff; /* Blue for the first goal */
+    background-color: #d2e8ff; /* Blue for the first goal */
 }
 
 .financial-goals-card .goal-percentage {
@@ -300,11 +310,11 @@
     height: 150px;
     border-radius: 50%;
     background: conic-gradient(
-        #00bcd4 0% 25%,
-        #8c9eff 25% 45%,
-        #673ab7 45% 60%,
-        #3f51b5 60% 90%,
-        #cddc39 90% 100%
+        #1AB8C7 0% 25%,
+        #A787FB 25% 45%,
+        #23457E 45% 60%,
+        #4D9DE0 60% 90%,
+        #9BCFFD 90% 100%
     );
     display: flex;
     justify-content: center;
@@ -325,7 +335,7 @@
 
 .donut-chart-center p {
     margin: 0;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 600;
 }
 
