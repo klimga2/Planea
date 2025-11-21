@@ -1,0 +1,284 @@
+.configuraciones-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.configuraciones-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.configuraciones-header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.config-list {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.config-item {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.config-item:hover {
+  transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.config-item.logout {
+  cursor: pointer;
+}
+
+.config-item.logout:hover {
+  background: #ffebee;
+}
+
+.config-icon-wrapper {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.config-icon-wrapper.bell {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.star {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.globe {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.chat {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.shield {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.question {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.cookie {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.feedback {
+  background: #4A90E2;
+}
+
+.config-icon-wrapper.logout-icon {
+  background: #4A90E2;
+}
+
+.config-label {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+  font-weight: 400;
+}
+
+/* Switch Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4A90E2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* Arrow Icon */
+.config-item svg:last-child {
+  color: #ccc;
+  flex-shrink: 0;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+.modal-content p {
+  margin: 0 0 25px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-button.cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.modal-button.cancel:hover {
+  background: #e0e0e0;
+}
+
+.modal-button.confirm {
+  background: #4A90E2;
+  color: white;
+}
+
+.modal-button.confirm:hover {
+  background: #3a7bc8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .configuraciones-header {
+    padding: 15px;
+  }
+
+  .configuraciones-header h1 {
+    font-size: 16px;
+  }
+
+  .config-list {
+    padding: 15px;
+  }
+
+  .config-item {
+    padding: 14px;
+  }
+
+  .config-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .config-label {
+    font-size: 15px;
+  }
+
+  .modal-content {
+    padding: 25px 20px;
+  }
+
+  .modal-content h3 {
+    font-size: 16px;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+}

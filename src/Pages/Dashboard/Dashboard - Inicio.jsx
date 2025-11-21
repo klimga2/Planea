@@ -11,6 +11,9 @@ const Dashboard = () => {
   const Racha = () => {
     Nav("/Racha");
   };
+  const Perfil = () => {
+    Nav("/perfil");
+  };
   return (
     <div className="">
       <h1>Dashboard - Inicio</h1>
@@ -22,6 +25,9 @@ const Dashboard = () => {
       </button>
       <button onClick={Racha} className="new-game-button">
         Tu racha
+      </button>
+      <button onClick={Perfil} className="new-game-button" style={{marginTop: '20px', backgroundColor: '#667eea'}}>
+        🧑 Mi Perfil (Temporal)
       </button>
     </div>
   );

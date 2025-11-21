@@ -1,0 +1,192 @@
+.membresia-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 30px;
+}
+
+.membresia-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.membresia-header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.membresia-banner {
+  background: linear-gradient(135deg, #4A90E2 0%, #5BA3F5 100%);
+  padding: 25px 20px;
+  color: white;
+  text-align: center;
+}
+
+.membresia-banner img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.membresia-banner p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+.planes-list {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.plan-header {
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.plan-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.plan-title-section {
+  flex: 1;
+}
+
+.plan-title-section h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.plan-descripcion {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.plan-content {
+  padding: 20px;
+}
+
+.plan-content h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.beneficios-list,
+.limites-list {
+  margin: 0 0 20px;
+  padding-left: 20px;
+}
+
+.beneficios-list li,
+.limites-list li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.limites-list {
+  opacity: 0.8;
+}
+
+.cambiar-plan-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.cambiar-plan-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .membresia-header {
+    padding: 15px;
+  }
+
+  .membresia-header h1 {
+    font-size: 16px;
+  }
+
+  .membresia-banner {
+    padding: 20px 15px;
+  }
+
+  .membresia-banner p {
+    font-size: 14px;
+  }
+
+  .planes-list {
+    padding: 15px;
+  }
+
+  .plan-header {
+    padding: 15px;
+  }
+
+  .plan-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .plan-title-section h2 {
+    font-size: 18px;
+  }
+
+  .plan-content {
+    padding: 15px;
+  }
+}
