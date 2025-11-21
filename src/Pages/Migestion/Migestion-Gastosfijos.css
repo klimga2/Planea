@@ -79,8 +79,9 @@
 /* --- Resto de los componentes (Sin Cambios) --- */
 /* ------------------------------------------------ */
 
-.gastos-fijos-scope .gf-summary-card {
-  display: flex;
+astos-fijos-scope .gf-summary-card {
+  display: flex
+;
   justify-content: space-around;
   align-items: center;
   background: var(--gf-card-bg);
@@ -90,7 +91,7 @@
   margin-bottom: 32px;
   width: 23rem;
   box-sizing: border-box;
-  margin-left: -2.5rem;
+  margin-left: -0.5rem;
 }
 
 .gastos-fijos-scope .gf-summary-card .summary-section {
@@ -127,7 +128,7 @@
   width: 23rem;
   box-sizing: border-box;
   margin-bottom: 20px;
-  margin-left: -2.5rem;
+  margin-left: -0.5rem;
 }
 
 .gastos-fijos-scope .gf-gastos-container h2 {
