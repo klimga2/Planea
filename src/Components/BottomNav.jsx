@@ -15,7 +15,7 @@ const BottomNav = () => {
             <NavLink to="/dashboard" className="footer-icon" activeClassName="active">
                 <FiHome />
             </NavLink>
-            <NavLink to="/finance" className="footer-icon" activeClassName="active">
+            <NavLink to="/Migestion-gestionDiaria" className="footer-icon" activeClassName="active">
                 <FiDollarSign />
             </NavLink>
             <NavLink to="/learn" className="footer-icon" activeClassName="active">
