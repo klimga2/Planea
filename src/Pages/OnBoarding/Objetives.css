@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+.objetives-container {
+  background-color: #F8F5F0;
+  min-height: 100vh;
+  padding: 20px;
+  width: 100vw;
+  font-family: 'Nunito Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.objetives-header h1 {
+  color: #081121;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.objetives-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.objective-card {
+  background-color: #FFFEFC;
+  border: 1px solid rgba(77, 157, 224, 0.25);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.objective-card.selected {
+  border-color: #4D9DE0;
+}
+
+.objective-icon {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 15px;
+  color: #4D9DE0;
+}
+
+.objective-text h2 {
+  color: #081121;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  text-align: left;
+}
+
+.objective-text p {
+  color: #081121;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: left;
+}
+
+.progress-indicator {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.bar {
+  width: 40px;
+  height: 5px;
+  background-color: #C7C7C7;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.bar.active {
+  background-color: #4D9DE0;
+}

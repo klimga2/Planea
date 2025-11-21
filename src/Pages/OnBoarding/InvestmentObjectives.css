@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+.investment-container {
+  background-color: #F8F5F0;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.investment-header {
+  text-align: left;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.back-icon-wrapper {
+  margin-bottom: 15px; /* Space between arrow and title */
+}
+
+.back-icon {
+  font-size: 1.8rem;
+  color: #081121;
+  cursor: pointer;
+}
+
+.investment-header h1 {
+  color: #081121;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.options-container {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(77, 157, 224, 0.25);
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 60px;
+  flex-shrink: 0; /* Prevents container from shrinking */
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.checkbox-row:last-child {
+  margin-bottom: 0;
+}
+
+.custom-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #FFFFFF;
+  border: 2px solid #4D9DE0;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  position: relative;
+  margin-right: 15px;
+  top: 2px;
+}
+
+.custom-checkbox:checked {
+  background-color: #2A567B;
+  border-color: #2A567B;
+}
+
+.custom-checkbox:checked::after {
+  content: '\2713';
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkbox-row label {
+  color: #081121;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  cursor: pointer;
+  text-align: left;
+}
+
+.next-button {
+  border: none;
+  border-radius: 50px;
+  padding: 16px 0;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  margin-top: auto; /* Pushes button to the bottom */
+  flex-shrink: 0; /* Prevents button from shrinking */
+}
+
+.next-button.disabled {
+  background-color: #C7C7C7;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: not-allowed;
+}
+
+.next-button.enabled {
+  background-color: #4D9DE0;
+  color: #FFFFFF;
+}

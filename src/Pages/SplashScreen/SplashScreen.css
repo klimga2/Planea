@@ -1,0 +1,53 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #4D9DE0;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: center;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-background {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300%;
+  opacity: 1;
+}
+
+
+.splash-content {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.splash-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.splash-tagline {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 10px;
+  opacity: 0.9;
+}

@@ -1,0 +1,67 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #F9F6F2; 
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: center;
+}
+
+.signin-logo-container {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signin-logo {
+  width: 140px;
+}
+
+.signin-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #4D9DE0;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.signin-tagline {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #4D9DE0;
+}
+
+.signin-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.signin-button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 15px;
+}
+
+.primary {
+  background-color: #4D9DE0;
+  color: white;
+}
+
+.secondary {
+  background-color: #E8E8E8;
+  color: #003B73;
+}
