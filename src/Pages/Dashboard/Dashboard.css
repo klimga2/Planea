@@ -10,11 +10,17 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
+    background-color: #ffffff;
+    padding: 12px 16px;
+    margin: -16px -16px 16px -16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
   
   .profile-area {
     display: flex;
     align-items: center;
+    flex: 1;
+    min-width: 0;
   }
   
   .profile-pic {
@@ -22,17 +28,30 @@
     height: 40px;
     border-radius: 50%;
     margin-right: 8px;
+    flex-shrink: 0;
   }
   
-  .welcome-text h2 {
+  .dashboard-welcome {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  
+  .dashboard-welcome h2 {
     font-size: 16px;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
-  .welcome-text p {
+  .dashboard-welcome p {
     font-size: 12px;
     margin: 0;
     color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .header-icons-mobile {
@@ -177,21 +196,39 @@
     align-items: center;
   }
   
-  .good-pace-content h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
+  .good-pace-content {
+    flex: 1;
   }
   
-  .good-pace-content p {
+  .good-pace-content h3 {
+    font-size: 20px;
+    margin: 0 0 12px 0;
+    color: #00bfa5;
+    font-weight: 600;
+  }
+  
+  .good-pace-subtitle {
     font-size: 14px;
-    margin-bottom: 8px;
+    margin: 0 0 12px 0;
+    color: #1a237e;
+    font-weight: 500;
   }
   
   .good-pace-content ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 12px;
+    font-size: 14px;
+    color: #1a237e;
+  }
+  
+  .good-pace-content ul li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+  
+  .good-pace-content ul li strong {
+    font-weight: 600;
   }
   
   .goal-item {

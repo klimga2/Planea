@@ -97,7 +97,7 @@ const DashboardInicio = () => {
       <header className="header-mobile">
         <div className="profile-area">
             <img src="https://i.pinimg.com/736x/c7/9a/37/c79a37e13ef14be556b51143bcbb1b01.jpg" alt="Profile" className="profile-pic" />
-            <div className="welcome-text">
+            <div className="dashboard-welcome">
                 <h2>Hola, {name}</h2>
                 <p>Bienvenido a tu tablero financiero</p>
             </div>
@@ -163,15 +163,12 @@ const DashboardInicio = () => {
         <div className="card-mobile good-pace-card">
             <div className="good-pace-content">
                 <h3>¡Vas por buen camino!</h3>
-                <p>Mejoras de este mes:</p>
+                <p className="good-pace-subtitle">Mejoras de este mes:</p>
                 <ul>
-                    <li>+ {goodPace.savingIncrease ?? 0}% ahorro</li>
-                    <li>- {goodPace.variableExpensesDecrease ?? 0}% gastos variables</li>
-                    <li>{goodPace.emergencyFundPercentage ?? 0}% del fondo de emergencia completado</li>
+                    <li>+ {goodPace.savingIncrease ?? 0} % ahorro</li>
+                    <li>- {goodPace.variableExpensesDecrease ?? 0} % gastos variables</li>
+                    <li><strong>{goodPace.emergencyFundPercentage ?? 0} % del fondo de emergencia completado</strong></li>
                 </ul>
-            </div>
-            <div className="good-pace-image">
-            
             </div>
         </div>
 
