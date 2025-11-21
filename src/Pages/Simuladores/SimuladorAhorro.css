@@ -1,0 +1,198 @@
+.simulador-ahorro-container {
+	min-height: 100vh;
+	background-color: #f5f7fa;
+	padding-bottom: 30px;
+	max-width: 480px;
+	margin: 0 auto;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	box-sizing: border-box;
+}
+
+.simulador-ahorro-header {
+	background-color: white;
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	border: none;
+}
+
+.simulador-ahorro-titulo {
+	font-size: 18px;
+	font-weight: 600;
+	color: #1a202c;
+	margin: 0;
+}
+
+.ahorro-content {
+	padding: 0 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+/* Banner de consejo */
+.consejo-banner {
+	background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+	border-radius: 12px;
+	padding: 16px;
+	display: flex;
+	gap: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.consejo-icon {
+	background-color: white;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #3b82f6;
+	flex-shrink: 0;
+}
+
+.consejo-texto {
+	flex: 1;
+}
+
+.consejo-texto strong {
+	display: block;
+	font-size: 14px;
+	color: #1e293b;
+	margin-bottom: 4px;
+}
+
+.consejo-texto p {
+	font-size: 13px;
+	color: #475569;
+	margin: 0;
+	line-height: 1.5;
+}
+
+/* Formulario */
+.formulario-ahorro {
+	background-color: white;
+	border-radius: 12px;
+	padding: 24px 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	border: none;
+}
+
+.formulario-titulo {
+	font-size: 16px;
+	font-weight: 600;
+	color: #1a202c;
+	margin: 0 0 20px 0;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-label {
+	display: block;
+	font-size: 14px;
+	color: #4a5568;
+	margin-bottom: 8px;
+	font-weight: 400;
+}
+
+.form-input {
+	width: 100%;
+	padding: 12px 16px;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	font-size: 15px;
+	color: #1a202c;
+	background-color: white;
+	font-family: inherit;
+	transition: border-color 0.2s;
+	box-sizing: border-box;
+}
+
+.form-input:focus {
+	outline: none;
+	border-color: #4a90e2;
+}
+
+/* Resultados */
+.resultados-ahorro {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin: 24px 0;
+	padding-top: 20px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.resultado-item {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.resultado-item.destacado .resultado-valor {
+	font-size: 28px;
+	font-weight: 700;
+	color: #1a202c;
+}
+
+.resultado-valor {
+	font-size: 22px;
+	font-weight: 600;
+	color: #4a5568;
+	margin: 0;
+}
+
+.resultado-label {
+	font-size: 14px;
+	color: #718096;
+	margin: 0;
+}
+
+/* Botón */
+.btn-proyeccion-ahorro {
+	width: 100%;
+	padding: 14px;
+	background-color: #4a90e2;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	margin-top: 8px;
+	outline: none;
+}
+
+.btn-proyeccion-ahorro:hover {
+	background-color: #3a7bc8;
+}
+
+.btn-proyeccion-ahorro:active {
+	transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 375px) {
+	.ahorro-content {
+		padding: 0 16px;
+	}
+
+	.formulario-ahorro {
+		padding: 20px 16px;
+	}
+
+	.resultado-item.destacado .resultado-valor {
+		font-size: 24px;
+	}
+
+	.resultado-valor {
+		font-size: 20px;
+	}
+}

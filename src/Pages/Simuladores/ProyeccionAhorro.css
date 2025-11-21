@@ -1,0 +1,251 @@
+.proyeccion-ahorro-container {
+	min-height: 100vh;
+	background-color: #f5f7fa;
+	padding-bottom: 30px;
+	max-width: 480px;
+	margin: 0 auto;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	box-sizing: border-box;
+}
+
+.proyeccion-ahorro-header {
+	background-color: white;
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	border: none;
+}
+
+.proyeccion-ahorro-titulo {
+	font-size: 18px;
+	font-weight: 600;
+	color: #1a202c;
+	margin: 0;
+}
+
+.proyeccion-ahorro-content {
+	padding: 0 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+/* Editar datos */
+.editar-datos-section {
+	background-color: white;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.editar-datos-btn {
+	width: 100%;
+	padding: 16px;
+	background-color: white;
+	border: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	font-size: 15px;
+	font-weight: 500;
+	color: #4a90e2;
+}
+
+.datos-actuales {
+	padding: 16px;
+	border-top: 1px solid #e2e8f0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.form-group-edit {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.form-group-edit label {
+	font-size: 13px;
+	color: #4a5568;
+	font-weight: 500;
+}
+
+.form-input-edit {
+	padding: 10px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	font-size: 14px;
+	color: #1a202c;
+	background-color: white;
+	font-family: inherit;
+}
+
+.form-input-edit:focus {
+	outline: none;
+	border-color: #4a90e2;
+}
+
+/* Info section */
+.proyeccion-info {
+	text-align: left;
+}
+
+.proyeccion-titulo-seccion {
+	font-size: 20px;
+	font-weight: 600;
+	color: #1a202c;
+	margin: 0 0 8px 0;
+}
+
+.proyeccion-descripcion {
+	font-size: 14px;
+	color: #718096;
+	margin: 0;
+}
+
+/* Gráfica */
+.grafica-container {
+	background-color: white;
+	border-radius: 12px;
+	padding: 20px 10px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.grafica-label {
+	text-align: center;
+	font-size: 13px;
+	color: #718096;
+	margin: 12px 0 0 0;
+}
+
+.custom-tooltip {
+	background-color: rgba(0, 0, 0, 0.8);
+	padding: 8px 12px;
+	border-radius: 6px;
+	border: none;
+}
+
+.tooltip-valor {
+	color: white;
+	font-size: 13px;
+	font-weight: 600;
+	margin: 0;
+}
+
+/* Vista botones */
+.vista-botones {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+}
+
+.vista-btn {
+	padding: 10px 28px;
+	border-radius: 20px;
+	border: none;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s;
+	background-color: #e2e8f0;
+	color: #4a5568;
+}
+
+.vista-btn.active {
+	background-color: #4a90e2;
+	color: white;
+}
+
+.vista-btn:hover {
+	opacity: 0.9;
+}
+
+/* Valores acumulados */
+.valores-acumulados {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}
+
+.valor-acumulado-item {
+	background-color: white;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.valor-acumulado-numero {
+	font-size: 20px;
+	font-weight: 700;
+	color: #1a202c;
+	margin: 0 0 8px 0;
+}
+
+.valor-acumulado-label {
+	font-size: 13px;
+	color: #718096;
+	margin: 0;
+}
+
+/* Botones de acción */
+.acciones-botones {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	margin-top: 8px;
+}
+
+.btn-compartir,
+.btn-exportar {
+	padding: 14px;
+	border-radius: 8px;
+	border: none;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.btn-compartir {
+	background-color: #4a5568;
+	color: white;
+}
+
+.btn-compartir:hover {
+	background-color: #3a4555;
+}
+
+.btn-exportar {
+	background-color: #4a90e2;
+	color: white;
+}
+
+.btn-exportar:hover {
+	background-color: #3a7bc8;
+}
+
+.btn-compartir:active,
+.btn-exportar:active {
+	transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 375px) {
+	.proyeccion-ahorro-content {
+		padding: 0 16px;
+	}
+
+	.valor-acumulado-numero {
+		font-size: 18px;
+	}
+
+	.grafica-container {
+		padding: 16px 8px;
+	}
+}

@@ -3,7 +3,15 @@ import Dashboard from '../Pages/Dashboard/Dashboard - Inicio.jsx';
 import Presupuesto from '../Pages/Dashboard/Presupuesto.jsx';
 import GastosMes from "../Pages/Dashboard/DistribucionGastosMes.jsx";
 import GastosSemana from "../Pages/Dashboard/GastosSemana.jsx";
-import Simuladores from '../Pages/Dashboard/Simuladores.jsx';
+import Simuladores from '../Pages/Simuladores/Simuladores.jsx';
+import SimuladorInversion from '../Pages/Simuladores/SimuladorInversion.jsx';
+import ProyeccionInversion from '../Pages/Simuladores/ProyeccionInversion.jsx';
+import SimuladorAhorro from '../Pages/Simuladores/SimuladorAhorro.jsx';
+import ProyeccionAhorro from '../Pages/Simuladores/ProyeccionAhorro.jsx';
+import SimuladorCredito from '../Pages/Simuladores/SimuladorCredito.jsx';
+import ProyeccionCredito from '../Pages/Simuladores/ProyeccionCredito.jsx';
+import SimuladorMeta from '../Pages/Simuladores/SimuladorMeta.jsx';
+import ProyeccionMeta from '../Pages/Simuladores/ProyeccionMeta.jsx';
 import MigestiongestionDiaria from '../Pages/Migestion/Migestion-gestionDiaria.jsx';
 import MigestionMovimientos from '../Pages/Migestion/Migestion-gestionDiariaMovimient.jsx';
 import MigestionPresupuesto from '../Pages/Migestion/Migestion-presupuesto.jsx';
@@ -67,6 +75,14 @@ const AppRouter = () => {
 				<Route path='/GastosSemana' element={<GastosSemana />} />
 				<Route path='/Presupuesto' element={<Presupuesto />} />
 				<Route path='/Simuladores' element={<Simuladores />} />
+				<Route path='/SimuladorInversion' element={<SimuladorInversion />} />
+				<Route path='/ProyeccionInversion' element={<ProyeccionInversion />} />
+				<Route path='/SimuladorAhorro' element={<SimuladorAhorro />} />
+				<Route path='/ProyeccionAhorro' element={<ProyeccionAhorro />} />
+				<Route path='/SimuladorCredito' element={<SimuladorCredito />} />
+				<Route path='/ProyeccionCredito' element={<ProyeccionCredito />} />
+				<Route path='/SimuladorMeta' element={<SimuladorMeta />} />
+				<Route path='/ProyeccionMeta' element={<ProyeccionMeta />} />
 				<Route path='/Migestion-gestionDiaria' element={<MigestiongestionDiaria />} />
 				<Route path='/Migestion-gestionDiariaMovimientos' element={<MigestionMovimientos />} />
 				<Route path='/Migestion-presupuesto' element={<MigestionPresupuesto />} />

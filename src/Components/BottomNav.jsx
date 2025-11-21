@@ -9,7 +9,7 @@ const BottomNav = () => {
             <NavLink to="/goals" className="footer-icon" activeClassName="active">
                 <FiStar />
             </NavLink>
-            <NavLink to="/stats" className="footer-icon" activeClassName="active">
+            <NavLink to="/Simuladores" className="footer-icon" activeClassName="active">
                 <FiBarChart2 />
             </NavLink>
             <NavLink to="/dashboard" className="footer-icon" activeClassName="active">
