@@ -1,3 +1,4 @@
+
 /* Variables de Diseño Inspiradas en la Imagen */
 :root {
   --color-primary: #4299E1;
@@ -198,7 +199,7 @@ body {
 }
 
 .summary-details .amount {
-  font-size: 1.1rem;
+  font-size: 90%;
   font-weight: 600;
   margin-top: 2px;
 }

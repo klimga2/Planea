@@ -1,0 +1,35 @@
+
+.footer-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    padding: 8px 0;
+    max-width: 390px;
+    margin: 0 auto;
+    z-index: 1000;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.footer-icon {
+    color: #6b7280;
+    font-size: 28px;
+    cursor: pointer;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.footer-icon.active {
+    color: #3b82f6;
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Migestion-presupuesto.css';
 import ConfiguracionesAvanzadasPopup from './ConfiguracionesAvanzadasPopup'; // Importar el popup
+import BottomNav from '../../Components/BottomNav';
 
 import {
     MdChevronLeft,
@@ -220,6 +221,9 @@ const MigestionPresupuesto = () => {
             </footer>
 
             <ConfiguracionesAvanzadasPopup isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />
+            <nav className='bottom-nav' aria-label='Navegación principal'>
+                <BottomNav />
+            </nav>
         </div>
     );
 };

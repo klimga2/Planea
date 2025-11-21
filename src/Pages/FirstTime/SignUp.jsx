@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../../firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { doc, setDoc } from "firebase/firestore";
+// import { auth, db } from "../../firebase";
 import './SignUp.css';
 
 const EyeIcon = () => (
@@ -61,6 +61,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+        /*
       createUserWithEmailAndPassword(auth, formData.email, formData.password)
         .then(async (userCredential) => {
           // Signed in 
@@ -81,6 +82,9 @@ const SignUp = () => {
           console.error(errorCode, errorMessage);
           setErrors({ ...errors, firebase: errorMessage });
         });
+        */
+       console.log("Form submitted");
+       navigate('/sms-authorization');
     }
   };
 

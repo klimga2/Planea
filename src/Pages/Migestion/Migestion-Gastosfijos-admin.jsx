@@ -1,35 +1,36 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Migestion-Gastosfijos-admin.css';
+import BottomNav from '../../Components/BottomNav';
 import {
-    MdChevronLeft,
-    MdTheaters,
-    MdHome,
-    MdWaterDrop,
-    MdLocalGasStation,
-    MdSportsVolleyball,
-    MdEdit
-} from 'react-icons/md';
+    FiChevronLeft,
+    FiTv,
+    FiHome,
+    FiDroplet,
+    FiFileText, // Usado para Gas como un gasto genérico
+    FiAward,    // Usado para Club
+    FiEdit
+} from 'react-icons/fi';
 
 const initialSuscripciones = [
-    { id: 1, icon: MdTheaters, title: 'Netflix', subtitle: '11 de cada mes', amount: '-$36.000', details: { fecha: '11 de cada mes', metodoPago: 'Nequi', categoria: 'Suscripción', fullAmount: '-$36.000' } },
-    { id: 2, icon: MdHome, title: 'Renta', subtitle: '21 de cada mes', amount: '-$1.200.000', details: { fecha: '3 cada mes', metodoPago: 'BBVA', categoria: 'Vivienda', fullAmount: '-$900.000' } },
-    { id: 3, icon: MdWaterDrop, title: 'Agua', subtitle: '21 de cada mes', amount: '-$230.000', details: { fecha: '21 de cada mes', metodoPago: 'Nequi', categoria: 'Vivienda', fullAmount: '-$230.000' } },
-    { id: 4, icon: MdLocalGasStation, title: 'Gas', subtitle: '21 de cada mes', amount: '-$200.000', details: { fecha: '21 de cada mes', metodoPago: 'Nequi', categoria: 'Vivienda', fullAmount: '-$200.000' } },
-    { id: 5, icon: MdSportsVolleyball, title: 'Club de volleyball', subtitle: '18 de cada mes', amount: '-$30.000', details: { fecha: '18 de cada mes', metodoPago: 'BBVA', categoria: 'Deporte', fullAmount: '-$30.000' } },
-    { id: 6, icon: MdTheaters, title: 'Disney +', subtitle: '13 de cada mes', amount: '-$22.000', details: { fecha: '13 de cada mes', metodoPago: 'Nequi', categoria: 'Suscripción', fullAmount: '-$22.000' } },
-    { id: 7, icon: MdTheaters, title: 'HBO max', subtitle: '12 de cada mes', amount: '-$30.000', details: { fecha: '12 de cada mes', metodoPago: 'Nequi', categoria: 'Suscripción', fullAmount: '-$30.000' } },
+    { id: 1, icon: FiTv, title: 'Netflix', subtitle: '11 de cada mes', amount: '-$36.000', details: { fecha: '11 de cada mes', metodoPago: 'Nequi', categoria: 'Suscripción', fullAmount: '-$36.000' } },
+    { id: 2, icon: FiHome, title: 'Renta', subtitle: '21 de cada mes', amount: '-$1.200.000', details: { fecha: '3 cada mes', metodoPago: 'BBVA', categoria: 'Vivienda', fullAmount: '-$900.000' } },
+    { id: 3, icon: FiDroplet, title: 'Agua', subtitle: '21 de cada mes', amount: '-$230.000', details: { fecha: '21 de cada mes', metodoPago: 'Nequi', categoria: 'Vivienda', fullAmount: '-$230.000' } },
+    { id: 4, icon: FiFileText, title: 'Gas', subtitle: '21 de cada mes', amount: '-$200.000', details: { fecha: '21 de cada mes', metodoPago: 'Nequi', categoria: 'Vivienda', fullAmount: '-$200.000' } },
+    { id: 5, icon: FiAward, title: 'Club de volleyball', subtitle: '18 de cada mes', amount: '-$30.000', details: { fecha: '18 de cada mes', metodoPago: 'BBVA', categoria: 'Deporte', fullAmount: '-$30.000' } },
+    { id: 6, icon: FiTv, title: 'Disney +', subtitle: '13 de cada mes', amount: '-$22.000', details: { fecha: '13 de cada mes', metodoPago: 'Nequi', categoria: 'Suscripción', fullAmount: '-$22.000' } },
+    { id: 7, icon: FiTv, title: 'HBO max', subtitle: '12 de cada mes', amount: '-$30.000', details: { fecha: '12 de cada mes', metodoPago: 'Nequi', categoria: 'Suscripción', fullAmount: '-$30.000' } },
 ];
 
 const formatCurrency = (value) => {
-    const number = parseInt(value.replace(/[$.]/g, ''), 10);
+    const number = parseInt(String(value).replace(/[$.]/g, ''), 10);
     return new Intl.NumberFormat('es-CO').format(number);
 };
 
 
 const EditarGastoFijoPopup = ({ gasto, onClose, onSave }) => {
     const [monto, setMonto] = useState(gasto.details.fullAmount.replace(/[-$.]/g, ''));
-    const [frecuencia, setFrecuencia] = useState('Mensual'); // Default or from gasto
+    const [frecuencia, setFrecuencia] = useState('Mensual');
     const [titulo, setTitulo] = useState(gasto.title);
     const [categoria, setCategoria] = useState(gasto.details.categoria);
     const [desde, setDesde] = useState(gasto.details.metodoPago);
@@ -40,7 +41,7 @@ const EditarGastoFijoPopup = ({ gasto, onClose, onSave }) => {
             ...gasto,
             title: titulo,
             subtitle: fecha,
-            amount: `-S${formatCurrency(monto)}`,
+            amount: `-$${formatCurrency(monto)}`,
             details: {
                 ...gasto.details,
                 fecha: fecha,
@@ -56,7 +57,7 @@ const EditarGastoFijoPopup = ({ gasto, onClose, onSave }) => {
         <div className="gfa-edit-popup-overlay" onClick={onClose}>
             <div className="gfa-edit-popup-content" onClick={(e) => e.stopPropagation()}>
                 <header className="gfa-edit-popup-header">
-                    <button onClick={onClose} className="gfa-back-button"><MdChevronLeft /></button>
+                    <button onClick={onClose} className="gfa-back-button"><FiChevronLeft /></button>
                     <h2>Nuevo gasto fijo</h2>
                 </header>
                 <div className="gfa-edit-popup-body">
@@ -95,8 +96,8 @@ const DetalleGastoFijoPopup = ({ gasto, onClose, onSave }) => {
 
     const handleSaveEdit = (updatedGasto) => {
         onSave(updatedGasto);
-        setEditOpen(false); // Cierra el popup de edición
-        onClose(); // Cierra el popup de detalle
+        setEditOpen(false);
+        onClose();
     };
 
     const Icon = gasto.icon;
@@ -106,9 +107,9 @@ const DetalleGastoFijoPopup = ({ gasto, onClose, onSave }) => {
             <div className="gfa-popup-overlay" onClick={onClose}>
                 <div className="gfa-popup-content" onClick={(e) => e.stopPropagation()}>
                     <header className="gfa-popup-header">
-                        <button onClick={onClose} className="gfa-popup-back-button"><MdChevronLeft /></button>
+                        <button onClick={onClose} className="gfa-popup-back-button"><FiChevronLeft /></button>
                         <h2>Detalle de gasto fijo</h2>
-                        <button onClick={() => setEditOpen(true)} className="gfa-popup-edit-button"><MdEdit /></button>
+                        <button onClick={() => setEditOpen(true)} className="gfa-popup-edit-button"><FiEdit /></button>
                     </header>
                     <div className="gfa-popup-body">
                         <div className="gfa-popup-main-info">
@@ -138,7 +139,17 @@ const MigestionGastosFijosAdmin = () => {
     useEffect(() => {
         const storedGastos = localStorage.getItem('suscripcionesActivas');
         if (storedGastos) {
-            setSuscripciones(JSON.parse(storedGastos));
+            try {
+                // Asegurarse de que los iconos se rehidraten correctamente
+                const parsed = JSON.parse(storedGastos);
+                const withIcons = parsed.map(item => {
+                    const iconMap = { 'FiTv': FiTv, 'FiHome': FiHome, 'FiDroplet': FiDroplet, 'FiFileText': FiFileText, 'FiAward': FiAward };
+                    return {...item, icon: iconMap[item.iconName] || FiFileText };
+                });
+                setSuscripciones(withIcons);
+            } catch (e) {
+                setSuscripciones(initialSuscripciones);
+            }
         } else {
             setSuscripciones(initialSuscripciones);
         }
@@ -146,19 +157,21 @@ const MigestionGastosFijosAdmin = () => {
 
     const handleSaveGasto = (updatedGasto) => {
         const updatedSuscripciones = suscripciones.map(s => s.id === updatedGasto.id ? updatedGasto : s);
+        // Preparar para la serialización, guardando el nombre del icono
+        const toStore = updatedSuscripciones.map(item => ({...item, iconName: item.icon.name }));
         setSuscripciones(updatedSuscripciones);
-        localStorage.setItem('suscripcionesActivas', JSON.stringify(updatedSuscripciones));
+        localStorage.setItem('suscripcionesActivas', JSON.stringify(toStore));
     };
 
     return (
         <div className="gfa-page">
             <header className="gfa-header">
-                <button onClick={() => navigate(-1)} className="gfa-back-button"><MdChevronLeft /></button>
+                <button onClick={() => navigate(-1)} className="gfa-back-button"><FiChevronLeft /></button>
                 <h1>Suscripciones activas</h1>
             </header>
             <main className="gfa-list">
                 {suscripciones.map((item) => {
-                    const Icon = item.icon;
+                    const Icon = item.icon; // El icono ya es un componente
                     return (
                         <div key={item.id} className="gfa-card" onClick={() => setSelectedGasto(item)}>
                             <div className="gfa-icon-container"><Icon /></div>
@@ -172,6 +185,9 @@ const MigestionGastosFijosAdmin = () => {
                 })}
             </main>
             {selectedGasto && <DetalleGastoFijoPopup gasto={selectedGasto} onClose={() => setSelectedGasto(null)} onSave={handleSaveGasto} />}
+            <nav className='bottom-nav' aria-label='Navegación principal'>
+                <BottomNav />
+            </nav>
         </div>
     );
 };

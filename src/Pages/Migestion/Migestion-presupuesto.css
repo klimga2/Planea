@@ -218,7 +218,7 @@ body {
 /* 6. Barra de Botones Inferior Fija */
 .pres-footer-actions {
   position: fixed;
-  bottom: 0;
+  bottom: 43px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;

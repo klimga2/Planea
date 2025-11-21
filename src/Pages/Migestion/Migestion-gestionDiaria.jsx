@@ -4,21 +4,21 @@ import './GestionDiaria.css'; // Importa el nuevo archivo CSS
 import bannerImage from '../../images/Group 1000002804.png';
 
 import {
-	MdSwapHoriz,
-	MdPostAdd, // Icono para Presupuesto
-	MdAccountBalanceWallet, // Icono para Gastos fijos
-	MdAddCircleOutline, // Icono para Planeación de metas
-	MdDvr, // Icono para Mis productos
-  MdChat, // Icono para el chat
-} from 'react-icons/md';
+    FiTrendingUp,       // Para Movimientos
+    FiClipboard,        // Para Presupuesto
+    FiCreditCard,       // Para Gastos fijos
+    FiTarget,           // Para Planeación de metas
+    FiBriefcase,        // Para Mis productos
+    FiMessageSquare,    // Para el chat
+} from 'react-icons/fi';
 
-// Mapeo de iconos actualizado
+// Mapeo de iconos actualizado con Feather Icons
 const iconMap = {
-	movimientos: MdSwapHoriz,
-	presupuesto: MdPostAdd,
-	gastos: MdAccountBalanceWallet,
-	metas: MdAddCircleOutline,
-	productos: MdDvr,
+	movimientos: FiTrendingUp,
+	presupuesto: FiClipboard,
+	gastos: FiCreditCard,
+	metas: FiTarget,
+	productos: FiBriefcase,
 };
 
 const items = [
@@ -82,7 +82,7 @@ const MigestiongestionDiaria = () => {
 			</main>
 
 			<div className='fab' aria-label='Chat'>
-				<MdChat />
+				<FiMessageSquare />
 			</div>
 
 			<nav className='bottom-nav' aria-label='Navegación principal'>

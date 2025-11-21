@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../firebase";
 import './Login.css';
 
 const EyeIcon = () => (
@@ -15,7 +15,7 @@ const EyeIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-eye-slash" viewBox="0 0 16 16">
         <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.94 5.94 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.707z"/>
         <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.288.822.822.028.028a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
-        <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588l-.771-.771A5.944 5.944 0 0 1 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.133 13.133 0 0 1 2.828 8c.058-.087.122-.183.195.288.335-.48.83-1.12 1.465-1.755.165-.165.337-.328-.517-.486l.708.707A7.023 7.023 0 0 0 8 3.5c.66 0 1.298.12 1.892.34l-.709.708z"/>
+        <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588l-.771-.771A5.944 5.944 0 0 1 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.133 13.133 0 0 1 2.828 8c.058-.087.122-.183.195.288.335-.48.83-1.12 1.465-1.755.165-.165.337.328-.517-.486l.708.707A7.023 7.023 0 0 0 8 3.5c.66 0 1.298.12 1.892.34l-.709.708z"/>
         <path fill-rule="evenodd" d="M1.646 1.646a.5.5 0 0 1 .708 0l12 12a.5.5 0 0 1-.708.708l-12-12a.5.5 0 0 1 0-.708z"/>
     </svg>
   );
@@ -46,6 +46,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+        /*
       signInWithEmailAndPassword(auth, formData.email, formData.password)
         .then((userCredential) => {
           // Signed in 
@@ -59,6 +60,9 @@ const Login = () => {
           console.error(errorCode, errorMessage);
           setErrors({ ...errors, firebase: 'Usuario o contraseña incorrectos.' });
         });
+        */
+       console.log("Login submitted");
+       navigate('/dashboard');
     }
   };
 
