@@ -1,0 +1,257 @@
+/* DetalleCredito.css */
+
+/* Contenedor principal */
+.detalle-cuenta-container {
+    width: 280px;
+    padding: 0 20px; /* Asegura que el contenido no toque los bordes */
+}
+
+/* Top Bar (Mantenemos el estilo de MisCuentas) */
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.back-arrow {
+    cursor: pointer;
+    padding-right: 15px;
+    display: flex;
+}
+
+.top-bar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ---------------------------------- */
+/* CARD DE ENCABEZADO (DETALLE) */
+/* ---------------------------------- */
+.detalle-header-card {
+    /* Eliminamos el gradiente por defecto para que las clases dinámicas tomen control */
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    /* Reducimos el margen inferior aquí para darle espacio al botón de editar */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 120px;
+    width: 100%;
+    justify-self: center;
+    text-align: start;
+    /* Para una transición más suave al cambiar el tipo de cuenta */
+    transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.header-icon {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Estilo del ícono en la imagen de referencia (una pequeña tarjeta) */
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.header-text h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.header-text h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ---------------------------------- */
+/*
+/* CLASES DE COLOR DINÁMICAS POR TIPO DE CRÉDITO (NUEVAS) */
+/* ---------------------------------- */
+
+/* Hipotecario (Dorado/Amarillo quemado) */
+.card-color-hipotecario {
+    background: linear-gradient(135deg, #FFB800 0%, #FFD15F 100%);
+}
+
+/* Vehículo (Plata/Gris Acero) */
+.card-color-vehiculo {
+    background: linear-gradient(135deg, #7A869A 0%, #AAB3C4 100%);
+}
+
+/* Educativo (Cian claro/Agua) */
+.card-color-educativo {
+    background: linear-gradient(135deg, #00C4CC 0%, #47E0E7 100%);
+}
+
+/* Rotativo (Magenta) */
+.card-color-rotativo {
+    background: linear-gradient(135deg, #E91E63 0%, #FF6090 100%);
+}
+
+/* Microcrédito (Café oscuro/Marrón) */
+.card-color-microcredito {
+    background: linear-gradient(135deg, #8D6E63 0%, #BCAAA4 100%);
+}
+
+/* Libre inversión (Indigo/Azul profundo) */
+.card-color-libre-inversion {
+    background: linear-gradient(135deg, #3F51B5 0%, #7986CB 100%);
+}
+
+/* Crédito por defecto (Rojo/Naranja de advertencia) */
+.card-color-credito-default {
+    background: linear-gradient(135deg, #FF6F61 0%, #FF968D 100%);
+}
+
+
+/* ---------------------------------- */
+/* NUEVA UBICACIÓN DEL BOTÓN DE EDICIÓN */
+/* ---------------------------------- */
+.edit-button-wrapper {
+    text-align: right;
+    cursor: pointer;
+    margin-bottom: 15px; /* Espacio antes de que inicie el formulario */
+    transition: opacity 0.2s;
+    margin: 0;
+}
+
+.edit-button-wrapper:hover {
+    opacity: 0.8;
+
+}
+
+/* ---------------------------------- */
+/* FORMULARIO DE DETALLE/EDICIÓN */
+/* ---------------------------------- */
+.detalle-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #FFFEFC;
+    padding: 20px;
+    width:280px;
+    justify-self: center;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4D9DE0;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-input:disabled {
+    background-color: #f7f7f7;
+    color: #555;
+    border-color: #e0e0e0;
+}
+
+/* Contenedor para inputs en la misma fila (fechas) */
+.input-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-end;
+
+}
+
+.input-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------------------------------- */
+/* BOTONES CONDICIONALES (Estado, Tasa, Modalidad) */
+/* ---------------------------------- */
+.estado-buttons-container, .tasa-checkbox-container, .modalidad-buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.estado-btn, .tasa-btn, .modalidad-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    color: #555;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.estado-btn.active, .tasa-btn.active, .modalidad-btn.active {
+    background-color: #4D9DE0;
+    color: white;
+    border-color: #4D9DE0;
+}
+
+/* ---------------------------------- */
+/* BOTONES DE ACCIÓN (Guardar / Eliminar) */
+/* ---------------------------------- */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.guardar-edicion-btn {
+    padding: 15px;
+    background-color: #4D9DE0; /* Azul para guardar */
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.eliminar-producto-btn {
+    padding: 15px;
+    background-color: #D6184E; /* Rojo para eliminar */
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.regresar-btn {
+    padding: 15px;
+    background-color: #4D9DE0;
+    color: white;
+    font-weight: 600;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}

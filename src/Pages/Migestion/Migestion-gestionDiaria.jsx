@@ -1,85 +1,92 @@
-
 import { useNavigate } from 'react-router-dom';
+import BottomNav from '../../Components/BottomNav';
+import './GestionDiaria.css'; // Importa el nuevo archivo CSS
+import bannerImage from '../../images/Group 1000002804.png';
+
+import {
+	MdSwapHoriz,
+	MdPostAdd, // Icono para Presupuesto
+	MdAccountBalanceWallet, // Icono para Gastos fijos
+	MdAddCircleOutline, // Icono para Planeación de metas
+	MdDvr, // Icono para Mis productos
+  MdChat, // Icono para el chat
+} from 'react-icons/md';
+
+// Mapeo de iconos actualizado
+const iconMap = {
+	movimientos: MdSwapHoriz,
+	presupuesto: MdPostAdd,
+	gastos: MdAccountBalanceWallet,
+	metas: MdAddCircleOutline,
+	productos: MdDvr,
+};
 
 const items = [
-	{ key: 'movimientos', title: 'Movimientos', desc: 'Registro actualizado de ingresos y gastos recientes.' },
+	{
+		key: 'movimientos',
+		title: 'Movimientos',
+		desc: 'Registro actualizado de ingresos y gastos recientes.',
+	},
 	{ key: 'presupuesto', title: 'Presupuesto', desc: 'Control de lo planeado vs. lo gastado en el mes.' },
 	{ key: 'gastos', title: 'Gastos fijos', desc: 'Pagos organizados para evitar olvidos.' },
 	{ key: 'metas', title: 'Planeación de metas', desc: 'Creación y seguimiento de tus metas financieras.' },
-	{ key: 'productos', title: 'Mis productos', desc: 'Resumen de tus cuentas, tarjetas y ahorros en un solo lugar.' },
-	{ key: 'tributaria', title: 'Planeación tributaria', desc: 'Planea tu declaración de renta sin enredos.' },
-	{ key: 'patrimonial', title: 'Planeación patrimonial', desc: 'Descubre cuánto vale realmente tu patrimonio.' },
+	{
+		key: 'productos',
+		title: 'Mis productos',
+		desc: 'Resumen de tus cuentas, tarjetas y ahorros en un solo lugar.',
+	},
 ];
 
 const MigestiongestionDiaria = () => {
-	const Nav = useNavigate();
-	const goBack = () => Nav('/');
+	const navigate = useNavigate();
 
 	return (
-		<div className='mg-page'>
-			<header className='mg-header'>
-				<button className='mg-back' onClick={goBack} aria-label='Atrás'>
-					◀
-				</button>
-				<div>
-					<h1 className='mg-title'>Gestión diaria</h1>
-					<p className='mg-sub'>Maneja tus ingresos y gastos</p>
-				</div>
+		<div className='main-container'>
+			<header className='header'>
+				<h1>Gestión diaria</h1>
+				<p>Organiza tu día a día financiero en un solo lugar</p>
 			</header>
 
-			<section className='mg-banner'>
-				<div className='mg-banner-illustration' aria-hidden>
-					{/* simple illustration box - replace with image if available */}
-					<svg width='86' height='64' viewBox='0 0 86 64' fill='none' xmlns='http://www.w3.org/2000/svg'>
-						<rect x='2' y='6' width='82' height='50' rx='8' fill='#E6F0FF' />
-						<rect x='8' y='12' width='42' height='10' rx='3' fill='#C6E0FF' />
-						<rect x='8' y='28' width='62' height='6' rx='3' fill='#BEE3FF' />
-					</svg>
-				</div>
-				<div className='mg-banner-text'>
-					<strong>Lorem ipsum dolor sit amet</strong>
-					<span>consectetur adipiscing elit pharetra, tristique ante augue tempus arcu sod</span>
-				</div>
+			<section className='banner'>
+				<img
+					src={bannerImage}
+					alt='banner'
+					className='banner-image'
+				/>
 			</section>
 
-			<main className='mg-list'>
+			<main className='card-list'>
 				{items.map((it) => {
 					const getRoute = () => {
 						if (it.key === 'movimientos') return '/Migestion-gestionDiariaMovimientos';
 						if (it.key === 'presupuesto') return '/Migestion-presupuesto';
+						if (it.key === 'gastos') return '/Migestion-gastos-fijos';
+						if (it.key === 'metas') return '/Migestion-planeacionmetas';
+						if (it.key === 'productos') return '/Migestion-misproductos';
 						return '/';
 					};
+					
+					const Icon = iconMap[it.key];
+
 					return (
-					<article key={it.key} className='mg-card' role='button' tabIndex={0} onClick={() => Nav(getRoute())}>
-						<div className='mg-card-left'>
-							<div className='mg-icon' aria-hidden>
-								{/* simple icon circle with initials */}
-								<svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'>
-									<circle cx='18' cy='18' r='18' fill='#E8F4FF' />
-									<rect x='10' y='14' width='16' height='8' rx='2' fill='#9FCBFF' />
-								</svg>
+						<article key={it.key} className='card' role='button' tabIndex={0} onClick={() => navigate(getRoute())}>
+							{Icon && <Icon className='icon' size={32} />}
+							<div className='card-content'>
+								<h3 className='card-title'>{it.title}</h3>
+								<p className='card-subtitle'>{it.desc}</p>
 							</div>
-							<div>
-								<h3 className='mg-card-title'>{it.title}</h3>
-								<p className='mg-card-desc'>{it.desc}</p>
-							</div>
-						</div>
-						<div className='mg-card-right'>›</div>
-					</article>
+							<div className='arrow'>›</div>
+						</article>
 					);
 				})}
 			</main>
 
-			<button className='mg-fab' aria-label='Chat'>
-				💬
-			</button>
+			<div className='fab' aria-label='Chat'>
+				<MdChat />
+			</div>
 
-			<nav className='mg-bottom-nav' aria-label='Navegación principal'>
-				<button className='nav-item'>★</button>
-				<button className='nav-item'>📊</button>
-				<button className='nav-item nav-home'>🏠</button>
-				<button className='nav-item'>$</button>
-				<button className='nav-item'>📖</button>
+			<nav className='bottom-nav' aria-label='Navegación principal'>
+				<BottomNav />
 			</nav>
 		</div>
 	);

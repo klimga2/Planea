@@ -3,6 +3,7 @@ import './Dashboard.css';
 import { FiArrowUpRight, FiArrowDownRight, FiLogOut, FiHome, FiBarChart2, FiStar, FiDollarSign, FiBookOpen, FiChevronRight } from 'react-icons/fi';
 import { FaFire, FaExclamationCircle, FaGraduationCap } from 'react-icons/fa';
 
+
 // Mock data, to be replaced with localStorage
 const initialUserData = {
   name: 'Eduardo',
@@ -53,6 +54,7 @@ const initialUserData = {
       }
   ]
   // ... other data from your design
+
 };
 
 const DashboardInicio = () => {

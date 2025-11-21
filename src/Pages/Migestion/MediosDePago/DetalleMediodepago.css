@@ -1,0 +1,421 @@
+/* Variables de Color (Asegúrate de tenerlas) */
+:root {
+    --color-primary: #4D9DE0;
+    --color-secondary: #607D8B;
+    --color-ingresos: #4CAF50;
+    --color-egresos: #F44336;
+    --color-delete-btn: #E91E63;
+    --color-return-btn: #E0E0E0;
+    --color-card-background: #FFFEFC; /* Fondo para las tarjetas internas (Cupo, Fechas, Pagos) */
+    --color-text-dark: #333;
+    --color-text-medium: #555;
+}
+
+/* ---------------------------------- */
+/* CONTENEDOR Y BARRA SUPERIOR */
+/* ---------------------------------- */
+.payment-detail-container {
+    margin: 0 auto;
+    text-align: start;
+    min-height: 100vh;
+    width: 320px;
+
+    box-sizing: border-box;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 10px;
+}
+
+.back-arrow {
+    cursor: pointer;
+    padding-right: 15px;
+    display: flex;
+}
+
+.top-bar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.payment-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: 15px;
+}
+
+/* ---------------------------------- */
+/* TARJETA PRINCIPAL (ESTILO IMAGEN) */
+/* ---------------------------------- */
+.payment-main-card {
+ border-radius: 15px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    box-sizing: border-box;
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+    justify-self: center;
+}
+
+/* Estilo para Tarjeta Débito (Verde/Turquesa) */
+.debit-card {
+    background: linear-gradient(135deg, #28b8a5 0%, #50e4c6 100%);
+}
+
+/* Estilo para Tarjeta Crédito (Violeta/Azul) */
+.credit-card {
+    background: linear-gradient(135deg, #5e32b8 0%, #8b68c4 100%); /* Simulación del color de la imagen */
+}
+
+.payment-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.card-network-logo {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    text-align: right;
+}
+
+.network-text {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.network-type {
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+    margin-top: -5px;
+}
+
+.card-number-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 20px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.card-info-item {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.card-info-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-bottom: 2px;
+}
+
+.card-info-value {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.card-info-item.expiration {
+    text-align: right;
+}
+
+/* Botón central (Cambiar a cuenta principal) */
+.action-btn.center-btn {
+    background-color: #f0f0f0;
+    color: var(--color-text-dark);
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+}
+
+/* ---------------------------------- */
+/* DETALLES DE TARJETA DÉBITO (PROMEDIO) */
+/* ---------------------------------- */
+.promedio-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: 15px;
+}
+
+.promedio-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.promedio-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-card-background);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.promedio-icon-text {
+    margin-right: 15px;
+    display: flex;
+}
+
+.montoeegr {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+.tituloegresos {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-dark);
+}
+
+.promedio-monto-ingreso, .promedio-monto-egreso {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* ---------------------------------- */
+/* DETALLES DE TARJETA CRÉDITO */
+/* ---------------------------------- */
+
+/* Cupo Usado */
+.cupo-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.cupo-progress-container {
+    background-color: var(--color-card-background);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    position: relative; /* Para posicionar el porcentaje */
+}
+
+.cupo-progress-bar {
+    height: 15px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.cupo-progress-fill {
+    height: 100%;
+    background-color: var(--color-primary); /* Azul de la marca */
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+}
+
+.cupo-amounts {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+}
+
+.cupo-percentage {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-primary);
+}
+
+.cupito{
+  display: flex;
+  height: 50px;
+}
+
+/* Fechas de Corte y Pago */
+.date-info-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.date-card {
+    flex: 1;
+    background-color: var(--color-card-background);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-label {
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+    margin-bottom: 5px;
+}
+
+.date-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.date-badge {
+    background-color: #ffe082; /* Amarillo suave para corte */
+    color: #f57f17; /* Naranja para el texto */
+    border-radius: 8px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.date-badge.payment-badge {
+    background-color: #c8e6c9; /* Verde suave para pago */
+    color: #388e3c; /* Verde oscuro para el texto */
+}
+
+.days-text {
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+/* Pagos Mínimo y Sugerido */
+.payment-info-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.payment-card {
+    flex: 1;
+    background-color: var(--color-card-background);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.payment-icon {
+    margin-bottom: 5px;
+    color: var(--color-primary); /* Icono azul */
+}
+
+.payment-label {
+    font-size: 0.8rem;
+    color: var(--color-text-medium);
+    margin-bottom: 5px;
+}
+
+.payment-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+/* ---------------------------------- */
+/* BOTONES DE ACCIÓN INFERIORES (Común) */
+/* ---------------------------------- */
+.action-buttons-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.action-btn.primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.action-btn.secondary {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.action-buttons-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-btn.full-width.delete-btn {
+    background-color: var(--color-delete-btn);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn.full-width.return-btn {
+    background-color: var(--color-return-btn);
+    color: var(--color-text-dark);
+}

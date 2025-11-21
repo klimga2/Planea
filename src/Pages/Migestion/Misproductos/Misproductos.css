@@ -1,0 +1,145 @@
+/* ---------------------------------- */
+/* CONTENEDOR Y BARRA SUPERIOR */
+/* ---------------------------------- */
+.mis-productos-container {
+
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.top-bar {
+    display: flex
+;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    margin-right: 14rem;
+    justify-content: flex-end;
+}
+
+.back-arrow {
+    cursor: pointer;
+    padding-right: 15px;
+    display: flex;
+}
+
+.iconinntos{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.top-bar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4D9DE0; /* ⭐ NUEVO COLOR AZUL */
+}
+
+/* ---------------------------------- */
+/* BANNER (IMAGEN SUPERIOR) */
+/* ---------------------------------- */
+.banner-mis-productos {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(90deg, #E0F7FA 0%, #B3E5FC 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.banner-content {
+    padding-left: 100px;
+}
+
+.banner-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4D9DE0; /* ⭐ NUEVO COLOR AZUL */
+    line-height: 1.3;
+}
+
+
+/* ---------------------------------- */
+/* FILAS DE PRODUCTO (CARDS) */
+/* ---------------------------------- */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.product-row-card {
+
+    text-align: start;
+    flex-direction: column;
+    align-items: start;
+    padding: 15px 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    border: 1px solid #eee;
+    justify-content: space-between;
+}
+
+.product-icon-section {
+    padding-right: 15px;
+    display: flex;
+}
+
+.product-text-section {
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+  width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.product-description {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+
+/* ---------------------------------- */
+/* BOTÓN DE AGREGAR PRODUCTO (FIJO) */
+/* ---------------------------------- */
+.add-product-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 568px;
+    padding: 15px;
+    background-color: #4D9DE0; /* ⭐ NUEVO COLOR AZUL */
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(77, 157, 224, 0.4); /* Sombra basada en el nuevo color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    z-index: 1000;
+}
+
+.add-product-btn:hover {
+    background-color: #3a8cdb;
+}
